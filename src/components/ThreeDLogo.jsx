@@ -131,7 +131,16 @@ export default function ThreeDLogo() {
         roughness: 0.6,
       });
 
-      // Create 3D LORAN Logo Geometries (Procedural Luxury Architecture)
+      // UNMISTAKABLE 3D TEST ELEMENT: Giant rotating golden metallic sphere in the center!
+      const testSphereGeom = new THREE.SphereGeometry(1.0, 32, 32);
+      const testSphereMesh = new THREE.Mesh(testSphereGeom, goldMaterial);
+      testSphereMesh.position.set(0, 0.4, 0);
+      if (!isMobile) {
+        testSphereMesh.castShadow = true;
+        testSphereMesh.receiveShadow = true;
+      }
+      logoGroup.add(testSphereMesh);
+
       // Core Wood Base
       const baseGeom = new THREE.CylinderGeometry(1.6, 1.8, 0.25, baseRadialSegments);
       const baseMesh = new THREE.Mesh(baseGeom, darkWoodMaterial);
@@ -166,6 +175,7 @@ export default function ThreeDLogo() {
       const coreGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
       coreGeom.center();
       const coreMesh = new THREE.Mesh(coreGeom, goldMaterial);
+      coreMesh.position.y = 0.4; // Mount on top of wood base
       if (!isMobile) {
         coreMesh.castShadow = true;
         coreMesh.receiveShadow = true;
@@ -175,11 +185,13 @@ export default function ThreeDLogo() {
       // Surrounding Copper Orbital Rings
       const ringGeom1 = new THREE.TorusGeometry(1.7, 0.06, ringTorusSegments, ringTorusRadialSegments);
       const ringMesh1 = new THREE.Mesh(ringGeom1, copperMaterial);
+      ringMesh1.position.y = 0.4;
       ringMesh1.rotation.x = Math.PI / 2.5;
       logoGroup.add(ringMesh1);
 
       const ringGeom2 = new THREE.TorusGeometry(2.1, 0.04, ringTorusSegments, ringTorusRadialSegments);
       const ringMesh2 = new THREE.Mesh(ringGeom2, copperMaterial);
+      ringMesh2.position.y = 0.4;
       ringMesh2.rotation.x = -Math.PI / 3;
       ringMesh2.rotation.y = Math.PI / 4;
       logoGroup.add(ringMesh2);
@@ -191,7 +203,7 @@ export default function ThreeDLogo() {
         const sp = new THREE.Mesh(sphereGeom, goldMaterial);
         const angle = (i * Math.PI * 2) / spheresCount;
         const radius = 1.6 + Math.random() * 0.8;
-        sp.position.set(Math.cos(angle) * radius, (Math.random() - 0.5) * 1.5, Math.sin(angle) * radius);
+        sp.position.set(Math.cos(angle) * radius, 0.4 + (Math.random() - 0.5) * 1.5, Math.sin(angle) * radius);
         logoGroup.add(sp);
         spheres.push({ mesh: sp, speed: 0.01 + Math.random() * 0.02, angle });
       }
@@ -217,7 +229,7 @@ export default function ThreeDLogo() {
 
       // Central glowing gold light
       const corePointLight = new THREE.PointLight(0xC89B5B, 2.5, 12);
-      corePointLight.position.set(0, 0, 1.5);
+      corePointLight.position.set(0, 0.4, 1.5);
       scene.add(corePointLight);
 
       // Animation variables
@@ -258,6 +270,10 @@ export default function ThreeDLogo() {
           logoGroup.rotation.y += 0.007;
           coreMesh.rotation.z -= 0.004;
           
+          // Extra rotating speed for the giant test sphere to make it obvious
+          testSphereMesh.rotation.y += 0.015;
+          testSphereMesh.rotation.x += 0.008;
+
           // Floating spheres orbit
           spheres.forEach(sp => {
             sp.angle += sp.speed;

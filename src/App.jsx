@@ -15,6 +15,11 @@ import Footer from './components/Footer';
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
 
+  // Diagnostic logger to ensure App.jsx renders successfully in browser console
+  useEffect(() => {
+    console.log("FULL_3D ACTIVE - App.jsx mounted successfully!");
+  }, []);
+
   // Handle Automatic Section Tracking on Scroll (IntersectionObserver)
   useEffect(() => {
     const sections = ['home', 'services', 'why-loran', 'portfolio', 'process', 'pricing', 'wizard', 'contact'];
@@ -51,6 +56,15 @@ export default function App() {
   return (
     <div className="relative min-h-screen pb-safe">
       
+      {/* 👑 Global Fixed Diagnostic Badge (Guaranteed to render if App.jsx mounts) */}
+      <div 
+        className="fixed bottom-4 left-4 z-[99999] px-4 py-2.5 bg-emerald-600 text-white font-mono text-[10px] font-black tracking-widest shadow-2xl rounded-xl border border-emerald-400/30 flex items-center gap-2 select-none animate-pulse"
+        style={{ pointerEvents: 'none' }}
+      >
+        <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
+        👑 LORAN GLOBAL DIAGNOSTIC: App.jsx ACTIVE
+      </div>
+
       {/* Luxury Loading Intro Screen */}
       <Loader />
 
