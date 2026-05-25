@@ -10,15 +10,18 @@ export default function ThreeDLogo() {
     let animId = null;
     let handleMouseMove = null;
     let handleResize = null;
+    let handleVisibilityChange = null;
 
     try {
       if (!containerRef.current) return;
 
       // Check if on iOS WKWebView / Instagram / FB in-app browser to forcefully bypass WebGL
       const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
-      const isMobileInApp = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab') || /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+      const isInstagramOrFB = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab');
+      const isIOSWKWebView = /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
 
-      if (isMobileInApp) {
+      if (isInstagramOrFB || isIOSWKWebView) {
         setWebglSupported(false);
         return;
       }
@@ -42,6 +45,15 @@ export default function ThreeDLogo() {
       const width = containerRef.current.clientWidth;
       const height = containerRef.current.clientHeight;
 
+      // Adjust geometric subdivisions, lights and shadows based on device type (Safe Hybrid LOD)
+      const isMobile = isMobileDevice;
+      const baseRadialSegments = isMobile ? 16 : 32;
+      const coreStarPoints = 8;
+      const ringTorusSegments = isMobile ? 8 : 16;
+      const ringTorusRadialSegments = isMobile ? 32 : 100;
+      const spheresCount = isMobile ? 4 : 12;
+      const sphereSubdivisions = isMobile ? 8 : 16;
+
       // Scene
       const scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0xF7EFE6, 0.05);
@@ -50,12 +62,21 @@ export default function ThreeDLogo() {
       const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
       camera.position.z = 8;
 
-      // Renderer
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+      // Renderer creation
+      renderer = new THREE.WebGLRenderer({ 
+        antialias: !isMobile, // Turn off antialiasing on mobile for huge performance gains
+        alpha: true, 
+        powerPreference: "high-performance" 
+      });
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2)); // Lower pixel ratio on mobile to prevent GPU fill rate lag
+      
+      // Realtime shadows are extremely heavy on mobile browsers
+      renderer.shadowMap.enabled = !isMobile;
+      if (!isMobile) {
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      }
+      
       containerRef.current.appendChild(renderer.domElement);
 
       // Group for Rotation and Parallax
@@ -84,19 +105,20 @@ export default function ThreeDLogo() {
 
       // Create 3D LORAN Logo Geometries (Procedural Luxury Architecture)
       // Core Wood Base
-      const baseGeom = new THREE.CylinderGeometry(1.6, 1.8, 0.25, 32);
+      const baseGeom = new THREE.CylinderGeometry(1.6, 1.8, 0.25, baseRadialSegments);
       const baseMesh = new THREE.Mesh(baseGeom, darkWoodMaterial);
       baseMesh.position.y = -2;
-      baseMesh.receiveShadow = true;
+      if (!isMobile) {
+        baseMesh.receiveShadow = true;
+      }
       logoGroup.add(baseMesh);
 
       // Golden Core Star/Pentagon (Arabic inspired geometric pattern)
       const shape = new THREE.Shape();
       const outerRadius = 1.0;
       const innerRadius = 0.5;
-      const pointsNum = 8;
-      for (let i = 0; i < pointsNum * 2; i++) {
-        const angle = (i * Math.PI) / pointsNum;
+      for (let i = 0; i < coreStarPoints * 2; i++) {
+        const angle = (i * Math.PI) / coreStarPoints;
         const radius = i % 2 === 0 ? outerRadius : innerRadius;
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
@@ -105,32 +127,41 @@ export default function ThreeDLogo() {
       }
       shape.closePath();
 
-      const extrudeSettings = { depth: 0.25, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: 0.05, bevelThickness: 0.05 };
+      const extrudeSettings = { 
+        depth: 0.25, 
+        bevelEnabled: true, 
+        bevelSegments: isMobile ? 1 : 3, // Minimal bevel segments on mobile
+        steps: 1, 
+        bevelSize: 0.05, 
+        bevelThickness: 0.05 
+      };
       const coreGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
       coreGeom.center();
       const coreMesh = new THREE.Mesh(coreGeom, goldMaterial);
-      coreMesh.castShadow = true;
-      coreMesh.receiveShadow = true;
+      if (!isMobile) {
+        coreMesh.castShadow = true;
+        coreMesh.receiveShadow = true;
+      }
       logoGroup.add(coreMesh);
 
       // Surrounding Copper Orbital Rings
-      const ringGeom1 = new THREE.TorusGeometry(1.7, 0.06, 16, 100);
+      const ringGeom1 = new THREE.TorusGeometry(1.7, 0.06, ringTorusSegments, ringTorusRadialSegments);
       const ringMesh1 = new THREE.Mesh(ringGeom1, copperMaterial);
       ringMesh1.rotation.x = Math.PI / 2.5;
       logoGroup.add(ringMesh1);
 
-      const ringGeom2 = new THREE.TorusGeometry(2.1, 0.04, 16, 100);
+      const ringGeom2 = new THREE.TorusGeometry(2.1, 0.04, ringTorusSegments, ringTorusRadialSegments);
       const ringMesh2 = new THREE.Mesh(ringGeom2, copperMaterial);
       ringMesh2.rotation.x = -Math.PI / 3;
       ringMesh2.rotation.y = Math.PI / 4;
       logoGroup.add(ringMesh2);
 
       // Floating micro golden spheres
-      const sphereGeom = new THREE.SphereGeometry(0.06, 16, 16);
+      const sphereGeom = new THREE.SphereGeometry(0.06, sphereSubdivisions, sphereSubdivisions);
       const spheres = [];
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < spheresCount; i++) {
         const sp = new THREE.Mesh(sphereGeom, goldMaterial);
-        const angle = (i * Math.PI * 2) / 12;
+        const angle = (i * Math.PI * 2) / spheresCount;
         const radius = 1.5 + Math.random() * 0.8;
         sp.position.set(Math.cos(angle) * radius, (Math.random() - 0.5) * 1.5, Math.sin(angle) * radius);
         logoGroup.add(sp);
@@ -143,7 +174,9 @@ export default function ThreeDLogo() {
 
       const dirLight1 = new THREE.DirectionalLight(0xFFFFFF, 1.8);
       dirLight1.position.set(5, 5, 5);
-      dirLight1.castShadow = true;
+      if (!isMobile) {
+        dirLight1.castShadow = true;
+      }
       logoGroup.add(dirLight1);
 
       const dirLight2 = new THREE.DirectionalLight(0xC89B5B, 1.0);
@@ -171,27 +204,45 @@ export default function ThreeDLogo() {
 
       window.addEventListener('mousemove', handleMouseMove);
 
+      // Visibility controls to pause loop when page is hidden (Conserve CPU/GPU battery)
+      let isTabVisible = true;
+      handleVisibilityChange = () => {
+        isTabVisible = !document.hidden;
+      };
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      // Reduced motion respect
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       // Animation Loop
       const animate = () => {
         animId = requestAnimationFrame(animate);
 
-        // Smooth rotate
-        logoGroup.rotation.y += 0.007;
-        coreMesh.rotation.z -= 0.004;
-        
-        // Floating spheres orbit
-        spheres.forEach(sp => {
-          sp.angle += sp.speed;
-          sp.mesh.position.x = Math.cos(sp.angle) * 1.8;
-          sp.mesh.position.z = Math.sin(sp.angle) * 1.8;
-          sp.mesh.position.y += Math.sin(performance.now() * 0.001 + sp.angle) * 0.005;
-        });
+        if (!isTabVisible) return;
 
-        // Mouse Parallax smooth lerp
-        mouseX += (targetX - mouseX) * 0.05;
-        mouseY += (targetY - mouseY) * 0.05;
-        logoGroup.rotation.x = mouseY;
-        logoGroup.rotation.y += mouseX * 0.02;
+        if (!prefersReducedMotion) {
+          // Normal elegant animation
+          logoGroup.rotation.y += 0.007;
+          coreMesh.rotation.z -= 0.004;
+          
+          // Floating spheres orbit
+          spheres.forEach(sp => {
+            sp.angle += sp.speed;
+            sp.mesh.position.x = Math.cos(sp.angle) * 1.8;
+            sp.mesh.position.z = Math.sin(sp.angle) * 1.8;
+            sp.mesh.position.y += Math.sin(performance.now() * 0.001 + sp.angle) * 0.005;
+          });
+
+          // Mouse Parallax smooth lerp
+          mouseX += (targetX - mouseX) * 0.05;
+          mouseY += (targetY - mouseY) * 0.05;
+          logoGroup.rotation.x = mouseY;
+          logoGroup.rotation.y += mouseX * 0.02;
+        } else {
+          // Minimal static luxury drift for prefers-reduced-motion
+          logoGroup.rotation.y = 0.5;
+          coreMesh.rotation.z = 0.2;
+        }
 
         if (renderer) {
           renderer.render(scene, camera);
@@ -219,6 +270,7 @@ export default function ThreeDLogo() {
     return () => {
       try {
         if (animId) cancelAnimationFrame(animId);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
         if (handleMouseMove) window.removeEventListener('mousemove', handleMouseMove);
         if (handleResize) window.removeEventListener('resize', handleResize);
         if (containerRef.current && renderer && renderer.domElement) {

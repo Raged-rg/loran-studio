@@ -3,21 +3,57 @@ import * as THREE from 'three';
 import { ShoppingBag, Globe, Share2, Megaphone, FileText, Palette, Code, CheckCircle2 } from 'lucide-react';
 
 export default function ThreeDIcons({ type = 'bag' }) {
+  const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const [has3DError, setHas3DError] = useState(false);
+  const [isInViewport, setIsInViewport] = useState(false);
 
+  // 1. Lazy viewport observer to prevent rendering all 3D icons at the same time
   useEffect(() => {
-    let renderer = null;
-    let animId = null;
+    if (!containerRef.current) return;
 
     try {
-      if (!canvasRef.current) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInViewport(true);
+          }
+        },
+        { 
+          threshold: 0.05, 
+          rootMargin: '80px' // Load slightly before it scrolls into view
+        }
+      );
 
+      observer.observe(containerRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    } catch (e) {
+      console.warn("IntersectionObserver not supported, rendering immediately", e);
+      setIsInViewport(true);
+    }
+  }, []);
+
+  // 2. Safe WebGL Rendering Engine
+  useEffect(() => {
+    if (!isInViewport) return; // Lazy lock: Wait until visible
+    if (has3DError) return;
+    if (!canvasRef.current) return;
+
+    let renderer = null;
+    let animId = null;
+    let handleVisibilityChange = null;
+
+    try {
       // Forceful bypass of WebGL rendering for mobile in-app browsers
       const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
-      const isMobileInApp = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab') || /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
-      
-      if (isMobileInApp) {
+      const isInstagramOrFB = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab');
+      const isIOSWKWebView = /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
+
+      if (isInstagramOrFB || isIOSWKWebView) {
         setHas3DError(true);
         return;
       }
@@ -45,16 +81,22 @@ export default function ThreeDIcons({ type = 'bag' }) {
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
       camera.position.z = 4.2;
 
+      // Performance adjustment based on device class (LOD)
+      const isMobile = isMobileDevice;
+      const torusRadial = isMobile ? 6 : 8;
+      const torusTubular = isMobile ? 16 : 32;
+      const cylinderSegments = isMobile ? 8 : 16;
+      
       // Renderer
       renderer = new THREE.WebGLRenderer({
         canvas: canvasRef.current,
-        antialias: true,
+        antialias: !isMobile, // Turn off antialiasing on mobile for huge fillrate speedups
         alpha: true,
         powerPreference: "high-performance"
       });
       renderer.setSize(size, size);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-      renderer.shadowMap.enabled = true;
+      renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
+      renderer.shadowMap.enabled = false; // Never use shadow maps on small card icons to save huge resources
 
       // Root Group for smooth rotating
       const iconGroup = new THREE.Group();
@@ -95,7 +137,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
         iconGroup.add(bagBody);
 
         // Handles
-        const handleGeom = new THREE.TorusGeometry(0.24, 0.04, 8, 30, Math.PI);
+        const handleGeom = new THREE.TorusGeometry(0.24, 0.04, torusRadial, torusTubular, Math.PI);
         const handle1 = new THREE.Mesh(handleGeom, goldMaterial);
         handle1.position.set(0, 0.35, 0.08);
         const handle2 = handle1.clone();
@@ -104,7 +146,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
         iconGroup.add(handle2);
 
         // Cart Ring Base (Procedural Cart)
-        const ringGeom = new THREE.TorusGeometry(0.7, 0.04, 8, 32);
+        const ringGeom = new THREE.TorusGeometry(0.7, 0.04, torusRadial, torusTubular);
         const ring = new THREE.Mesh(ringGeom, goldMaterial);
         ring.position.y = -0.7;
         ring.rotation.x = Math.PI / 2;
@@ -123,13 +165,13 @@ export default function ThreeDIcons({ type = 'bag' }) {
         iconGroup.add(screen);
 
         // Core stand
-        const standGeom = new THREE.CylinderGeometry(0.08, 0.08, 0.4, 16);
+        const standGeom = new THREE.CylinderGeometry(0.08, 0.08, 0.4, cylinderSegments);
         const stand = new THREE.Mesh(standGeom, copperMaterial);
         stand.position.y = -0.65;
         iconGroup.add(stand);
 
         // Base
-        const baseGeom = new THREE.CylinderGeometry(0.3, 0.35, 0.04, 16);
+        const baseGeom = new THREE.CylinderGeometry(0.3, 0.35, 0.04, cylinderSegments);
         const base = new THREE.Mesh(baseGeom, darkMaterial);
         base.position.y = -0.85;
         iconGroup.add(base);
@@ -154,19 +196,19 @@ export default function ThreeDIcons({ type = 'bag' }) {
         iconGroup.add(cube3);
 
         // Orbit paths
-        const path1Geom = new THREE.TorusGeometry(0.85, 0.015, 8, 48);
+        const path1Geom = new THREE.TorusGeometry(0.85, 0.015, torusRadial, torusTubular + 10);
         const path1 = new THREE.Mesh(path1Geom, copperMaterial);
         path1.rotation.x = Math.PI / 3;
         iconGroup.add(path1);
 
       } else if (type === 'megaphone') {
         // 4. الحملات الإعلانية: Luxury megaphone + analytics graph
-        const coneGeom = new THREE.CylinderGeometry(0.45, 0.18, 0.9, 32);
+        const coneGeom = new THREE.CylinderGeometry(0.45, 0.18, 0.9, cylinderSegments * 2);
         const cone = new THREE.Mesh(coneGeom, woodMaterial);
         cone.rotation.z = Math.PI / 3.5;
         iconGroup.add(cone);
 
-        const ringGeom = new THREE.TorusGeometry(0.45, 0.05, 8, 32);
+        const ringGeom = new THREE.TorusGeometry(0.45, 0.05, torusRadial, torusTubular);
         const ring = new THREE.Mesh(ringGeom, goldMaterial);
         ring.position.set(-0.38, 0.22, 0);
         ring.rotation.y = Math.PI / 6;
@@ -178,7 +220,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
         iconGroup.add(handle);
 
         // Backdrop analytics grid
-        const gridGeom = new THREE.TorusGeometry(0.8, 0.02, 8, 32, Math.PI);
+        const gridGeom = new THREE.TorusGeometry(0.8, 0.02, torusRadial, torusTubular, Math.PI);
         const grid = new THREE.Mesh(gridGeom, copperMaterial);
         grid.position.set(0, -0.3, -0.4);
         grid.rotation.x = Math.PI / 2;
@@ -194,13 +236,13 @@ export default function ThreeDIcons({ type = 'bag' }) {
         iconGroup.add(paper);
 
         // Premium Pen Feather
-        const penGeom = new THREE.CylinderGeometry(0.04, 0.01, 1.2, 8);
+        const penGeom = new THREE.CylinderGeometry(0.04, 0.01, 1.2, cylinderSegments);
         const pen = new THREE.Mesh(penGeom, copperMaterial);
         pen.position.set(0.2, 0.1, 0.15);
         pen.rotation.z = -Math.PI / 5;
         iconGroup.add(pen);
 
-        const nibGeom = new THREE.ConeGeometry(0.05, 0.15, 8);
+        const nibGeom = new THREE.ConeGeometry(0.05, 0.15, cylinderSegments);
         const nib = new THREE.Mesh(nibGeom, woodMaterial);
         nib.position.set(0.2 - 0.35, 0.1 - 0.5, 0.15);
         nib.rotation.z = -Math.PI / 5;
@@ -223,14 +265,21 @@ export default function ThreeDIcons({ type = 'bag' }) {
         }
         shape.closePath();
 
-        const extrudeSettings = { depth: 0.15, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: 0.03, bevelThickness: 0.03 };
+        const extrudeSettings = { 
+          depth: 0.15, 
+          bevelEnabled: true, 
+          bevelSegments: isMobile ? 1 : 3, 
+          steps: 1, 
+          bevelSize: 0.03, 
+          bevelThickness: 0.03 
+        };
         const starGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
         starGeom.center();
         const star = new THREE.Mesh(starGeom, goldMaterial);
         iconGroup.add(star);
 
         // Inner copper ring
-        const ringGeom = new THREE.TorusGeometry(0.35, 0.04, 8, 32);
+        const ringGeom = new THREE.TorusGeometry(0.35, 0.04, torusRadial, torusTubular);
         const ring = new THREE.Mesh(ringGeom, copperMaterial);
         ring.position.z = 0.1;
         iconGroup.add(ring);
@@ -247,7 +296,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
         block2.position.set(0.25, -0.3, 0);
         iconGroup.add(block2);
 
-        const gearGeom = new THREE.TorusGeometry(0.4, 0.06, 8, 24);
+        const gearGeom = new THREE.TorusGeometry(0.4, 0.06, torusRadial, torusTubular);
         const gear = new THREE.Mesh(gearGeom, darkMaterial);
         gear.rotation.x = Math.PI / 2;
         iconGroup.add(gear);
@@ -283,13 +332,28 @@ export default function ThreeDIcons({ type = 'bag' }) {
       dirLight.position.set(2, 4, 3);
       scene.add(dirLight);
 
+      // Reduced motion respect
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Visibility controls to pause loop when tab is hidden
+      let isTabVisible = true;
+      handleVisibilityChange = () => {
+        isTabVisible = !document.hidden;
+      };
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
       // Animation loop
       const animate = () => {
         animId = requestAnimationFrame(animate);
 
-        // Rotate group gently
-        iconGroup.rotation.y += 0.012;
-        iconGroup.rotation.x = Math.sin(performance.now() * 0.001) * 0.15;
+        if (!isTabVisible) return;
+
+        if (!prefersReducedMotion) {
+          iconGroup.rotation.y += 0.012;
+          iconGroup.rotation.x = Math.sin(performance.now() * 0.001) * 0.15;
+        } else {
+          iconGroup.rotation.y = 0.5;
+        }
 
         if (renderer) {
           renderer.render(scene, camera);
@@ -306,14 +370,16 @@ export default function ThreeDIcons({ type = 'bag' }) {
     return () => {
       try {
         if (animId) cancelAnimationFrame(animId);
+        if (handleVisibilityChange) document.removeEventListener('visibilitychange', handleVisibilityChange);
         if (renderer) renderer.dispose();
       } catch (e) {
         console.warn("Loran Studio - ThreeDIcons cleanup warning:", e);
       }
     };
-  }, [type]);
+  }, [isInViewport, type]);
 
-  if (has3DError) {
+  // Fallback visual design if WebGL is off or failed
+  if (has3DError || !isInViewport) {
     let Icon = ShoppingBag;
     if (type === 'monitor') Icon = Globe;
     else if (type === 'social') Icon = Share2;
@@ -324,7 +390,10 @@ export default function ThreeDIcons({ type = 'bag' }) {
     else if (type === 'sales') Icon = CheckCircle2;
 
     return (
-      <div className="w-[120px] h-[120px] flex items-center justify-center bg-gradient-to-tr from-[#7A4A2A]/5 to-[#2B1A12]/5 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none">
+      <div 
+        ref={containerRef}
+        className="w-[120px] h-[120px] flex items-center justify-center bg-gradient-to-tr from-[#7A4A2A]/5 to-[#2B1A12]/5 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none mx-auto"
+      >
         <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border border-[#C89B5B]/30 flex items-center justify-center text-[#C89B5B] shadow-md">
           <Icon size={26} className="animate-float" />
         </div>
@@ -333,10 +402,12 @@ export default function ThreeDIcons({ type = 'bag' }) {
   }
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="w-[120px] h-[120px] pointer-events-none select-none drop-shadow-md mx-auto"
-      style={{ background: 'transparent' }}
-    />
+    <div ref={containerRef} className="w-[120px] h-[120px] mx-auto relative select-none">
+      <canvas 
+        ref={canvasRef} 
+        className="w-[120px] h-[120px] pointer-events-none select-none drop-shadow-md mx-auto"
+        style={{ background: 'transparent' }}
+      />
+    </div>
   );
 }
