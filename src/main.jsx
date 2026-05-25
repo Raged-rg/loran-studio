@@ -5,13 +5,10 @@ import './index.css'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import GlobalStaticFallback from './components/GlobalStaticFallback.jsx'
 
-console.log("LORAN STUDIO - main.jsx loaded and executing entry point!");
-
 // Global safety error trackers to handle unexpected WebView runtime blocks
 if (typeof window !== 'undefined') {
   window.onerror = function (message, source, lineno, colno, error) {
     console.error("Global captured error:", message, "at", source, lineno, colno);
-    if (error) console.error(error.stack);
     return false; // Let it bubble up to the ErrorBoundary
   };
 

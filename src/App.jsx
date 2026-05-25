@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,14 +12,10 @@ import ProjectWizard from './components/ProjectWizard';
 import Contact from './components/Contact';
 import BottomNav from './components/BottomNav';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
-
-  // Diagnostic logger to ensure App.jsx renders successfully in browser console
-  useEffect(() => {
-    console.log("FULL_3D ACTIVE - App.jsx mounted successfully!");
-  }, []);
 
   // Handle Automatic Section Tracking on Scroll (IntersectionObserver)
   useEffect(() => {
@@ -56,14 +53,11 @@ export default function App() {
   return (
     <div className="relative min-h-screen pb-safe">
       
-      {/* 👑 Global Fixed Diagnostic Badge (Guaranteed to render if App.jsx mounts) */}
-      <div 
-        className="fixed bottom-4 left-4 z-[99999] px-4 py-2.5 bg-emerald-600 text-white font-mono text-[10px] font-black tracking-widest shadow-2xl rounded-xl border border-emerald-400/30 flex items-center gap-2 select-none animate-pulse"
-        style={{ pointerEvents: 'none' }}
-      >
-        <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
-        👑 LORAN GLOBAL DIAGNOSTIC: App.jsx ACTIVE
-      </div>
+      {/* 👑 Film Grain Noise Overlay (Awwwards/Cuberto luxury texture) */}
+      <div className="grain-noise-overlay" />
+
+      {/* 👑 Custom Luxury Cursor (Desktop Only) */}
+      <CustomCursor />
 
       {/* Luxury Loading Intro Screen */}
       <Loader />
@@ -74,29 +68,78 @@ export default function App() {
       {/* Main Structural Page Sections Wrapper */}
       <main className="max-w-7xl mx-auto overflow-hidden">
         
-        {/* 1. Cinematic Hero Area */}
+        {/* 1. Cinematic Hero Area (Has internal parallax and counters) */}
         <Hero setActiveSection={setActiveSection} />
 
-        {/* 2. Services Section */}
-        <Services />
+        {/* 2. Services Section with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Services />
+        </motion.div>
 
-        {/* 3. Why Loran Section */}
-        <WhyLoran />
+        {/* 3. Why Loran Section with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <WhyLoran />
+        </motion.div>
 
-        {/* 4. Portfolio Showcase */}
-        <Portfolio />
+        {/* 4. Portfolio Showcase with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Portfolio />
+        </motion.div>
 
-        {/* 5. Steps / Timeline Process */}
-        <Process />
+        {/* 5. Steps / Timeline Process with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Process />
+        </motion.div>
 
-        {/* 6. Pricing & Packages */}
-        <Pricing />
+        {/* 6. Pricing & Packages with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Pricing />
+        </motion.div>
 
-        {/* 7. Interactive Project Scheduler Wizard */}
-        <ProjectWizard />
+        {/* 7. Interactive Project Scheduler Wizard with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <ProjectWizard />
+        </motion.div>
 
-        {/* 8. Contact & FAQs */}
-        <Contact />
+        {/* 8. Contact & FAQs with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Contact />
+        </motion.div>
 
       </main>
 

@@ -2,7 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
 @layer base {
   :root {
     --cream: #F7EFE6;
@@ -123,4 +122,33 @@
 }
 .btn-glow {
   animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Animated Ambient Background Blobs */
+@keyframes blobAnimation {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(35px, -50px) scale(1.12);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.92);
+  }
+}
+.animate-blob-1 {
+  animation: blobAnimation 22s ease-in-out infinite;
+}
+.animate-blob-2 {
+  animation: blobAnimation 28s ease-in-out infinite alternate;
+}
+
+/* Custom premium subtle grain/noise overlay for film-like luxury touch */
+.grain-noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.016; /* Ultra-subtle texture */
+  pointer-events: none;
 }

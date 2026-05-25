@@ -4,7 +4,6 @@ import * as THREE from 'three';
 export default function ThreeDLogo() {
   const containerRef = useRef(null);
   const [webglSupported, setWebglSupported] = useState(true);
-  const [debugMode, setDebugMode] = useState("FALLBACK_MODE");
 
   useEffect(() => {
     let renderer = null;
@@ -28,7 +27,6 @@ export default function ThreeDLogo() {
 
       if (isInstagramOrFB || isIOSWKWebView) {
         setWebglSupported(false);
-        setDebugMode("FALLBACK_MODE");
         return;
       }
 
@@ -39,19 +37,15 @@ export default function ThreeDLogo() {
         gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
       } catch (e) {
         setWebglSupported(false);
-        setDebugMode("FALLBACK_MODE");
         return;
       }
 
       if (!gl) {
         setWebglSupported(false);
-        setDebugMode("FALLBACK_MODE");
         return;
       }
 
-      // Set explicit debug mode
       const isMobile = isMobileDevice;
-      setDebugMode(isMobile ? "LIGHT_3D" : "FULL_3D");
 
       // Resilient layout size resolver (fixes 0x0 dynamic hidden canvas bug)
       let width = containerRef.current.clientWidth;
@@ -320,7 +314,6 @@ export default function ThreeDLogo() {
     } catch (err) {
       console.warn("Loran Studio - ThreeDLogo error caught in initialization:", err);
       setWebglSupported(false);
-      setDebugMode("FALLBACK_MODE");
     }
 
     // Cleanup
@@ -340,21 +333,8 @@ export default function ThreeDLogo() {
     };
   }, []);
 
-  // Return mode styling for debugging badge color
-  const getBadgeColor = () => {
-    if (debugMode === "FULL_3D") return "bg-emerald-600/90 text-white border-emerald-400/30";
-    if (debugMode === "LIGHT_3D") return "bg-amber-600/90 text-[#2B1A12] border-amber-400/30";
-    return "bg-rose-600/90 text-white border-rose-400/30";
-  };
-
   return (
     <>
-      {/* 1. Debugging Badge fixed at bottom-left */}
-      <div className={`fixed bottom-4 left-4 z-[9999] px-3.5 py-2 rounded-xl border font-mono text-[10px] font-black tracking-widest shadow-2xl backdrop-blur-md transition-all flex items-center gap-1.5 select-none ${getBadgeColor()}`}>
-        <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
-        👑 LORAN: {debugMode}
-      </div>
-
       {!webglSupported ? (
         // Beautiful Premium CSS 3D Fallback (For platforms with disabled WebGL)
         <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
