@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShoppingBag, Globe, Share2, Megaphone, Code, Palette, 
   FileText, DollarSign, Phone, CheckCircle, ArrowRight, 
-  ArrowLeft, Check, Sparkles, Send, MessageCircle, AlertCircle, Edit2
+  ArrowLeft, Check, Sparkles, Send, MessageCircle, AlertCircle, Edit2,
+  Briefcase
 } from 'lucide-react';
 
 // Custom Hook to manage Magnetic Button Effect
