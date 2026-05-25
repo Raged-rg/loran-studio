@@ -1,0 +1,283 @@
+import React, { useRef, useEffect } from 'react';
+import * as THREE from 'three';
+
+export default function ThreeDIcons({ type = 'bag' }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    // Dimensions (small, performant sizes for cards)
+    const size = 120;
+    const scene = new THREE.Scene();
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.z = 4.2;
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvasRef.current,
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance"
+    });
+    renderer.setSize(size, size);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.shadowMap.enabled = true;
+
+    // Root Group for smooth rotating
+    const iconGroup = new THREE.Group();
+    scene.add(iconGroup);
+
+    // Common Premium Materials
+    const goldMaterial = new THREE.MeshStandardMaterial({
+      color: 0xC89B5B,
+      metalness: 0.95,
+      roughness: 0.12,
+      bumpScale: 0.05
+    });
+
+    const copperMaterial = new THREE.MeshStandardMaterial({
+      color: 0xB87333,
+      metalness: 0.95,
+      roughness: 0.18
+    });
+
+    const woodMaterial = new THREE.MeshStandardMaterial({
+      color: 0x7A4A2A,
+      metalness: 0.1,
+      roughness: 0.55
+    });
+
+    const darkMaterial = new THREE.MeshStandardMaterial({
+      color: 0x2B1A12,
+      metalness: 0.25,
+      roughness: 0.35
+    });
+
+    // Create Geometries based on type
+    if (type === 'bag') {
+      // 1. تصميم المتاجر الإلكترونية: Luxury bronze shopping bag + cart
+      const bagBodyGeom = new THREE.BoxGeometry(0.8, 1.0, 0.45);
+      const bagBody = new THREE.Mesh(bagBodyGeom, copperMaterial);
+      bagBody.position.y = -0.15;
+      iconGroup.add(bagBody);
+
+      // Handles
+      const handleGeom = new THREE.TorusGeometry(0.24, 0.04, 8, 30, Math.PI);
+      const handle1 = new THREE.Mesh(handleGeom, goldMaterial);
+      handle1.position.set(0, 0.35, 0.08);
+      const handle2 = handle1.clone();
+      handle2.position.z = -0.08;
+      iconGroup.add(handle1);
+      iconGroup.add(handle2);
+
+      // Cart Ring Base (Procedural Cart)
+      const ringGeom = new THREE.TorusGeometry(0.7, 0.04, 8, 32);
+      const ring = new THREE.Mesh(ringGeom, goldMaterial);
+      ring.position.y = -0.7;
+      ring.rotation.x = Math.PI / 2;
+      iconGroup.add(ring);
+
+    } else if (type === 'monitor') {
+      // 2. تصميم المواقع: Wooden monitor with glowing interface
+      const frameGeom = new THREE.BoxGeometry(1.4, 0.9, 0.12);
+      const frame = new THREE.Mesh(frameGeom, woodMaterial);
+      iconGroup.add(frame);
+
+      // Glowing screen face
+      const screenGeom = new THREE.BoxGeometry(1.26, 0.76, 0.05);
+      const screen = new THREE.Mesh(screenGeom, goldMaterial);
+      screen.position.z = 0.06;
+      iconGroup.add(screen);
+
+      // Core stand
+      const standGeom = new THREE.CylinderGeometry(0.08, 0.08, 0.4, 16);
+      const stand = new THREE.Mesh(standGeom, copperMaterial);
+      stand.position.y = -0.65;
+      iconGroup.add(stand);
+
+      // Base
+      const baseGeom = new THREE.CylinderGeometry(0.3, 0.35, 0.04, 16);
+      const base = new THREE.Mesh(baseGeom, darkMaterial);
+      base.position.y = -0.85;
+      iconGroup.add(base);
+
+    } else if (type === 'social') {
+      // 3. إدارة السوشيال ميديا: Floating social media cubes
+      // Main Center Cube
+      const cube1Geom = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+      const cube1 = new THREE.Mesh(cube1Geom, goldMaterial);
+      iconGroup.add(cube1);
+
+      // Orbit Cube 1 (Wood)
+      const cube2Geom = new THREE.BoxGeometry(0.35, 0.35, 0.35);
+      const cube2 = new THREE.Mesh(cube2Geom, woodMaterial);
+      cube2.position.set(0.75, 0.4, -0.2);
+      iconGroup.add(cube2);
+
+      // Orbit Cube 2 (Copper)
+      const cube3Geom = new THREE.BoxGeometry(0.3, 0.3, 0.3);
+      const cube3 = new THREE.Mesh(cube3Geom, copperMaterial);
+      cube3.position.set(-0.75, -0.4, 0.2);
+      iconGroup.add(cube3);
+
+      // Orbit paths
+      const path1Geom = new THREE.TorusGeometry(0.85, 0.015, 8, 48);
+      const path1 = new THREE.Mesh(path1Geom, copperMaterial);
+      path1.rotation.x = Math.PI / 3;
+      iconGroup.add(path1);
+
+    } else if (type === 'megaphone') {
+      // 4. الحملات الإعلانية: Luxury megaphone + analytics graph
+      const coneGeom = new THREE.CylinderGeometry(0.45, 0.18, 0.9, 32);
+      const cone = new THREE.Mesh(coneGeom, woodMaterial);
+      cone.rotation.z = Math.PI / 3.5;
+      iconGroup.add(cone);
+
+      const ringGeom = new THREE.TorusGeometry(0.45, 0.05, 8, 32);
+      const ring = new THREE.Mesh(ringGeom, goldMaterial);
+      ring.position.set(-0.38, 0.22, 0);
+      ring.rotation.y = Math.PI / 6;
+      iconGroup.add(ring);
+
+      const handleGeom = new THREE.BoxGeometry(0.12, 0.35, 0.12);
+      const handle = new THREE.Mesh(handleGeom, copperMaterial);
+      handle.position.set(0.12, -0.2, 0);
+      iconGroup.add(handle);
+
+      // Backdrop analytics grid
+      const gridGeom = new THREE.TorusGeometry(0.8, 0.02, 8, 32, Math.PI);
+      const grid = new THREE.Mesh(gridGeom, copperMaterial);
+      grid.position.set(0, -0.3, -0.4);
+      grid.rotation.x = Math.PI / 2;
+      iconGroup.add(grid);
+
+    } else if (type === 'content') {
+      // 5. كتابة المحتوى: Luxury paper + premium pen
+      // Luxury rolled Paper Cylinder/Box
+      const paperGeom = new THREE.BoxGeometry(0.8, 1.1, 0.08);
+      const paper = new THREE.Mesh(paperGeom, goldMaterial);
+      paper.rotation.y = -Math.PI / 8;
+      paper.rotation.z = Math.PI / 12;
+      iconGroup.add(paper);
+
+      // Premium Pen Feather
+      const penGeom = new THREE.CylinderGeometry(0.04, 0.01, 1.2, 8);
+      const pen = new THREE.Mesh(penGeom, copperMaterial);
+      pen.position.set(0.2, 0.1, 0.15);
+      pen.rotation.z = -Math.PI / 5;
+      iconGroup.add(pen);
+
+      const nibGeom = new THREE.ConeGeometry(0.05, 0.15, 8);
+      const nib = new THREE.Mesh(nibGeom, woodMaterial);
+      nib.position.set(0.2 - 0.35, 0.1 - 0.5, 0.15);
+      nib.rotation.z = -Math.PI / 5;
+      iconGroup.add(nib);
+
+    } else if (type === 'branding') {
+      // 6. تصميم الهوية البصرية: Golden geometric branding symbol
+      // Outer beautiful 8-point geometric star
+      const shape = new THREE.Shape();
+      const outerRadius = 0.95;
+      const innerRadius = 0.45;
+      const pointsNum = 8;
+      for (let i = 0; i < pointsNum * 2; i++) {
+        const angle = (i * Math.PI) / pointsNum;
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        if (i === 0) shape.moveTo(x, y);
+        else shape.lineTo(x, y);
+      }
+      shape.closePath();
+
+      const extrudeSettings = { depth: 0.15, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: 0.03, bevelThickness: 0.03 };
+      const starGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+      starGeom.center();
+      const star = new THREE.Mesh(starGeom, goldMaterial);
+      iconGroup.add(star);
+
+      // Inner copper ring
+      const ringGeom = new THREE.TorusGeometry(0.35, 0.04, 8, 32);
+      const ring = new THREE.Mesh(ringGeom, copperMaterial);
+      ring.position.z = 0.1;
+      iconGroup.add(ring);
+
+    } else if (type === 'script') {
+      // 7. إنشاء سكربتات خاصة: Floating code blocks in copper style
+      const block1Geom = new THREE.BoxGeometry(0.7, 0.3, 0.3);
+      const block1 = new THREE.Mesh(block1Geom, copperMaterial);
+      block1.position.set(-0.25, 0.3, 0);
+      iconGroup.add(block1);
+
+      const block2Geom = new THREE.BoxGeometry(0.7, 0.3, 0.3);
+      const block2 = new THREE.Mesh(block2Geom, goldMaterial);
+      block2.position.set(0.25, -0.3, 0);
+      iconGroup.add(block2);
+
+      const gearGeom = new THREE.TorusGeometry(0.4, 0.06, 8, 24);
+      const gear = new THREE.Mesh(gearGeom, darkMaterial);
+      gear.rotation.x = Math.PI / 2;
+      iconGroup.add(gear);
+
+    } else if (type === 'sales') {
+      // 8. إدارة المبيعات بالكامل: Luxury dashboard analytics panel
+      const basePlateGeom = new THREE.BoxGeometry(1.3, 0.9, 0.06);
+      const basePlate = new THREE.Mesh(basePlateGeom, darkMaterial);
+      iconGroup.add(basePlate);
+
+      // Charts inside dashboard
+      const screenChartGeom = new THREE.BoxGeometry(0.7, 0.4, 0.05);
+      const screenChart = new THREE.Mesh(screenChartGeom, copperMaterial);
+      screenChart.position.set(-0.15, 0.15, 0.05);
+      iconGroup.add(screenChart);
+
+      const smallBar1Geom = new THREE.BoxGeometry(0.15, 0.5, 0.05);
+      const smallBar1 = new THREE.Mesh(smallBar1Geom, goldMaterial);
+      smallBar1.position.set(0.4, -0.1, 0.05);
+      iconGroup.add(smallBar1);
+
+      const smallBar2Geom = new THREE.BoxGeometry(0.15, 0.3, 0.05);
+      const smallBar2 = new THREE.Mesh(smallBar2Geom, copperMaterial);
+      smallBar2.position.set(0.2, -0.2, 0.05);
+      iconGroup.add(smallBar2);
+    }
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.2);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0xFFFFFF, 2.0);
+    dirLight.position.set(2, 4, 3);
+    scene.add(dirLight);
+
+    // Animation loop
+    let animId;
+    const animate = () => {
+      animId = requestAnimationFrame(animate);
+
+      // Rotate group gently
+      iconGroup.rotation.y += 0.012;
+      iconGroup.rotation.x = Math.sin(performance.now() * 0.001) * 0.15;
+
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Cleanup
+    return () => {
+      cancelAnimationFrame(animId);
+      renderer.dispose();
+    };
+  }, [type]);
+
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="w-[120px] h-[120px] pointer-events-none select-none drop-shadow-md mx-auto"
+      style={{ background: 'transparent' }}
+    />
+  );
+}

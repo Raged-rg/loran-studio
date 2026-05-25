@@ -1,0 +1,122 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Play } from 'lucide-react';
+import ThreeDLogo from './ThreeDLogo';
+
+export default function Hero({ setActiveSection }) {
+  const handleNavClick = (id) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <section 
+      id="home" 
+      className="relative min-h-[90vh] md:min-h-screen pt-28 md:pt-36 pb-12 flex flex-col justify-center max-w-7xl mx-auto px-6 overflow-hidden"
+    >
+      
+      {/* Background Animated Gradient Blobs */}
+      <div className="absolute top-[20%] left-[10%] w-[250px] h-[250px] rounded-full bg-[#C89B5B]/8 blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-[#7A4A2A]/5 blur-[100px] pointer-events-none" />
+
+      {/* Main Grid: Left 3D Logo, Right Typography */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        
+        {/* Right Area (Arabic Typography) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          className="flex flex-col gap-6 text-right order-2 md:order-1"
+        >
+          {/* Badge */}
+          <div className="flex justify-start">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#C89B5B]/30 bg-[#C89B5B]/8 text-[#C89B5B] text-xs font-black select-none animate-pulse">
+              ✨ استشارة مجانية متوفرة الآن
+            </span>
+          </div>
+
+          {/* Main Title */}
+          <h1 className="font-marcellus text-4xl sm:text-5xl md:text-6xl font-black text-[#2B1A12] leading-[1.15]">
+            لوران ستوديو
+            <br />
+            <span className="metallic-gold font-extrabold text-3xl sm:text-4xl md:text-5xl">الفخامة والإبداع الرقمي</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="max-w-lg text-[#7A4A2A] font-bold text-sm sm:text-base leading-relaxed">
+            حلول احترافية متكاملة لنمو وتطوير علامتك التجارية. نجمع بين سلاسة الأداء وفخامة الهوية لنصنع لك حضوراً رقمياً استثنائياً.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
+            <button
+              onClick={() => handleNavClick('wizard')}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#7A4A2A] to-[#2B1A12] text-white rounded-xl text-sm font-black border border-[#C89B5B]/20 shadow-md hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+            >
+              ابدأ مشروعك
+              <ArrowLeft size={16} className="text-[#C89B5B]" />
+            </button>
+
+            <button
+              onClick={() => handleNavClick('portfolio')}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 border border-[#7A4A2A]/15 bg-[#FFFBF7]/80 rounded-xl text-sm font-black text-[#2B1A12] shadow-soft hover:bg-[#F4ECE3] transition-all"
+            >
+              <Play size={14} className="fill-[#C89B5B] text-[#C89B5B]" />
+              شاهد أعمالنا
+            </button>
+          </div>
+
+          {/* Bullet achievements summary */}
+          <div className="grid grid-cols-3 gap-4 border-t border-[#7A4A2A]/10 pt-6 mt-4 text-[#2B1A12] font-black text-xs sm:text-sm">
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-base text-[#C89B5B]">+300</span>
+              <span className="text-[9px] sm:text-[10px] text-[#7A4A2A] mt-0.5">مشروع مكتمل</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-base text-[#C89B5B]">98%</span>
+              <span className="text-[9px] sm:text-[10px] text-[#7A4A2A] mt-0.5">رضا العملاء</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-base text-[#C89B5B]">+5</span>
+              <span className="text-[9px] sm:text-[10px] text-[#7A4A2A] mt-0.5">سنوات خبرة</span>
+            </div>
+          </div>
+
+        </motion.div>
+
+        {/* Left Area (rotating Three.js logo) */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.0, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          className="flex justify-center items-center order-1 md:order-2"
+        >
+          <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
+            
+            {/* Outer Rotating Dotted Border */}
+            <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_50s_linear_infinite]" />
+            <div className="absolute inset-6 rounded-full border border-[#C89B5B]/10 animate-[spin_30s_linear_infinite_reverse]" />
+            
+            {/* 3D Canvas element */}
+            <ThreeDLogo />
+
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
