@@ -5,8 +5,18 @@ export default function Loader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
+    const isMobileInApp = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab') || /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+
+    // Absolute maximum timeout to guarantee loading screen is dismissed
+    const targetTimeout = isMobileInApp ? 400 : 1200;
+
+    const safetyTimeout = setTimeout(() => {
+      setVisible(false);
+    }, targetTimeout);
+
     const handleLoad = () => {
-      setTimeout(() => setVisible(false), 900);
+      setTimeout(() => setVisible(false), isMobileInApp ? 200 : 800);
     };
 
     if (document.readyState === 'complete') {
@@ -14,11 +24,6 @@ export default function Loader() {
     } else {
       window.addEventListener('load', handleLoad);
     }
-
-    // Safety fallback
-    const safetyTimeout = setTimeout(() => {
-      setVisible(false);
-    }, 2500);
 
     return () => {
       window.removeEventListener('load', handleLoad);

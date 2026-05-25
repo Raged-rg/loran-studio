@@ -7,6 +7,13 @@ export default function ThreeDIcons({ type = 'bag' }) {
   useEffect(() => {
     if (!canvasRef.current) return;
 
+    // Forceful bypass of WebGL rendering for mobile in-app browsers
+    const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
+    const isMobileInApp = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab') || /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+    if (isMobileInApp) {
+      throw new Error("Bypass WebGL on mobile in-app browser to preserve memory and prevent WKWebView context crashes");
+    }
+
     // Dimensions (small, performant sizes for cards)
     const size = 120;
     const scene = new THREE.Scene();

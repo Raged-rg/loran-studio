@@ -8,6 +8,15 @@ export default function ThreeDLogo() {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Check if on iOS WKWebView / Instagram / FB in-app browser to forcefully bypass WebGL
+    const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
+    const isMobileInApp = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab') || /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+
+    if (isMobileInApp) {
+      setWebglSupported(false);
+      return;
+    }
+
     // Check WebGL availability
     let gl;
     try {
