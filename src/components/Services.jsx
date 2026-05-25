@@ -1,7 +1,31 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, X, Check, Star, ShieldAlert } from 'lucide-react';
+import { 
+  ArrowLeft, X, Check, Star, ShieldAlert,
+  ShoppingBag, Globe, Share2, Megaphone, FileText, Palette, Code, CheckCircle2 
+} from 'lucide-react';
 import ThreeDIcons from './ThreeDIcons';
+import ErrorBoundary from './ErrorBoundary';
+
+// Luxury static fallback styled to match our branding if WebGL fails
+function ThreeDIconFallback({ type }) {
+  let Icon = ShoppingBag;
+  if (type === 'monitor') Icon = Globe;
+  else if (type === 'social') Icon = Share2;
+  else if (type === 'megaphone') Icon = Megaphone;
+  else if (type === 'content') Icon = FileText;
+  else if (type === 'branding') Icon = Palette;
+  else if (type === 'script') Icon = Code;
+  else if (type === 'sales') Icon = CheckCircle2;
+
+  return (
+    <div className="w-[120px] h-[120px] flex items-center justify-center bg-gradient-to-tr from-[#7A4A2A]/5 to-[#2B1A12]/5 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none">
+      <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border border-[#C89B5B]/30 flex items-center justify-center text-[#C89B5B] shadow-md">
+        <Icon size={26} className="animate-float" />
+      </div>
+    </div>
+  );
+}
 
 export default function Services() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -221,9 +245,11 @@ export default function Services() {
               <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-[#C89B5B]/5 group-hover:bg-[#C89B5B]/12 blur-xl transition-all" />
 
               <div style={{ transform: 'translateZ(20px)' }}>
-                {/* 3D Realistic Procedural Icon */}
+                {/* 3D Realistic Procedural Icon wrapped with ErrorBoundary */}
                 <div className="mb-4 flex justify-center items-center h-[130px] w-full select-none">
-                  <ThreeDIcons type={service.type} />
+                  <ErrorBoundary fallback={<ThreeDIconFallback type={service.type} />}>
+                    <ThreeDIcons type={service.type} />
+                  </ErrorBoundary>
                 </div>
                 
                 {/* Title */}
@@ -286,7 +312,9 @@ export default function Services() {
               {/* Service header */}
               <div className="flex flex-col md:flex-row items-center gap-4 border-b border-[#7A4A2A]/10 pb-6 mb-6">
                 <div className="w-[120px] h-[120px] flex items-center justify-center select-none">
-                  <ThreeDIcons type={selectedService.type} />
+                  <ErrorBoundary fallback={<ThreeDIconFallback type={selectedService.type} />}>
+                    <ThreeDIcons type={selectedService.type} />
+                  </ErrorBoundary>
                 </div>
                 <div className="text-center md:text-right flex flex-col gap-1">
                   <span className="text-[10px] text-[#C89B5B] font-extrabold tracking-wider uppercase">لوران ستوديو • تفاصيل المنتج الرقمي</span>

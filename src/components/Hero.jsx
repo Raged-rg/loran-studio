@@ -2,6 +2,24 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Play } from 'lucide-react';
 import ThreeDLogo from './ThreeDLogo';
+import ErrorBoundary from './ErrorBoundary';
+
+// High-fidelity CSS-3D fallback used if WebGL/Three.js fails in WKWebView / low-power modes
+function ThreeDLogoFallback() {
+  return (
+    <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
+      <div className="relative w-44 h-44 flex items-center justify-center animate-float">
+        <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
+        <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
+        <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border-2 border-[#C89B5B] shadow-premium flex items-center justify-center">
+          <span className="font-marcellus text-5xl font-extrabold text-[#C89B5B] select-none">L</span>
+        </div>
+        <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#B87333] border border-[#C89B5B]/30" />
+        <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#EADCCB] border border-[#C89B5B]/30" />
+      </div>
+    </div>
+  );
+}
 
 export default function Hero({ setActiveSection }) {
   const handleNavClick = (id) => {
@@ -97,7 +115,7 @@ export default function Hero({ setActiveSection }) {
 
         </motion.div>
 
-        {/* Left Area (rotating Three.js logo) */}
+        {/* Left Area (rotating Three.js logo wrapped with ErrorBoundary) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -110,8 +128,10 @@ export default function Hero({ setActiveSection }) {
             <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_50s_linear_infinite]" />
             <div className="absolute inset-6 rounded-full border border-[#C89B5B]/10 animate-[spin_30s_linear_infinite_reverse]" />
             
-            {/* 3D Canvas element */}
-            <ThreeDLogo />
+            {/* 3D Canvas element wrapped with ErrorBoundary */}
+            <ErrorBoundary fallback={<ThreeDLogoFallback />}>
+              <ThreeDLogo />
+            </ErrorBoundary>
 
           </div>
         </motion.div>
