@@ -21,7 +21,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
         },
         { 
           threshold: 0.05, 
-          rootMargin: '80px' // Load slightly before it scrolls into view
+          rootMargin: '100px' // Load slightly before it scrolls into view
         }
       );
 
@@ -49,9 +49,13 @@ export default function ThreeDIcons({ type = 'bag' }) {
     try {
       // Forceful bypass of WebGL rendering for mobile in-app browsers
       const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
-      const isInstagramOrFB = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab');
-      const isIOSWKWebView = /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+      
+      // Force FULL_3D on desktop browsers by checking isMobileDevice first
       const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
+      
+      // Instagram & Facebook webview bypass ONLY on mobile devices
+      const isInstagramOrFB = isMobileDevice && (ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab'));
+      const isIOSWKWebView = isMobileDevice && /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
 
       if (isInstagramOrFB || isIOSWKWebView) {
         setHas3DError(true);
@@ -97,6 +101,15 @@ export default function ThreeDIcons({ type = 'bag' }) {
       renderer.setSize(size, size);
       renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
       renderer.shadowMap.enabled = false; // Never use shadow maps on small card icons to save huge resources
+
+      // Force canvas styling to prevent dynamic overflow clipping
+      renderer.domElement.style.position = 'absolute';
+      renderer.domElement.style.top = '0';
+      renderer.domElement.style.left = '0';
+      renderer.domElement.style.width = '100%';
+      renderer.domElement.style.height = '100%';
+      renderer.domElement.style.zIndex = '10';
+      renderer.domElement.style.opacity = '1';
 
       // Root Group for smooth rotating
       const iconGroup = new THREE.Group();
@@ -402,11 +415,15 @@ export default function ThreeDIcons({ type = 'bag' }) {
   }
 
   return (
-    <div ref={containerRef} className="w-[120px] h-[120px] mx-auto relative select-none">
+    <div 
+      ref={containerRef} 
+      className="w-[120px] h-[120px] mx-auto relative select-none overflow-visible"
+      style={{ zIndex: 10, opacity: 1 }}
+    >
       <canvas 
         ref={canvasRef} 
         className="w-[120px] h-[120px] pointer-events-none select-none drop-shadow-md mx-auto"
-        style={{ background: 'transparent' }}
+        style={{ background: 'transparent', width: '120px', height: '120px', display: 'block' }}
       />
     </div>
   );

@@ -4,6 +4,7 @@ import * as THREE from 'three';
 export default function ThreeDLogo() {
   const containerRef = useRef(null);
   const [webglSupported, setWebglSupported] = useState(true);
+  const [debugMode, setDebugMode] = useState("FALLBACK_MODE");
 
   useEffect(() => {
     let renderer = null;
@@ -17,12 +18,17 @@ export default function ThreeDLogo() {
 
       // Check if on iOS WKWebView / Instagram / FB in-app browser to forcefully bypass WebGL
       const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
-      const isInstagramOrFB = ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab');
-      const isIOSWKWebView = /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
+      
+      // Force FULL_3D on desktop browsers by checking isMobileDevice first
       const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
+      
+      // Instagram & Facebook webview bypass ONLY on mobile devices
+      const isInstagramOrFB = isMobileDevice && (ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab'));
+      const isIOSWKWebView = isMobileDevice && /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
 
       if (isInstagramOrFB || isIOSWKWebView) {
         setWebglSupported(false);
+        setDebugMode("FALLBACK_MODE");
         return;
       }
 
@@ -33,25 +39,35 @@ export default function ThreeDLogo() {
         gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
       } catch (e) {
         setWebglSupported(false);
+        setDebugMode("FALLBACK_MODE");
         return;
       }
 
       if (!gl) {
         setWebglSupported(false);
+        setDebugMode("FALLBACK_MODE");
         return;
       }
 
-      // Dimensions
-      const width = containerRef.current.clientWidth;
-      const height = containerRef.current.clientHeight;
+      // Set explicit debug mode
+      const isMobile = isMobileDevice;
+      setDebugMode(isMobile ? "LIGHT_3D" : "FULL_3D");
+
+      // Resilient layout size resolver (fixes 0x0 dynamic hidden canvas bug)
+      let width = containerRef.current.clientWidth;
+      let height = containerRef.current.clientHeight;
+
+      if (width === 0 || height === 0) {
+        width = 450;
+        height = 450;
+      }
 
       // Adjust geometric subdivisions, lights and shadows based on device type (Safe Hybrid LOD)
-      const isMobile = isMobileDevice;
       const baseRadialSegments = isMobile ? 16 : 32;
       const coreStarPoints = 8;
       const ringTorusSegments = isMobile ? 8 : 16;
       const ringTorusRadialSegments = isMobile ? 32 : 100;
-      const spheresCount = isMobile ? 4 : 12;
+      const spheresCount = isMobile ? 6 : 16; // Visual boost: 16 glowing golden spheres on desktop
       const sphereSubdivisions = isMobile ? 8 : 16;
 
       // Scene
@@ -64,37 +80,49 @@ export default function ThreeDLogo() {
 
       // Renderer creation
       renderer = new THREE.WebGLRenderer({ 
-        antialias: !isMobile, // Turn off antialiasing on mobile for huge performance gains
+        antialias: !isMobile, // Crisp resolution on desktop
         alpha: true, 
         powerPreference: "high-performance" 
       });
       renderer.setSize(width, height);
-      renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2)); // Lower pixel ratio on mobile to prevent GPU fill rate lag
+      renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2));
       
-      // Realtime shadows are extremely heavy on mobile browsers
+      // Shadow maps configuration
       renderer.shadowMap.enabled = !isMobile;
       if (!isMobile) {
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       }
       
+      // Absolute positioning to avoid parent dynamic overflow clipping
+      renderer.domElement.style.position = 'absolute';
+      renderer.domElement.style.top = '0';
+      renderer.domElement.style.left = '0';
+      renderer.domElement.style.width = '100%';
+      renderer.domElement.style.height = '100%';
+      renderer.domElement.style.zIndex = '10';
+      renderer.domElement.style.opacity = '1';
+      renderer.domElement.style.pointerEvents = 'auto'; // allow mouse dragging
+      
       containerRef.current.appendChild(renderer.domElement);
 
       // Group for Rotation and Parallax
       const logoGroup = new THREE.Group();
+      // Increase size scale on desktop for outstanding visual impact
+      logoGroup.scale.set(1.25, 1.25, 1.25);
       scene.add(logoGroup);
 
       // Materials
       const goldMaterial = new THREE.MeshStandardMaterial({
         color: 0xC89B5B,
-        metalness: 0.9,
-        roughness: 0.15,
+        metalness: 0.95,
+        roughness: 0.12,
         bumpScale: 0.05,
       });
 
       const copperMaterial = new THREE.MeshStandardMaterial({
         color: 0xB87333,
         metalness: 0.95,
-        roughness: 0.2,
+        roughness: 0.18,
       });
 
       const darkWoodMaterial = new THREE.MeshStandardMaterial({
@@ -130,7 +158,7 @@ export default function ThreeDLogo() {
       const extrudeSettings = { 
         depth: 0.25, 
         bevelEnabled: true, 
-        bevelSegments: isMobile ? 1 : 3, // Minimal bevel segments on mobile
+        bevelSegments: isMobile ? 1 : 3,
         steps: 1, 
         bevelSize: 0.05, 
         bevelThickness: 0.05 
@@ -156,36 +184,41 @@ export default function ThreeDLogo() {
       ringMesh2.rotation.y = Math.PI / 4;
       logoGroup.add(ringMesh2);
 
-      // Floating micro golden spheres
+      // Floating micro golden spheres (Glowing Orbs)
       const sphereGeom = new THREE.SphereGeometry(0.06, sphereSubdivisions, sphereSubdivisions);
       const spheres = [];
       for (let i = 0; i < spheresCount; i++) {
         const sp = new THREE.Mesh(sphereGeom, goldMaterial);
         const angle = (i * Math.PI * 2) / spheresCount;
-        const radius = 1.5 + Math.random() * 0.8;
+        const radius = 1.6 + Math.random() * 0.8;
         sp.position.set(Math.cos(angle) * radius, (Math.random() - 0.5) * 1.5, Math.sin(angle) * radius);
         logoGroup.add(sp);
         spheres.push({ mesh: sp, speed: 0.01 + Math.random() * 0.02, angle });
       }
 
-      // Lighting
-      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 0.85);
+      // Depth and dramatic cinematic lighting
+      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.1); // Warm luxury bounce
       scene.add(ambientLight);
 
-      const dirLight1 = new THREE.DirectionalLight(0xFFFFFF, 1.8);
-      dirLight1.position.set(5, 5, 5);
+      // Dramatic top Spotlight for metallic gloss
+      const spotLight = new THREE.SpotLight(0xFFFFFF, 3.5);
+      spotLight.position.set(6, 8, 6);
+      spotLight.angle = Math.PI / 4;
+      spotLight.penumbra = 0.5;
       if (!isMobile) {
-        dirLight1.castShadow = true;
+        spotLight.castShadow = true;
       }
-      logoGroup.add(dirLight1);
+      scene.add(spotLight);
 
-      const dirLight2 = new THREE.DirectionalLight(0xC89B5B, 1.0);
-      dirLight2.position.set(-5, 2, -2);
+      // Bottom-Right Copper fill light
+      const dirLight2 = new THREE.DirectionalLight(0xB87333, 2.0);
+      dirLight2.position.set(-6, -4, -4);
       scene.add(dirLight2);
 
-      const pointLight = new THREE.PointLight(0xFFFFFF, 0.8, 10);
-      pointLight.position.set(0, 0, 1.5);
-      scene.add(pointLight);
+      // Central glowing gold light
+      const corePointLight = new THREE.PointLight(0xC89B5B, 2.5, 12);
+      corePointLight.position.set(0, 0, 1.5);
+      scene.add(corePointLight);
 
       // Animation variables
       let mouseX = 0;
@@ -204,7 +237,7 @@ export default function ThreeDLogo() {
 
       window.addEventListener('mousemove', handleMouseMove);
 
-      // Visibility controls to pause loop when page is hidden (Conserve CPU/GPU battery)
+      // Visibility controls to pause loop when tab is hidden
       let isTabVisible = true;
       handleVisibilityChange = () => {
         isTabVisible = !document.hidden;
@@ -221,7 +254,7 @@ export default function ThreeDLogo() {
         if (!isTabVisible) return;
 
         if (!prefersReducedMotion) {
-          // Normal elegant animation
+          // Elegant continuous luxury rotation
           logoGroup.rotation.y += 0.007;
           coreMesh.rotation.z -= 0.004;
           
@@ -239,7 +272,7 @@ export default function ThreeDLogo() {
           logoGroup.rotation.x = mouseY;
           logoGroup.rotation.y += mouseX * 0.02;
         } else {
-          // Minimal static luxury drift for prefers-reduced-motion
+          // Minimal luxury static drift
           logoGroup.rotation.y = 0.5;
           coreMesh.rotation.z = 0.2;
         }
@@ -253,8 +286,8 @@ export default function ThreeDLogo() {
       // Resize Handler
       handleResize = () => {
         if (!containerRef.current || !renderer) return;
-        const w = containerRef.current.clientWidth;
-        const h = containerRef.current.clientHeight;
+        const w = containerRef.current.clientWidth || 450;
+        const h = containerRef.current.clientHeight || 450;
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
         renderer.setSize(w, h);
@@ -264,13 +297,14 @@ export default function ThreeDLogo() {
     } catch (err) {
       console.warn("Loran Studio - ThreeDLogo error caught in initialization:", err);
       setWebglSupported(false);
+      setDebugMode("FALLBACK_MODE");
     }
 
     // Cleanup
     return () => {
       try {
         if (animId) cancelAnimationFrame(animId);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        if (handleVisibilityChange) document.removeEventListener('visibilitychange', handleVisibilityChange);
         if (handleMouseMove) window.removeEventListener('mousemove', handleMouseMove);
         if (handleResize) window.removeEventListener('resize', handleResize);
         if (containerRef.current && renderer && renderer.domElement) {
@@ -283,33 +317,46 @@ export default function ThreeDLogo() {
     };
   }, []);
 
-  if (!webglSupported) {
-    // Beautiful Premium CSS 3D Fallback (For platforms with disabled WebGL)
-    return (
-      <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
-        <div className="relative w-44 h-44 flex items-center justify-center animate-float">
-          {/* Outer glowing mounded rings */}
-          <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
-          <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
-          
-          {/* Metallic golden central shield with wood styling */}
-          <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border-2 border-[#C89B5B] shadow-premium flex items-center justify-center">
-            <span className="font-marcellus text-5xl font-extrabold text-[#C89B5B] select-none">L</span>
-          </div>
-          
-          {/* Mini orbit circles */}
-          <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#B87333] border border-[#C89B5B]/30" />
-          <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#EADCCB] border border-[#C89B5B]/30" />
-        </div>
-      </div>
-    );
-  }
+  // Return mode styling for debugging badge color
+  const getBadgeColor = () => {
+    if (debugMode === "FULL_3D") return "bg-emerald-600/90 text-white border-emerald-400/30";
+    if (debugMode === "LIGHT_3D") return "bg-amber-600/90 text-[#2B1A12] border-amber-400/30";
+    return "bg-rose-600/90 text-white border-rose-400/30";
+  };
 
   return (
-    <div 
-      ref={containerRef} 
-      className="w-full h-[320px] md:h-[450px] cursor-grab active:cursor-grabbing select-none"
-      style={{ touchAction: 'none' }}
-    />
+    <>
+      {/* 1. Debugging Badge fixed at bottom-left */}
+      <div className={`fixed bottom-4 left-4 z-[9999] px-3.5 py-2 rounded-xl border font-mono text-[10px] font-black tracking-widest shadow-2xl backdrop-blur-md transition-all flex items-center gap-1.5 select-none ${getBadgeColor()}`}>
+        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+        👑 LORAN: {debugMode}
+      </div>
+
+      {!webglSupported ? (
+        // Beautiful Premium CSS 3D Fallback (For platforms with disabled WebGL)
+        <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
+          <div className="relative w-44 h-44 flex items-center justify-center animate-float">
+            {/* Outer glowing mounded rings */}
+            <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
+            <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
+            
+            {/* Metallic golden central shield with wood styling */}
+            <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border-2 border-[#C89B5B] shadow-premium flex items-center justify-center">
+              <span className="font-marcellus text-5xl font-extrabold text-[#C89B5B] select-none">L</span>
+            </div>
+            
+            {/* Mini orbit circles */}
+            <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#B87333] border border-[#C89B5B]/30" />
+            <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#EADCCB] border border-[#C89B5B]/30" />
+          </div>
+        </div>
+      ) : (
+        <div 
+          ref={containerRef} 
+          className="relative w-full h-[320px] md:h-[450px] cursor-grab active:cursor-grabbing select-none overflow-visible"
+          style={{ touchAction: 'none', zIndex: 10, opacity: 1 }}
+        />
+      )}
+    </>
   );
 }
