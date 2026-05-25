@@ -72,7 +72,7 @@ export default function ThreeDLogo() {
 
       // Scene
       const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0xF7EFE6, 0.05);
+      scene.fog = new THREE.FogExp2(0xF7EFE6, 0.04); // Softer fog for atmospheric depth
 
       // Camera
       const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
@@ -87,10 +87,11 @@ export default function ThreeDLogo() {
       renderer.setSize(width, height);
       renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2));
       
-      // Shadow maps configuration
+      // Shadow maps configuration (Softer, less aggressive shadows)
       renderer.shadowMap.enabled = !isMobile;
       if (!isMobile) {
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.shadowMap.bias = -0.0005; // Softer shadow alignment
       }
       
       // Absolute positioning to avoid parent dynamic overflow clipping
@@ -107,8 +108,10 @@ export default function ThreeDLogo() {
 
       // Group for Rotation and Parallax
       const logoGroup = new THREE.Group();
-      // Increase size scale on desktop for outstanding visual impact
-      logoGroup.scale.set(1.25, 1.25, 1.25);
+      
+      // PREMIUM SCALE ADJUSTMENT (Reduced scale by 40% to 0.75 for elegant breathing space)
+      const scaleFactor = isMobile ? 0.65 : 0.75;
+      logoGroup.scale.set(scaleFactor, scaleFactor, scaleFactor);
       scene.add(logoGroup);
 
       // Materials
@@ -131,20 +134,20 @@ export default function ThreeDLogo() {
         roughness: 0.6,
       });
 
-      // UNMISTAKABLE 3D TEST ELEMENT: Giant rotating golden metallic sphere in the center!
-      const testSphereGeom = new THREE.SphereGeometry(1.0, 32, 32);
+      // ELEGANT CORE SPHERE: Reduced size (0.55) for premium, balanced look
+      const testSphereGeom = new THREE.SphereGeometry(0.55, 32, 32);
       const testSphereMesh = new THREE.Mesh(testSphereGeom, goldMaterial);
-      testSphereMesh.position.set(0, 0.4, 0);
+      testSphereMesh.position.set(0, 0.3, 0);
       if (!isMobile) {
         testSphereMesh.castShadow = true;
         testSphereMesh.receiveShadow = true;
       }
       logoGroup.add(testSphereMesh);
 
-      // Core Wood Base
-      const baseGeom = new THREE.CylinderGeometry(1.6, 1.8, 0.25, baseRadialSegments);
+      // ELEGANT PLATFORM BASE: Reduced size (1.0 width, 0.15 height) and moved closer for cinematic balance
+      const baseGeom = new THREE.CylinderGeometry(1.0, 1.1, 0.15, baseRadialSegments);
       const baseMesh = new THREE.Mesh(baseGeom, darkWoodMaterial);
-      baseMesh.position.y = -2;
+      baseMesh.position.y = -1.2;
       if (!isMobile) {
         baseMesh.receiveShadow = true;
       }
@@ -175,7 +178,7 @@ export default function ThreeDLogo() {
       const coreGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
       coreGeom.center();
       const coreMesh = new THREE.Mesh(coreGeom, goldMaterial);
-      coreMesh.position.y = 0.4; // Mount on top of wood base
+      coreMesh.position.y = 0.3; // Mount on top of wood base
       if (!isMobile) {
         coreMesh.castShadow = true;
         coreMesh.receiveShadow = true;
@@ -185,13 +188,13 @@ export default function ThreeDLogo() {
       // Surrounding Copper Orbital Rings
       const ringGeom1 = new THREE.TorusGeometry(1.7, 0.06, ringTorusSegments, ringTorusRadialSegments);
       const ringMesh1 = new THREE.Mesh(ringGeom1, copperMaterial);
-      ringMesh1.position.y = 0.4;
+      ringMesh1.position.y = 0.3;
       ringMesh1.rotation.x = Math.PI / 2.5;
       logoGroup.add(ringMesh1);
 
       const ringGeom2 = new THREE.TorusGeometry(2.1, 0.04, ringTorusSegments, ringTorusRadialSegments);
       const ringMesh2 = new THREE.Mesh(ringGeom2, copperMaterial);
-      ringMesh2.position.y = 0.4;
+      ringMesh2.position.y = 0.3;
       ringMesh2.rotation.x = -Math.PI / 3;
       ringMesh2.rotation.y = Math.PI / 4;
       logoGroup.add(ringMesh2);
@@ -203,33 +206,33 @@ export default function ThreeDLogo() {
         const sp = new THREE.Mesh(sphereGeom, goldMaterial);
         const angle = (i * Math.PI * 2) / spheresCount;
         const radius = 1.6 + Math.random() * 0.8;
-        sp.position.set(Math.cos(angle) * radius, 0.4 + (Math.random() - 0.5) * 1.5, Math.sin(angle) * radius);
+        sp.position.set(Math.cos(angle) * radius, 0.3 + (Math.random() - 0.5) * 1.5, Math.sin(angle) * radius);
         logoGroup.add(sp);
         spheres.push({ mesh: sp, speed: 0.01 + Math.random() * 0.02, angle });
       }
 
-      // Depth and dramatic cinematic lighting
-      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.1); // Warm luxury bounce
+      // Softer luxury Awwwards lighting
+      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.2); // Warm luxury bounce
       scene.add(ambientLight);
 
-      // Dramatic top Spotlight for metallic gloss
-      const spotLight = new THREE.SpotLight(0xFFFFFF, 3.5);
+      // Softer top Spotlight for metallic gloss (intensity reduced to 2.5, penumbra increased to 0.8)
+      const spotLight = new THREE.SpotLight(0xFFFFFF, 2.5);
       spotLight.position.set(6, 8, 6);
       spotLight.angle = Math.PI / 4;
-      spotLight.penumbra = 0.5;
+      spotLight.penumbra = 0.8;
       if (!isMobile) {
         spotLight.castShadow = true;
       }
       scene.add(spotLight);
 
-      // Bottom-Right Copper fill light
-      const dirLight2 = new THREE.DirectionalLight(0xB87333, 2.0);
+      // Bottom-Right Copper fill light (softer 1.5)
+      const dirLight2 = new THREE.DirectionalLight(0xB87333, 1.5);
       dirLight2.position.set(-6, -4, -4);
       scene.add(dirLight2);
 
-      // Central glowing gold light
-      const corePointLight = new THREE.PointLight(0xC89B5B, 2.5, 12);
-      corePointLight.position.set(0, 0.4, 1.5);
+      // Central glowing gold light (softer 1.8)
+      const corePointLight = new THREE.PointLight(0xC89B5B, 1.8, 15);
+      corePointLight.position.set(0, 0.3, 1.5);
       scene.add(corePointLight);
 
       // Animation variables
@@ -266,20 +269,24 @@ export default function ThreeDLogo() {
         if (!isTabVisible) return;
 
         if (!prefersReducedMotion) {
+          // Elegant Y-axis zero-gravity floating (Subtle elegant floating motion)
+          const elapsedTime = performance.now() * 0.0012;
+          logoGroup.position.y = Math.sin(elapsedTime) * 0.2;
+
           // Elegant continuous luxury rotation
-          logoGroup.rotation.y += 0.007;
-          coreMesh.rotation.z -= 0.004;
+          logoGroup.rotation.y += 0.005; // Slightly slower for luxury look
+          coreMesh.rotation.z -= 0.003;
           
-          // Extra rotating speed for the giant test sphere to make it obvious
-          testSphereMesh.rotation.y += 0.015;
-          testSphereMesh.rotation.x += 0.008;
+          // Extra rotating speed for the giant test sphere
+          testSphereMesh.rotation.y += 0.01;
+          testSphereMesh.rotation.x += 0.005;
 
           // Floating spheres orbit
           spheres.forEach(sp => {
             sp.angle += sp.speed;
             sp.mesh.position.x = Math.cos(sp.angle) * 1.8;
             sp.mesh.position.z = Math.sin(sp.angle) * 1.8;
-            sp.mesh.position.y += Math.sin(performance.now() * 0.001 + sp.angle) * 0.005;
+            sp.mesh.position.y += Math.sin(elapsedTime + sp.angle) * 0.005;
           });
 
           // Mouse Parallax smooth lerp
@@ -344,7 +351,7 @@ export default function ThreeDLogo() {
     <>
       {/* 1. Debugging Badge fixed at bottom-left */}
       <div className={`fixed bottom-4 left-4 z-[9999] px-3.5 py-2 rounded-xl border font-mono text-[10px] font-black tracking-widest shadow-2xl backdrop-blur-md transition-all flex items-center gap-1.5 select-none ${getBadgeColor()}`}>
-        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+        <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
         👑 LORAN: {debugMode}
       </div>
 
@@ -370,7 +377,12 @@ export default function ThreeDLogo() {
         <div 
           ref={containerRef} 
           className="relative w-full h-[320px] md:h-[450px] cursor-grab active:cursor-grabbing select-none overflow-visible"
-          style={{ touchAction: 'none', zIndex: 10, opacity: 1 }}
+          style={{ 
+            touchAction: 'none', 
+            zIndex: 10, 
+            opacity: 1,
+            filter: 'drop-shadow(0 25px 50px rgba(200, 155, 91, 0.06))' // Subtle premium depth shadow
+          }}
         />
       )}
     </>
