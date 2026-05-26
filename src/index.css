@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --cream: #F7EFE6;
-    --soft-beige: #EADCCB;
-    --light-beige: #F4ECE3;
-    --warm-brown: #7A4A2A;
-    --dark-brown: #2B1A12;
-    --gold: #C89B5B;
-    --copper: #B87333;
+    --cream: #F7F2EC;
+    --soft-beige: #E8DDD0;
+    --light-beige: #FFFDF9;
+    --warm-brown: #3A2B24;
+    --dark-brown: #3A2B24;
+    --gold: #C8A97E;
+    --copper: #C8A97E;
   }
 
   body {
     background-color: var(--cream);
     background-image: 
-      radial-gradient(circle at 10% 20%, rgba(200, 155, 91, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(122, 74, 42, 0.05) 0%, transparent 40%),
-      linear-gradient(to bottom, #FAF5EF, #F7EFE6);
+      radial-gradient(circle at 10% 20%, rgba(200, 169, 126, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(58, 43, 36, 0.03) 0%, transparent 40%),
+      linear-gradient(to bottom, #FAF8F5, #F7F2EC);
     color: var(--dark-brown);
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Alexandria', sans-serif;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
@@ -28,7 +28,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Alexandria', sans-serif;
     font-weight: 800; /* ExtraBold */
     letter-spacing: -0.01em;
     line-height: 1.35;
@@ -111,10 +111,10 @@
 /* Floating Animation */
 @keyframes float {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0px, 0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translate3d(0, -8px, 0);
   }
 }
 .animate-float {
@@ -161,4 +161,30 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.016; /* Ultra-subtle texture */
   pointer-events: none;
+}
+
+/* 👑 High-performance GPU-friendly hardware acceleration classes */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.transition-luxury {
+  transition: transform 400ms cubic-bezier(0.25, 1, 0.5, 1), opacity 400ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+/* 👑 prefers-reduced-motion Accessibility Safeguard */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
 }

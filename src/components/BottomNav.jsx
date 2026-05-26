@@ -2,7 +2,7 @@ import React from 'react';
 import { Home, Briefcase, FolderOpen, Calendar, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function BottomNav({ activeSection, setActiveSection }) {
+export default function BottomNav({ activeSection, setActiveSection, onOpenWizard }) {
   const navItems = [
     { id: 'home', icon: Home, label: 'الرئيسية' },
     { id: 'services', icon: Briefcase, label: 'خدماتنا' },
@@ -12,6 +12,28 @@ export default function BottomNav({ activeSection, setActiveSection }) {
   ];
 
   const handleNavClick = (id) => {
+    if (id === 'wizard') {
+      if (onOpenWizard) onOpenWizard();
+      return;
+    }
+
+    if (id === 'contact') {
+      const element = document.getElementById('cta');
+      if (element) {
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+      return;
+    }
+
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {

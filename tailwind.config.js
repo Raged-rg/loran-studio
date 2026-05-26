@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#F7EFE6',
-        'soft-beige': '#EADCCB',
-        'light-beige': '#F4ECE3',
-        'warm-brown': '#7A4A2A',
-        'dark-brown': '#2B1A12',
-        gold: '#C89B5B',
-        copper: '#B87333',
+        cream: '#F7F2EC',
+        'soft-beige': '#E8DDD0',
+        'light-beige': '#FFFDF9',
+        'warm-brown': '#3A2B24',
+        'dark-brown': '#3A2B24',
+        gold: '#C8A97E',
+        copper: '#C8A97E',
       },
       fontFamily: {
         marcellus: ["Marcellus", "serif"],

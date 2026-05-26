@@ -44,11 +44,11 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#C89B5B]/80 pointer-events-none z-[99999] mix-blend-difference"
+      className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#C8A97E]/80 pointer-events-none z-[99999] mix-blend-difference"
       style={{
         x: cursorXSpring,
         y: cursorYSpring,
-        background: hovered ? 'rgba(200, 155, 91, 0.25)' : 'rgba(200, 155, 91, 0.05)',
+        background: hovered ? 'rgba(200, 169, 126, 0.25)' : 'rgba(200, 169, 126, 0.05)',
         scale: hovered ? 1.6 : 1.0,
       }}
       transition={{ type: 'spring', damping: 25, stiffness: 250 }}

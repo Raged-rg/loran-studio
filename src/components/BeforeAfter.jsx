@@ -1,0 +1,147 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowLeftRight, MoveLeft } from 'lucide-react';
+import portfolioLuxora from '../assets/portfolio-luxora.jpg';
+
+export default function BeforeAfter() {
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef(null);
+
+  const handleMove = (clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    let percentage = (x / rect.width) * 100;
+    if (percentage < 0) percentage = 0;
+    if (percentage > 100) percentage = 100;
+    setSliderPosition(percentage);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    handleMove(e.touches[0].clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    handleMove(e.clientX);
+  };
+
+  useEffect(() => {
+    const handleMouseUp = () => setIsDragging(false);
+    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('touchend', handleMouseUp);
+    return () => {
+      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('touchend', handleMouseUp);
+    };
+  }, [isDragging]);
+
+  return (
+    <section id="before-after" className="py-24 max-w-7xl mx-auto px-6 relative overflow-hidden select-none">
+      {/* Decorative Blur Orbs */}
+      <div className="absolute top-[30%] left-[-5%] w-[250px] h-[250px] rounded-full bg-[#C8A97E]/4 blur-[90px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[200px] h-[200px] rounded-full bg-[#3A2B24]/3 blur-[80px] pointer-events-none" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        {/* Left Side (Desktop): Interactive Draggable Before/After Slider Container */}
+        <div className="lg:col-span-7 flex justify-center items-center">
+          <div 
+            ref={containerRef}
+            className="relative w-full max-w-2xl aspect-[16/10] rounded-[28px] overflow-hidden border border-[#C8A97E]/20 bg-[#FFFDF9]/40 shadow-premium select-none touch-none"
+            onMouseDown={() => setIsDragging(true)}
+            onTouchStart={() => setIsDragging(true)}
+            onMouseMove={handleMouseMove}
+            onTouchMove={handleTouchMove}
+          >
+            {/* After Image (Full Background) */}
+            <div className="absolute inset-0 w-full h-full">
+              <img 
+                src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=1200&q=80" 
+                className="w-full h-full object-cover select-none pointer-events-none" 
+                alt="After Redesign" 
+              />
+              <span className="absolute bottom-4 right-4 z-10 px-3.5 py-1.5 rounded-full bg-[#3A2B24]/85 text-white text-[10px] font-black border border-[#C8A97E]/30 backdrop-blur-md">
+                بعد التطوير
+              </span>
+            </div>
+
+            {/* Before Image (Clipped Overlay) */}
+            <div 
+              className="absolute inset-0 w-full h-full overflow-hidden"
+              style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80" 
+                className="w-full h-full object-cover select-none pointer-events-none filter grayscale contrast-[1.1]" 
+                alt="Before Redesign" 
+              />
+              <span className="absolute bottom-4 left-4 z-10 px-3.5 py-1.5 rounded-full bg-[#FFFDF9]/90 text-[#3A2B24] text-[10px] font-black border border-[#C8A97E]/20 backdrop-blur-md">
+                قبل التطوير
+              </span>
+            </div>
+
+            {/* Draggable Divider Handle Line */}
+            <div 
+              className="absolute top-0 bottom-0 w-1 bg-[#C8A97E] cursor-ew-resize select-none pointer-events-none"
+              style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+            >
+              {/* Central Glowing Icon Handle */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#FFFDF9] text-[#3A2B24] border-2 border-[#C8A97E] flex items-center justify-center shadow-premium hover:scale-105 active:scale-95 transition-transform duration-300 pointer-events-auto cursor-ew-resize">
+                <ArrowLeftRight size={14} className="text-[#3A2B24]" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side (Desktop): Text Documentations */}
+        <div className="lg:col-span-5 flex flex-col gap-6 text-right lg:text-right">
+          <div className="flex justify-end">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] text-[10px] font-black tracking-widest uppercase">
+              <Sparkles size={10} />
+              مقارنة الجودة والأداء
+            </span>
+          </div>
+
+          <h2 className="font-marcellus text-3xl md:text-5xl font-black text-[#3A2B24] leading-tight">
+            قبل / بعد
+          </h2>
+
+          <p className="text-[#3A2B24]/90 font-bold text-sm sm:text-base leading-relaxed">
+            تحسينات حقيقية تصنع فرقاً في الأداء والمظهر وتجربة المستخدم. نقوم بتحويل المواقع التقليدية البطيئة إلى واجهات استثنائية وسريعة تتوافق مع معايير محركات البحث وتجذب العملاء المستهدفين بفاعلية.
+          </p>
+
+          <div className="flex flex-col gap-3.5 pr-2 mt-2">
+            <div className="flex items-center gap-3 justify-end text-xs font-black text-[#3A2B24]">
+              <span>سرعة استجابة فائقة وتحميل خلال أقل من ثانية</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8A97E]" />
+            </div>
+            <div className="flex items-center gap-3 justify-end text-xs font-black text-[#3A2B24]">
+              <span>واجهات مستوحاة من فلسفة آبل وتقليلات أسوب الجمالية</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8A97E]" />
+            </div>
+            <div className="flex items-center gap-3 justify-end text-xs font-black text-[#3A2B24]">
+              <span>تحسين بنسبة 180% في التفاعل ومعدل التحويل المالي</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8A97E]" />
+            </div>
+          </div>
+
+          <div className="mt-4 flex justify-end">
+            <a 
+              href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%88%D8%AA%D8%AD%D8%B3%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9%20%D9%84%D8%AF%D9%89%20%D9%84%D9%88%D8%B1%D8%A7%D9%86%20%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88."
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#C8A97E]/30 bg-[#FFFDF9] text-xs font-black text-[#3A2B24] hover:bg-[#E8DDD0] transition-all duration-300 shadow-soft"
+            >
+              <span>عرض المزيد من التحسينات</span>
+              <MoveLeft size={14} className="text-[#3A2B24]" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
