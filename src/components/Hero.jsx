@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowLeft, Play, Calendar, Users, FolderCheck, Clock, Heart, Award } from 'lucide-react';
-import ThreeDLogo from './ThreeDLogo';
-import ErrorBoundary from './ErrorBoundary';
 import logoIcon from '../assets/logo-icon.png';
+import heroWorkspace from '../assets/hero-workspace.png';
 
 // Reusable Scroll-Triggered smooth 60FPS counter component
 function AnimatedCounter({ value, duration = 1.2, suffix = '', prefix = '' }) {
@@ -31,23 +30,6 @@ function AnimatedCounter({ value, duration = 1.2, suffix = '', prefix = '' }) {
   }, [isInView, value, duration]);
 
   return <span ref={ref}>{prefix}{count}{suffix}</span>;
-}
-
-// High-fidelity CSS-3D fallback used if WebGL/Three.js fails
-function ThreeDLogoFallback() {
-  return (
-    <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
-      <div className="relative w-44 h-44 flex items-center justify-center animate-float">
-        <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
-        <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
-        <div className="w-20 h-20 rounded-full overflow-hidden border border-[#C89B5B]/20 shadow-premium flex items-center justify-center bg-[#FFFBF7]/30 backdrop-blur-sm">
-          <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Logo Icon" />
-        </div>
-        <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#B87333] border border-[#C89B5B]/30" />
-        <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#EADCCB] border border-[#C89B5B]/30" />
-      </div>
-    </div>
-  );
 }
 
 export default function Hero({ setActiveSection }) {
@@ -102,7 +84,7 @@ export default function Hero({ setActiveSection }) {
         }}
       />
 
-      {/* Main Grid: Left Medallion, Right Typography */}
+      {/* Main Grid: Left Workspace Visual, Right Typography */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         
         {/* Right Area (Arabic Typography with soft parallax drift) */}
@@ -199,26 +181,47 @@ export default function Hero({ setActiveSection }) {
 
         </motion.div>
 
-        {/* Left Area (rotating Three.js logo medallion with parallax reaction) */}
+        {/* Left Area (gorgeous floating interactive creative agency workspace visual) */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.0, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
           className="flex justify-center items-center order-1 md:order-2 transition-transform duration-500 ease-out"
           style={{
-            transform: `translate(${mousePos.x * -10}px, ${mousePos.y * -10}px)`
+            transform: `translate(${mousePos.x * -12}px, ${mousePos.y * -12}px)`
           }}
         >
           <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
             
-            {/* Outer Rotating Dotted Border */}
-            <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_50s_linear_infinite]" />
-            <div className="absolute inset-6 rounded-full border border-[#C89B5B]/10 animate-[spin_30s_linear_infinite_reverse]" />
+            {/* Outer Rotating Dotted Borders for architectural depth */}
+            <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/25 animate-[spin_60s_linear_infinite]" />
+            <div className="absolute inset-6 rounded-full border border-[#C89B5B]/8 animate-[spin_45s_linear_infinite_reverse]" />
+            <div className="absolute -inset-4 rounded-full border border-[#7A4A2A]/5 animate-[spin_80s_linear_infinite]" />
             
-            {/* 3D Medallion Canvas wrapped with ErrorBoundary */}
-            <ErrorBoundary fallback={<ThreeDLogoFallback />}>
-              <ThreeDLogo />
-            </ErrorBoundary>
+            {/* Soft Ambient Gold Glow behind the visual */}
+            <div className="absolute inset-16 rounded-full bg-[#C89B5B]/8 blur-3xl pointer-events-none" />
+
+            {/* Premium Creative Workspace Mockup Card with Glassmorphic Framing */}
+            <div className="relative w-[85%] h-[85%] rounded-[48px] border border-[#C89B5B]/20 bg-[#FFFBF7]/45 backdrop-blur-md p-3.5 shadow-premium animate-float overflow-hidden flex items-center justify-center group">
+              {/* Internal border highlight */}
+              <div className="absolute inset-0 rounded-[48px] border border-white/40 pointer-events-none z-10" />
+              
+              {/* Luxury Mockup Image with smooth zoom interaction on hover */}
+              <div className="w-full h-full rounded-[36px] overflow-hidden shadow-inner relative">
+                <img 
+                  src={heroWorkspace} 
+                  className="w-full h-full object-cover transform scale-100 group-hover:scale-[1.04] transition-transform duration-1000 ease-out select-none" 
+                  alt="LORAN STUDIO Workspace" 
+                />
+                {/* Elegant overlay gradient to blend with the background */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#FFFBF7]/15 via-transparent to-transparent pointer-events-none" />
+              </div>
+
+              {/* Minimal Luxury Monogram Badge floating over the mockup */}
+              <div className="absolute -bottom-2 -left-2 w-20 h-20 rounded-full border border-[#C89B5B]/20 bg-[#FFFBF7]/90 backdrop-blur-md shadow-premium p-1.5 flex items-center justify-center animate-[float_4s_ease-in-out_infinite_reverse] hover:scale-105 transition-all">
+                <img src={logoIcon} className="w-full h-full object-cover rounded-full" alt="L Monogram" />
+              </div>
+            </div>
 
           </div>
         </motion.div>
