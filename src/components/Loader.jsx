@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoIcon from '../assets/logo-icon.png';
 
 export default function Loader() {
   const [visible, setVisible] = useState(true);
@@ -57,8 +58,8 @@ export default function Loader() {
                 className="absolute inset-2 rounded-full border border-double border-[#B87333]/40"
               />
               {/* Central Premium Golden Seal */}
-              <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] flex items-center justify-center shadow-lg border border-[#C89B5B]/30">
-                <span className="font-marcellus text-2xl font-bold text-[#C89B5B]">L</span>
+              <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center shadow-lg border border-[#C89B5B]/30 bg-[#2B1A12]">
+                <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Seal" />
               </div>
             </div>
 

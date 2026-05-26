@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoIcon from '../assets/logo-icon.png';
 
 export default function Navbar({ activeSection, setActiveSection }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,8 +65,8 @@ export default function Navbar({ activeSection, setActiveSection }) {
 
           {/* Logo Brand */}
           <div className="flex items-center gap-3 select-none cursor-pointer" onClick={() => handleLinkClick('home')}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border border-[#C89B5B]/30 flex items-center justify-center text-white shadow-soft">
-              <span className="font-marcellus text-lg font-extrabold text-[#C89B5B]">L</span>
+            <div className="w-10 h-10 rounded-xl overflow-hidden border border-[#C89B5B]/30 flex items-center justify-center shadow-soft bg-[#2B1A12]">
+              <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
             </div>
             <div className="flex flex-col">
               <span className="font-marcellus text-lg font-black tracking-wider text-[#2B1A12] leading-none">LORAN STUDIO</span>
@@ -134,8 +135,8 @@ export default function Navbar({ activeSection, setActiveSection }) {
               {/* Close & Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#7A4A2A]/10">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#2B1A12] flex items-center justify-center text-white">
-                    <span className="font-marcellus text-sm font-bold text-[#C89B5B]">L</span>
+                  <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-[#2B1A12]">
+                    <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN" />
                   </div>
                   <span className="font-marcellus font-bold text-sm text-[#2B1A12]">LORAN STUDIO</span>
                 </div>

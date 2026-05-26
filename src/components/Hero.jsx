@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { ArrowLeft, Play } from 'lucide-react';
 import ThreeDLogo from './ThreeDLogo';
 import ErrorBoundary from './ErrorBoundary';
+import logoIcon from '../assets/logo-icon.png';
 
 // Reusable Scroll-Triggered smooth 60FPS counter component
 function AnimatedCounter({ value, duration = 1.2, suffix = '', prefix = '' }) {
@@ -40,8 +41,8 @@ function ThreeDLogoFallback() {
       <div className="relative w-44 h-44 flex items-center justify-center animate-float">
         <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
         <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
-        <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border-2 border-[#C89B5B] shadow-premium flex items-center justify-center">
-          <span className="font-marcellus text-5xl font-extrabold text-[#C89B5B] select-none">L</span>
+        <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#C89B5B] shadow-premium flex items-center justify-center bg-[#2B1A12]">
+          <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Logo Icon" />
         </div>
         <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#B87333] border border-[#C89B5B]/30" />
         <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#EADCCB] border border-[#C89B5B]/30" />

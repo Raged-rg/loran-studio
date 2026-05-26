@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Award, Zap, HeartHandshake, ShieldCheck, Cpu, Layers, Trophy, Store, Sparkles, CheckCircle } from 'lucide-react';
+import logoIcon from '../assets/logo-icon.png';
 
 // Count-up helper component for stats
 function Counter({ value, suffix = '', duration = 1.5 }) {
@@ -123,8 +124,10 @@ export default function WhyLoran() {
               </div>
 
               {/* Central Premium Emblem */}
-              <div className="w-20 h-20 rounded-full border-2 border-dashed border-[#C89B5B]/40 flex items-center justify-center">
-                <span className="font-marcellus text-4xl text-[#C89B5B] font-extrabold animate-[pulse_2.5s_infinite]">L</span>
+              <div className="w-20 h-20 rounded-full border-2 border-dashed border-[#C89B5B]/40 flex items-center justify-center overflow-hidden bg-[#2B1A12] p-1.5">
+                <div className="w-full h-full rounded-full overflow-hidden border border-[#C89B5B]/30 flex items-center justify-center">
+                  <img src={logoIcon} className="w-full h-full object-cover animate-[pulse_2.5s_infinite]" alt="LORAN Logo Icon" />
+                </div>
               </div>
 
             </div>

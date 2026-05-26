@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
+import logoIcon from '../assets/logo-icon.png';
 
 export default function ThreeDLogo() {
   const containerRef = useRef(null);
@@ -344,8 +345,8 @@ export default function ThreeDLogo() {
             <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
             
             {/* Metallic golden central shield with wood styling */}
-            <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border-2 border-[#C89B5B] shadow-premium flex items-center justify-center">
-              <span className="font-marcellus text-5xl font-extrabold text-[#C89B5B] select-none">L</span>
+            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#C89B5B] shadow-premium flex items-center justify-center bg-[#2B1A12]">
+              <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Logo Icon" />
             </div>
             
             {/* Mini orbit circles */}
