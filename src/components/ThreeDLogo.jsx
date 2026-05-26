@@ -52,37 +52,77 @@ export function ThreeDLogoFallback() {
 }
 
 export default function ThreeDLogo() {
-  const [webglSupported, setWebglSupported] = useState(true);
+  const [webglSupported, setWebGLSupported] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isTabActive, setIsTabActive] = useState(true);
 
+  // 1. Comprehensive environment & WebGL capability check
   useEffect(() => {
-    // Check if on iOS WKWebView / Instagram / FB in-app browser to forcefully bypass WebGL
     const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
-    const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
     
+    // Detect mobile and weak browsers
+    const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
     const isInstagramOrFB = isMobileDevice && (ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab'));
     const isIOSWKWebView = isMobileDevice && /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
 
+    // Instagram, Facebook, and WebViews have notoriously unstable WebGL implementation
     if (isInstagramOrFB || isIOSWKWebView) {
-      setWebglSupported(false);
+      setWebGLSupported(false);
       return;
     }
 
-    // Check WebGL availability
-    let gl = null;
+    // Try creating WebGL context to detect hardware capability
     try {
       const canvas = document.createElement('canvas');
-      gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    } catch (e) {
-      setWebglSupported(false);
-      return;
-    }
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      
+      if (!gl) {
+        setWebGLSupported(false);
+        return;
+      }
 
-    if (!gl) {
-      setWebglSupported(false);
-      return;
+      // Detect weak / software rendering fallbacks that crash on complex scenes
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      if (debugInfo) {
+        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_DEVICE_STRING) || '';
+        const lowerRenderer = renderer.toLowerCase();
+        
+        if (
+          lowerRenderer.includes('swiftshader') || 
+          lowerRenderer.includes('llvmpipe') || 
+          lowerRenderer.includes('software')
+        ) {
+          setWebGLSupported(false);
+          return;
+        }
+      }
+    } catch (e) {
+      setWebGLSupported(false);
     }
+  }, []);
+
+  // 2. Loading Timeout Safeguard (max 6 seconds)
+  useEffect(() => {
+    if (isLoaded || !webglSupported || hasError) return;
+
+    const timeoutId = setTimeout(() => {
+      if (!isLoaded) {
+        setHasError(true);
+      }
+    }, 6000);
+
+    return () => clearTimeout(timeoutId);
+  }, [isLoaded, webglSupported, hasError]);
+
+  // 3. Tab Visibility observer to pause heavy GPU loops when tab is in background
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsTabActive(!document.hidden);
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
   if (!webglSupported || hasError) {
@@ -103,22 +143,26 @@ export default function ThreeDLogo() {
         {/* Render a custom glassmorphic loader until Spline triggers onLoad */}
         {!isLoaded && <SplineLoader />}
         
-        <Spline 
-          scene="https://prod.spline.design/qtr9w0dFVPL4sghhEnogAkj7/scene.splinecode" 
-          onLoad={() => {
-            setIsLoaded(true);
-          }}
-          onError={(err) => {
-            console.warn("Loran Studio - Spline scene failed to render. Falling back.", err);
-            setHasError(true);
-          }}
-          className="w-full h-full object-contain scale-[1.05]"
-          style={{
-            width: '100%',
-            height: '100%',
-            pointerEvents: 'auto',
-          }}
-        />
+        {/* Unmount / Pause rendering when tab is hidden to save battery & prevent CPU spikes */}
+        {isTabActive ? (
+          <Spline 
+            scene="https://prod.spline.design/ZZl4542MG0qV9SZK/scene.splinecode" 
+            onLoad={() => {
+              setIsLoaded(true);
+            }}
+            onError={(err) => {
+              setHasError(true);
+            }}
+            className="w-full h-full object-contain scale-[1.05]"
+            style={{
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'auto',
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-transparent" />
+        )}
       </Suspense>
     </div>
   );
