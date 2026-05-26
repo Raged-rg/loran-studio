@@ -383,7 +383,9 @@ export default function Contact() {
             ref={magneticCta3.ref}
             onMouseMove={magneticCta3.handleMouseMove}
             onMouseLeave={magneticCta3.handleMouseLeave}
-            href="https://wa.me/9647701234567"
+            href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+              "مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي."
+            )}`}
             target="_blank"
             rel="noreferrer"
             animate={{ x: magneticCta3.position.x, y: magneticCta3.position.y }}
@@ -432,9 +434,11 @@ export default function Contact() {
           <LuxuryContactCard
             title="محادثة واتساب سريعة"
             value="تواصل فوري للحجز والاستفسار الفني المباشر"
-            label="009647701234567"
+            label="+9647842272224"
             icon={MessageSquare}
-            href="https://wa.me/9647701234567"
+            href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+              "مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي."
+            )}`}
             index={2}
           />
 
@@ -619,8 +623,8 @@ export default function Contact() {
             setIsWaHovered(false);
           }}
           onMouseEnter={() => setIsWaHovered(true)}
-          href={`https://wa.me/9647701234567?text=${encodeURIComponent(
-            "السلام عليكم لوران ستوديو، أود الاستفسار والحصول على استشارة أولية مجانية حول خدماتكم الرقمية وتصميم الهويات والمواقع."
+          href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+            "مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي."
           )}`}
           target="_blank"
           rel="noreferrer"
@@ -671,8 +675,13 @@ export default function Contact() {
               {/* Dynamic prepared WhatsApp contact button */}
               <div className="flex flex-col gap-3 w-full">
                 <a
-                  href={`https://wa.me/9647701234567?text=${encodeURIComponent(
-                    `السلام عليكم لوران ستوديو، قمت بإرسال رسالة للتواصل معكم باسم "${formData.name}" للاستفسار عن خدمة "${formData.service || 'تصميم هويات ومواقع'}". أود مناقشة تفاصيل طلبي مجاناً.`
+                  href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+                    `مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي.
+
+* تفاصيل الاتصال والاستفسار:
+- الاسم: ${formData.name || 'غير مدخل'}
+- الخدمة المطلوبة: ${formData.service || 'غير محددة'}
+- نص الرسالة: ${formData.msg || 'بدون تفاصيل إضافية'}`
                   )}`}
                   target="_blank"
                   rel="noreferrer"

@@ -110,7 +110,9 @@ export default function Footer() {
           {/* Social Badges */}
           <div className="flex items-center gap-3">
             <a 
-              href="https://wa.me/9647701234567" 
+              href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+                "مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي."
+              )}`}
               target="_blank" 
               rel="noreferrer" 
               className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/75 hover:text-[#C89B5B] hover:border-[#C89B5B]/40 hover:bg-white/10 transition-all shadow-soft"

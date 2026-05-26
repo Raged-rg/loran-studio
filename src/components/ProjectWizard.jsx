@@ -945,8 +945,14 @@ export default function ProjectWizard() {
               {/* WhatsApp direct contact and return button */}
               <div className="flex flex-col gap-3 w-full">
                 <a
-                  href={`https://wa.me/9647701234567?text=${encodeURIComponent(
-                    `السلام عليكم لوران ستوديو، قمت برفع وثيقة التخطيط لمشروعي "${formData.projectName}" بنوع "${getSelectedTypeLabel()}" وميزانية تقريبية $${formData.budget}. أود بدء الاستشارة المجانية المخصصة معكم.`
+                  href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+                    `مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي.
+
+* تفاصيل الطلب المقدم:
+- الاسم: ${formData.clientName || 'غير مدخل'}
+- الخدمة/نوع المشروع: ${getSelectedTypeLabel()}
+- الميزانية الاستثمارية: $${formData.budget ? formData.budget.toLocaleString() : 'غير محددة'}
+- مدة التنفيذ المتوقعة: ${formData.timeline || 'غير محددة'}`
                   )}`}
                   target="_blank"
                   rel="noreferrer"

@@ -44,7 +44,9 @@ export default function GlobalStaticFallback() {
 
         {/* Action WhatsApp direct button */}
         <a
-          href="https://wa.me/9647701234567?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%84%D9%88%D8%B1%D8%A7%D9%86%20%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85%20%D8%A7%D9%84%D9%81%D8%A7%D8%AE%D8%B1%D8%A9."
+          href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+            "مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي."
+          )}`}
           target="_blank"
           rel="noreferrer"
           className="px-8 py-4 bg-[#7A4A2A] hover:bg-[#2B1A12] text-white border border-[#7A4A2A] rounded-xl text-xs font-black shadow-md flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all w-full select-none"
