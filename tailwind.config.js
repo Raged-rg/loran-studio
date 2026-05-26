@@ -18,7 +18,8 @@ export default {
       fontFamily: {
         marcellus: ["Marcellus", "serif"],
         cinzel: ["Cinzel", "serif"],
-        tajawal: ["Tajawal", "sans-serif"],
+        alexandria: ["Alexandria", "sans-serif"],
+        'ibm-plex': ["IBM Plex Sans Arabic", "sans-serif"],
       },
       boxShadow: {
         'soft': '0 18px 42px rgba(92, 48, 18, 0.08)',

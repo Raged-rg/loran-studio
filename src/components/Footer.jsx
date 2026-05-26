@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Mail, MessageSquare, ArrowUp, Send } from 'lucide-react';
-import logoImg from '../assets/logo.jpg';
+import logoIcon from '../assets/logo-icon.png';
 
 export default function Footer() {
   const [btnX, setBtnX] = useState(0);
@@ -82,10 +82,10 @@ export default function Footer() {
         {/* Animated Brand Emblem & Logo */}
         <div className="flex flex-col items-center gap-4 text-center">
           <motion.div 
-            whileHover={{ scale: 1.05, rotate: 5 }}
-            className="w-16 h-16 rounded-2xl overflow-hidden border border-[#C89B5B]/30 flex items-center justify-center shadow-lg cursor-pointer transition-transform bg-[#2B1A12]"
+            whileHover={{ scale: 1.05, rotate: 3 }}
+            className="w-12 h-12 rounded-full overflow-hidden border border-white/10 hover:border-[#C89B5B]/30 flex items-center justify-center transition-all bg-[#FFFBF7]/5 shadow-sm"
           >
-            <img src={logoImg} className="w-full h-full object-cover" alt="LORAN STUDIO Logo" />
+            <img src={logoIcon} className="w-full h-full object-cover opacity-85 hover:opacity-100 transition-opacity" alt="LORAN STUDIO Logo" />
           </motion.div>
           
           <h3 className="font-marcellus text-xl font-black tracking-wider text-white">LORAN STUDIO</h3>

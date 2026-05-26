@@ -124,8 +124,8 @@ export default function WhyLoran() {
               </div>
 
               {/* Central Premium Emblem */}
-              <div className="w-20 h-20 rounded-full border-2 border-dashed border-[#C89B5B]/40 flex items-center justify-center overflow-hidden bg-[#2B1A12] p-1.5">
-                <div className="w-full h-full rounded-full overflow-hidden border border-[#C89B5B]/30 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full border border-dashed border-[#C89B5B]/40 flex items-center justify-center overflow-hidden bg-[#FFFBF7]/40 p-1">
+                <div className="w-full h-full rounded-full overflow-hidden border border-[#C89B5B]/25 flex items-center justify-center">
                   <img src={logoIcon} className="w-full h-full object-cover animate-[pulse_2.5s_infinite]" alt="LORAN Logo Icon" />
                 </div>
               </div>

@@ -19,10 +19,16 @@ function ThreeDIconFallback({ type }) {
   else if (type === 'sales') Icon = CheckCircle2;
 
   return (
-    <div className="w-[120px] h-[120px] flex items-center justify-center bg-gradient-to-tr from-[#7A4A2A]/5 to-[#2B1A12]/5 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none">
-      <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border border-[#C89B5B]/30 flex items-center justify-center text-[#C89B5B] shadow-md">
-        <Icon size={26} className="animate-float" />
+    <div className="w-[120px] h-[120px] flex items-center justify-center bg-[#FFFBF7]/40 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none mx-auto relative group overflow-hidden">
+      {/* Soft background glow */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#C89B5B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      
+      <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#FFFBF7] to-[#F4ECE3] border border-[#C89B5B]/25 flex items-center justify-center text-[#7A4A2A] shadow-md group-hover:text-[#C89B5B] group-hover:scale-105 group-hover:border-[#C89B5B]/40 transition-all duration-300 relative z-10">
+        <Icon size={22} className="animate-float" />
       </div>
+      
+      {/* Floating shadow */}
+      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#7A4A2A]/10 rounded-full blur-[3px] scale-x-90 animate-pulse pointer-events-none" />
     </div>
   );
 }

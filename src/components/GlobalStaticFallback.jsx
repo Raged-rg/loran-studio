@@ -12,11 +12,11 @@ export default function GlobalStaticFallback() {
 
       {/* Premium Header */}
       <header className="flex justify-between items-center py-4 border-b border-[#7A4A2A]/10 max-w-4xl mx-auto w-full relative z-10">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl overflow-hidden border border-[#C89B5B]/30 flex items-center justify-center bg-[#2B1A12]">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-[#7A4A2A]/15 flex items-center justify-center shadow-sm bg-[#FFFBF7]/80">
             <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
           </div>
-          <span className="font-marcellus text-lg font-black tracking-wider">LORAN STUDIO</span>
+          <span className="font-marcellus text-[16px] font-bold tracking-widest text-[#2B1A12]">LORAN STUDIO</span>
         </div>
         <span className="text-[9px] sm:text-[10px] px-3 py-1.5 rounded-full border border-[#C89B5B]/25 bg-[#C89B5B]/8 text-[#C89B5B] font-extrabold tracking-wide">
           النسخة السريعة والمحسنة

@@ -64,13 +64,13 @@ export default function Navbar({ activeSection, setActiveSection }) {
           </button>
 
           {/* Logo Brand */}
-          <div className="flex items-center gap-3 select-none cursor-pointer" onClick={() => handleLinkClick('home')}>
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-[#C89B5B]/30 flex items-center justify-center shadow-soft bg-[#2B1A12]">
-              <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
+          <div className="flex items-center gap-2.5 select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#7A4A2A]/15 flex items-center justify-center shadow-sm bg-[#FFFBF7]/80 group-hover:scale-105 group-hover:border-[#C89B5B]/40 transition-all duration-300">
+              <img src={logoIcon} className="w-full h-full object-cover group-hover:opacity-90 transition-opacity" alt="LORAN STUDIO" />
             </div>
             <div className="flex flex-col">
-              <span className="font-marcellus text-lg font-black tracking-wider text-[#2B1A12] leading-none">LORAN STUDIO</span>
-              <span className="text-[10px] text-[#7A4A2A] font-bold mt-[2px] leading-none">لوران ستوديو</span>
+              <span className="font-marcellus text-[16px] font-bold tracking-widest text-[#2B1A12] leading-none group-hover:text-[#C89B5B] transition-colors duration-300">LORAN STUDIO</span>
+              <span className="text-[9px] text-[#7A4A2A]/70 font-extrabold mt-[3px] leading-none">لوران ستوديو</span>
             </div>
           </div>
 
@@ -134,11 +134,11 @@ export default function Navbar({ activeSection, setActiveSection }) {
               
               {/* Close & Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#7A4A2A]/10">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-[#2B1A12]">
-                    <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN" />
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-full overflow-hidden border border-[#7A4A2A]/15 flex items-center justify-center bg-[#FFFBF7]/80 shadow-sm">
+                    <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
                   </div>
-                  <span className="font-marcellus font-bold text-sm text-[#2B1A12]">LORAN STUDIO</span>
+                  <span className="font-marcellus font-bold text-xs tracking-widest text-[#2B1A12]">LORAN STUDIO</span>
                 </div>
                 <button 
                   onClick={() => setIsOpen(false)}

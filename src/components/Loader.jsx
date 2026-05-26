@@ -58,7 +58,7 @@ export default function Loader() {
                 className="absolute inset-2 rounded-full border border-double border-[#B87333]/40"
               />
               {/* Central Premium Golden Seal */}
-              <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center shadow-lg border border-[#C89B5B]/30 bg-[#2B1A12]">
+              <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center border border-[#C89B5B]/20 bg-[#FFFBF7]/40 backdrop-blur-md shadow-sm">
                 <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Seal" />
               </div>
             </div>

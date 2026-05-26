@@ -47,13 +47,10 @@ export default function ThreeDIcons({ type = 'bag' }) {
     let handleVisibilityChange = null;
 
     try {
-      // Forceful bypass of WebGL rendering for mobile in-app browsers
+      // Bypass WebGL rendering for mobile in-app browsers to ensure bulletproof compatibility
       const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
-      
-      // Force FULL_3D on desktop browsers by checking isMobileDevice first
       const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) || window.innerWidth < 768;
       
-      // Instagram & Facebook webview bypass ONLY on mobile devices
       const isInstagramOrFB = isMobileDevice && (ua.includes('instagram') || ua.includes('fbav') || ua.includes('fb_iab'));
       const isIOSWKWebView = isMobileDevice && /(iphone|ipod|ipad).*applewebkit(?!.*safari)/i.test(ua);
 
@@ -81,26 +78,25 @@ export default function ThreeDIcons({ type = 'bag' }) {
       const size = 120;
       const scene = new THREE.Scene();
 
-      // Camera
+      // Camera with wide field of view for high cinematic perspective
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
       camera.position.z = 4.2;
 
-      // Performance adjustment based on device class (LOD)
+      // Performance adjustment based on device class
       const isMobile = isMobileDevice;
-      const torusRadial = isMobile ? 6 : 8;
-      const torusTubular = isMobile ? 16 : 32;
-      const cylinderSegments = isMobile ? 8 : 16;
+      const radialSegs = isMobile ? 8 : 16;
+      const tubularSegs = isMobile ? 16 : 32;
       
-      // Renderer
+      // WebGL Renderer settings
       renderer = new THREE.WebGLRenderer({
         canvas: canvasRef.current,
-        antialias: !isMobile, // Turn off antialiasing on mobile for huge fillrate speedups
+        antialias: !isMobile, // Turn off antialiasing on mobile for huge performance gains
         alpha: true,
         powerPreference: "high-performance"
       });
       renderer.setSize(size, size);
       renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
-      renderer.shadowMap.enabled = false; // Never use shadow maps on small card icons to save huge resources
+      renderer.shadowMap.enabled = false; // Disable shadows on cards to save valuable resources
 
       // Force canvas styling to prevent dynamic overflow clipping
       renderer.domElement.style.position = 'absolute';
@@ -115,12 +111,11 @@ export default function ThreeDIcons({ type = 'bag' }) {
       const iconGroup = new THREE.Group();
       scene.add(iconGroup);
 
-      // Common Premium Materials
+      // --- BRAND MATERIAL SYSTEM ---
       const goldMaterial = new THREE.MeshStandardMaterial({
         color: 0xC89B5B,
         metalness: 0.95,
-        roughness: 0.12,
-        bumpScale: 0.05
+        roughness: 0.12
       });
 
       const copperMaterial = new THREE.MeshStandardMaterial({
@@ -129,223 +124,298 @@ export default function ThreeDIcons({ type = 'bag' }) {
         roughness: 0.18
       });
 
-      const woodMaterial = new THREE.MeshStandardMaterial({
-        color: 0x7A4A2A,
-        metalness: 0.1,
-        roughness: 0.55
-      });
-
       const darkMaterial = new THREE.MeshStandardMaterial({
         color: 0x2B1A12,
-        metalness: 0.25,
-        roughness: 0.35
+        metalness: 0.35,
+        roughness: 0.25
       });
 
-      // Create Geometries based on type
+      const glassMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xEADCCB,
+        metalness: 0.05,
+        roughness: 0.08,
+        transmission: 0.8,
+        thickness: 0.25,
+        transparent: true,
+        opacity: 0.75
+      });
+
+      // --- PREMIUM MINIMAL 3D GEOMETRY SYSTEM ---
       if (type === 'bag') {
-        // 1. تصميم المتاجر الإلكترونية: Luxury bronze shopping bag + cart
-        const bagBodyGeom = new THREE.BoxGeometry(0.8, 1.0, 0.45);
+        // 1. تصميم المتاجر الإلكترونية: Luxury minimal shopping bag with orbiting orbs
+        const bagBodyGeom = new THREE.BoxGeometry(0.68, 0.78, 0.38);
         const bagBody = new THREE.Mesh(bagBodyGeom, copperMaterial);
-        bagBody.position.y = -0.15;
+        bagBody.position.y = -0.05;
         iconGroup.add(bagBody);
 
         // Handles
-        const handleGeom = new THREE.TorusGeometry(0.24, 0.04, torusRadial, torusTubular, Math.PI);
+        const handleGeom = new THREE.TorusGeometry(0.2, 0.035, radialSegs, tubularSegs, Math.PI);
         const handle1 = new THREE.Mesh(handleGeom, goldMaterial);
-        handle1.position.set(0, 0.35, 0.08);
+        handle1.position.set(0, 0.34, 0.06);
         const handle2 = handle1.clone();
-        handle2.position.z = -0.08;
+        handle2.position.z = -0.06;
         iconGroup.add(handle1);
         iconGroup.add(handle2);
 
-        // Cart Ring Base (Procedural Cart)
-        const ringGeom = new THREE.TorusGeometry(0.7, 0.04, torusRadial, torusTubular);
+        // Orbiting tiny gold beads
+        const orbGeom = new THREE.SphereGeometry(0.06, 12, 12);
+        const orb1 = new THREE.Mesh(orbGeom, goldMaterial);
+        orb1.position.set(0.6, 0.3, 0.25);
+        const orb2 = new THREE.Mesh(orbGeom, copperMaterial);
+        orb2.position.set(-0.6, -0.3, -0.25);
+        iconGroup.add(orb1);
+        iconGroup.add(orb2);
+
+        // Ground ring
+        const ringGeom = new THREE.TorusGeometry(0.65, 0.015, 6, tubularSegs);
         const ring = new THREE.Mesh(ringGeom, goldMaterial);
-        ring.position.y = -0.7;
+        ring.position.y = -0.55;
         ring.rotation.x = Math.PI / 2;
         iconGroup.add(ring);
 
       } else if (type === 'monitor') {
-        // 2. تصميم المواقع: Wooden monitor with glowing interface
-        const frameGeom = new THREE.BoxGeometry(1.4, 0.9, 0.12);
-        const frame = new THREE.Mesh(frameGeom, woodMaterial);
-        iconGroup.add(frame);
-
-        // Glowing screen face
-        const screenGeom = new THREE.BoxGeometry(1.26, 0.76, 0.05);
-        const screen = new THREE.Mesh(screenGeom, goldMaterial);
-        screen.position.z = 0.06;
+        // 2. تصميم المواقع: Elegant floating monitor with floating layout grid
+        // Glass Screen Face
+        const screenGeom = new THREE.BoxGeometry(1.25, 0.78, 0.04);
+        const screen = new THREE.Mesh(screenGeom, glassMaterial);
         iconGroup.add(screen);
 
-        // Core stand
-        const standGeom = new THREE.CylinderGeometry(0.08, 0.08, 0.4, cylinderSegments);
-        const stand = new THREE.Mesh(standGeom, copperMaterial);
-        stand.position.y = -0.65;
+        // Minimalist gold spine & base
+        const standGeom = new THREE.CylinderGeometry(0.04, 0.04, 0.42, 8);
+        const stand = new THREE.Mesh(standGeom, goldMaterial);
+        stand.position.set(0, -0.55, -0.1);
+        stand.rotation.x = Math.PI / 12;
         iconGroup.add(stand);
 
-        // Base
-        const baseGeom = new THREE.CylinderGeometry(0.3, 0.35, 0.04, cylinderSegments);
+        const baseGeom = new THREE.CylinderGeometry(0.24, 0.28, 0.03, 12);
         const base = new THREE.Mesh(baseGeom, darkMaterial);
-        base.position.y = -0.85;
+        base.position.set(0, -0.76, -0.15);
         iconGroup.add(base);
 
+        // Floating Gold & Copper layout UI panels hovering in front of the screen
+        const barGeom = new THREE.BoxGeometry(0.85, 0.06, 0.02);
+        const bar = new THREE.Mesh(barGeom, goldMaterial);
+        bar.position.set(0, 0.24, 0.08);
+        iconGroup.add(bar);
+
+        const card1Geom = new THREE.BoxGeometry(0.48, 0.26, 0.02);
+        const card1 = new THREE.Mesh(card1Geom, copperMaterial);
+        card1.position.set(-0.22, -0.06, 0.08);
+        iconGroup.add(card1);
+
+        const card2Geom = new THREE.BoxGeometry(0.3, 0.26, 0.02);
+        const card2 = new THREE.Mesh(card2Geom, goldMaterial);
+        card2.position.set(0.24, -0.06, 0.08);
+        iconGroup.add(card2);
+
       } else if (type === 'social') {
-        // 3. إدارة السوشيال ميديا: Floating social media cubes
-        // Main Center Cube
-        const cube1Geom = new THREE.BoxGeometry(0.6, 0.6, 0.6);
-        const cube1 = new THREE.Mesh(cube1Geom, goldMaterial);
-        iconGroup.add(cube1);
+        // 3. إدارة السوشيال ميديا: Connected floating social nodes & rings (highly minimal and delicate)
+        const coreGeom = new THREE.SphereGeometry(0.25, 24, 24);
+        const core = new THREE.Mesh(coreGeom, goldMaterial);
+        iconGroup.add(core);
 
-        // Orbit Cube 1 (Wood)
-        const cube2Geom = new THREE.BoxGeometry(0.35, 0.35, 0.35);
-        const cube2 = new THREE.Mesh(cube2Geom, woodMaterial);
-        cube2.position.set(0.75, 0.4, -0.2);
-        iconGroup.add(cube2);
+        // Social Rings / Overlapping orbits
+        const orbit1Geom = new THREE.TorusGeometry(0.68, 0.016, 6, tubularSegs);
+        const orbit1 = new THREE.Mesh(orbit1Geom, goldMaterial);
+        orbit1.rotation.x = Math.PI / 4;
+        iconGroup.add(orbit1);
 
-        // Orbit Cube 2 (Copper)
-        const cube3Geom = new THREE.BoxGeometry(0.3, 0.3, 0.3);
-        const cube3 = new THREE.Mesh(cube3Geom, copperMaterial);
-        cube3.position.set(-0.75, -0.4, 0.2);
-        iconGroup.add(cube3);
+        const orbit2 = new THREE.Mesh(orbit1Geom, copperMaterial);
+        orbit2.rotation.y = Math.PI / 4;
+        iconGroup.add(orbit2);
 
-        // Orbit paths
-        const path1Geom = new THREE.TorusGeometry(0.85, 0.015, torusRadial, torusTubular + 10);
-        const path1 = new THREE.Mesh(path1Geom, copperMaterial);
-        path1.rotation.x = Math.PI / 3;
-        iconGroup.add(path1);
+        const orbit3 = new THREE.Mesh(orbit1Geom, goldMaterial);
+        orbit3.rotation.z = Math.PI / 3;
+        iconGroup.add(orbit3);
+
+        // Embedded social node beads
+        const nodeGeom = new THREE.SphereGeometry(0.06, 12, 12);
+        const node1 = new THREE.Mesh(nodeGeom, copperMaterial);
+        node1.position.set(0.48, 0.48, 0);
+        iconGroup.add(node1);
+
+        const node2 = new THREE.Mesh(nodeGeom, goldMaterial);
+        node2.position.set(-0.48, -0.48, 0);
+        iconGroup.add(node2);
 
       } else if (type === 'megaphone') {
-        // 4. الحملات الإعلانية: Luxury megaphone + analytics graph
-        const coneGeom = new THREE.CylinderGeometry(0.45, 0.18, 0.9, cylinderSegments * 2);
-        const cone = new THREE.Mesh(coneGeom, woodMaterial);
-        cone.rotation.z = Math.PI / 3.5;
+        // 4. الحملات الإعلانية: Minimal megaphone broadcasting premium geometric light beams
+        const coneGeom = new THREE.CylinderGeometry(0.32, 0.14, 0.65, 24);
+        const cone = new THREE.Mesh(coneGeom, copperMaterial);
+        cone.rotation.z = Math.PI / 4;
         iconGroup.add(cone);
 
-        const ringGeom = new THREE.TorusGeometry(0.45, 0.05, torusRadial, torusTubular);
-        const ring = new THREE.Mesh(ringGeom, goldMaterial);
-        ring.position.set(-0.38, 0.22, 0);
-        ring.rotation.y = Math.PI / 6;
-        iconGroup.add(ring);
+        const rimGeom = new THREE.TorusGeometry(0.32, 0.032, 8, tubularSegs);
+        const rim = new THREE.Mesh(rimGeom, goldMaterial);
+        rim.position.set(-0.23, 0.23, 0);
+        rim.rotation.z = Math.PI / 4;
+        iconGroup.add(rim);
 
-        const handleGeom = new THREE.BoxGeometry(0.12, 0.35, 0.12);
-        const handle = new THREE.Mesh(handleGeom, copperMaterial);
-        handle.position.set(0.12, -0.2, 0);
+        const handleGeom = new THREE.BoxGeometry(0.08, 0.22, 0.08);
+        const handle = new THREE.Mesh(handleGeom, goldMaterial);
+        handle.position.set(0.1, -0.15, 0);
         iconGroup.add(handle);
 
-        // Backdrop analytics grid
-        const gridGeom = new THREE.TorusGeometry(0.8, 0.02, torusRadial, torusTubular, Math.PI);
+        // Expanding light beams / broadcast rings
+        const beam1Geom = new THREE.TorusGeometry(0.5, 0.015, 6, tubularSegs);
+        const beam1 = new THREE.Mesh(beam1Geom, goldMaterial);
+        beam1.position.set(-0.48, 0.48, 0.06);
+        beam1.rotation.z = Math.PI / 4;
+        iconGroup.add(beam1);
+
+        const beam2Geom = new THREE.TorusGeometry(0.68, 0.01, 6, tubularSegs);
+        const beam2 = new THREE.Mesh(beam2Geom, copperMaterial);
+        beam2.position.set(-0.72, 0.72, 0.1);
+        beam2.rotation.z = Math.PI / 4;
+        iconGroup.add(beam2);
+
+      } else if (type === 'sales') {
+        // 5. إدارة المبيعات بالكامل: Floating dashboard / growing chart bars with trend line
+        // Premium minimal grid base
+        const gridGeom = new THREE.TorusGeometry(0.72, 0.012, 6, tubularSegs);
         const grid = new THREE.Mesh(gridGeom, copperMaterial);
-        grid.position.set(0, -0.3, -0.4);
+        grid.position.y = -0.5;
         grid.rotation.x = Math.PI / 2;
         iconGroup.add(grid);
 
-      } else if (type === 'content') {
-        // 5. كتابة المحتوى: Luxury paper + premium pen
-        // Luxury rolled Paper Cylinder/Box
-        const paperGeom = new THREE.BoxGeometry(0.8, 1.1, 0.08);
-        const paper = new THREE.Mesh(paperGeom, goldMaterial);
-        paper.rotation.y = -Math.PI / 8;
-        paper.rotation.z = Math.PI / 12;
-        iconGroup.add(paper);
+        // Growing cylinder bars
+        const barGeom = new THREE.CylinderGeometry(0.065, 0.065, 1, 16);
+        
+        const bar1 = new THREE.Mesh(barGeom, goldMaterial);
+        bar1.scale.y = 0.35;
+        bar1.position.set(-0.35, -0.5 + 0.35/2, 0);
+        iconGroup.add(bar1);
 
-        // Premium Pen Feather
-        const penGeom = new THREE.CylinderGeometry(0.04, 0.01, 1.2, cylinderSegments);
-        const pen = new THREE.Mesh(penGeom, copperMaterial);
-        pen.position.set(0.2, 0.1, 0.15);
-        pen.rotation.z = -Math.PI / 5;
-        iconGroup.add(pen);
+        const bar2 = new THREE.Mesh(barGeom, copperMaterial);
+        bar2.scale.y = 0.6;
+        bar2.position.set(0, -0.5 + 0.6/2, 0);
+        iconGroup.add(bar2);
 
-        const nibGeom = new THREE.ConeGeometry(0.05, 0.15, cylinderSegments);
-        const nib = new THREE.Mesh(nibGeom, woodMaterial);
-        nib.position.set(0.2 - 0.35, 0.1 - 0.5, 0.15);
-        nib.rotation.z = -Math.PI / 5;
-        iconGroup.add(nib);
+        const bar3 = new THREE.Mesh(barGeom, goldMaterial);
+        bar3.scale.y = 0.88;
+        bar3.position.set(0.35, -0.5 + 0.88/2, 0);
+        iconGroup.add(bar3);
 
-      } else if (type === 'branding') {
-        // 6. تصميم الهوية البصرية: Golden geometric branding symbol
-        // Outer beautiful 8-point geometric star
-        const shape = new THREE.Shape();
-        const outerRadius = 0.95;
-        const innerRadius = 0.45;
-        const pointsNum = 8;
-        for (let i = 0; i < pointsNum * 2; i++) {
-          const angle = (i * Math.PI) / pointsNum;
-          const radius = i % 2 === 0 ? outerRadius : innerRadius;
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
-          if (i === 0) shape.moveTo(x, y);
-          else shape.lineTo(x, y);
-        }
-        shape.closePath();
+        // Upward trending rod
+        const trendGeom = new THREE.CylinderGeometry(0.016, 0.016, 0.95, 8);
+        const trend = new THREE.Mesh(trendGeom, goldMaterial);
+        trend.position.set(0, 0.08, 0.08);
+        trend.rotation.z = -Math.PI / 5.2;
+        iconGroup.add(trend);
 
-        const extrudeSettings = { 
-          depth: 0.15, 
-          bevelEnabled: true, 
-          bevelSegments: isMobile ? 1 : 3, 
-          steps: 1, 
-          bevelSize: 0.03, 
-          bevelThickness: 0.03 
-        };
-        const starGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-        starGeom.center();
-        const star = new THREE.Mesh(starGeom, goldMaterial);
-        iconGroup.add(star);
-
-        // Inner copper ring
-        const ringGeom = new THREE.TorusGeometry(0.35, 0.04, torusRadial, torusTubular);
-        const ring = new THREE.Mesh(ringGeom, copperMaterial);
-        ring.position.z = 0.1;
-        iconGroup.add(ring);
+        // Trend peak node
+        const peakGeom = new THREE.SphereGeometry(0.075, 16, 16);
+        const peak = new THREE.Mesh(peakGeom, goldMaterial);
+        peak.position.set(0.42, 0.28, 0.08);
+        iconGroup.add(peak);
 
       } else if (type === 'script') {
-        // 7. إنشاء سكربتات خاصة: Floating code blocks in copper style
-        const block1Geom = new THREE.BoxGeometry(0.7, 0.3, 0.3);
-        const block1 = new THREE.Mesh(block1Geom, copperMaterial);
-        block1.position.set(-0.25, 0.3, 0);
-        iconGroup.add(block1);
+        // 6. إنشاء سكربتات خاصة: Layered floating code blocks in glass & gold with a central gear
+        // Layered panels
+        const panelGeom = new THREE.BoxGeometry(0.8, 0.44, 0.02);
+        
+        const panel1 = new THREE.Mesh(panelGeom, glassMaterial);
+        panel1.position.set(-0.15, 0.2, -0.12);
+        iconGroup.add(panel1);
 
-        const block2Geom = new THREE.BoxGeometry(0.7, 0.3, 0.3);
-        const block2 = new THREE.Mesh(block2Geom, goldMaterial);
-        block2.position.set(0.25, -0.3, 0);
-        iconGroup.add(block2);
+        const panel2 = new THREE.Mesh(panelGeom, copperMaterial);
+        panel2.position.set(0, 0, 0);
+        iconGroup.add(panel2);
 
-        const gearGeom = new THREE.TorusGeometry(0.4, 0.06, torusRadial, torusTubular);
-        const gear = new THREE.Mesh(gearGeom, darkMaterial);
-        gear.rotation.x = Math.PI / 2;
-        iconGroup.add(gear);
+        const panel3 = new THREE.Mesh(panelGeom, goldMaterial);
+        panel3.position.set(0.15, -0.2, 0.12);
+        iconGroup.add(panel3);
 
-      } else if (type === 'sales') {
-        // 8. إدارة المبيعات بالكامل: Luxury dashboard analytics panel
-        const basePlateGeom = new THREE.BoxGeometry(1.3, 0.9, 0.06);
-        const basePlate = new THREE.Mesh(basePlateGeom, darkMaterial);
-        iconGroup.add(basePlate);
+        // Code syntax highlights wireframe (procedural minimal lines)
+        const lineGeom = new THREE.BoxGeometry(0.3, 0.04, 0.015);
+        const line1 = new THREE.Mesh(lineGeom, goldMaterial);
+        line1.position.set(-0.15, 0.08, 0.015);
+        const line2 = new THREE.Mesh(lineGeom, darkMaterial);
+        line2.position.set(0.15, -0.08, 0.015);
+        panel2.add(line1);
+        panel2.add(line2);
 
-        // Charts inside dashboard
-        const screenChartGeom = new THREE.BoxGeometry(0.7, 0.4, 0.05);
-        const screenChart = new THREE.Mesh(screenChartGeom, copperMaterial);
-        screenChart.position.set(-0.15, 0.15, 0.05);
-        iconGroup.add(screenChart);
+        // Central floating mini automation cog
+        const cogGeom = new THREE.TorusGeometry(0.18, 0.038, 6, 24);
+        const cog = new THREE.Mesh(cogGeom, goldMaterial);
+        cog.position.set(0, 0, 0.16);
+        iconGroup.add(cog);
 
-        const smallBar1Geom = new THREE.BoxGeometry(0.15, 0.5, 0.05);
-        const smallBar1 = new THREE.Mesh(smallBar1Geom, goldMaterial);
-        smallBar1.position.set(0.4, -0.1, 0.05);
-        iconGroup.add(smallBar1);
+      } else if (type === 'branding') {
+        // 7. تصميم الهوية البصرية: Elegant glowing geometric emblem (nested rings + diamond core)
+        // Outer beautiful geometric gold ring
+        const outerRingGeom = new THREE.TorusGeometry(0.68, 0.024, 8, tubularSegs);
+        const outerRing = new THREE.Mesh(outerRingGeom, goldMaterial);
+        iconGroup.add(outerRing);
 
-        const smallBar2Geom = new THREE.BoxGeometry(0.15, 0.3, 0.05);
-        const smallBar2 = new THREE.Mesh(smallBar2Geom, copperMaterial);
-        smallBar2.position.set(0.2, -0.2, 0.05);
-        iconGroup.add(smallBar2);
+        // Inner copper thin ring
+        const innerRingGeom = new THREE.TorusGeometry(0.48, 0.014, 6, tubularSegs);
+        const innerRing = new THREE.Mesh(innerRingGeom, copperMaterial);
+        iconGroup.add(innerRing);
+
+        // Central diamond core geometry (representing visual brand precision)
+        const coreGeom = new THREE.OctahedronGeometry(0.32, 0);
+        const core = new THREE.Mesh(coreGeom, goldMaterial);
+        iconGroup.add(core);
+
+        // Orbiting particle beads
+        const nodeGeom = new THREE.SphereGeometry(0.055, 12, 12);
+        const node1 = new THREE.Mesh(nodeGeom, goldMaterial);
+        node1.position.set(0.5, 0.46, 0.15);
+        const node2 = new THREE.Mesh(nodeGeom, copperMaterial);
+        node2.position.set(-0.5, -0.46, -0.15);
+        iconGroup.add(node1);
+        iconGroup.add(node2);
+
+      } else if (type === 'content') {
+        // 8. كتابة المحتوى: Floating luxury quill pen & document icon
+        // Curved luxury glass document sheet
+        const sheetGeom = new THREE.BoxGeometry(0.76, 1.05, 0.02);
+        const sheet = new THREE.Mesh(sheetGeom, glassMaterial);
+        sheet.rotation.y = -Math.PI / 6;
+        sheet.rotation.x = Math.PI / 12;
+        iconGroup.add(sheet);
+
+        // Gold sheet accents
+        const sheetAccentGeom = new THREE.BoxGeometry(0.5, 0.03, 0.02);
+        const accent1 = new THREE.Mesh(sheetAccentGeom, goldMaterial);
+        accent1.position.set(0, 0.2, 0.02);
+        const accent2 = new THREE.Mesh(sheetAccentGeom, copperMaterial);
+        accent2.position.set(-0.05, 0, 0.02);
+        const accent3 = new THREE.Mesh(sheetAccentGeom, goldMaterial);
+        accent3.position.set(0.05, -0.2, 0.02);
+        sheet.add(accent1);
+        sheet.add(accent2);
+        sheet.add(accent3);
+
+        // Sleek modern writing quill / stylus
+        const stylusGeom = new THREE.CylinderGeometry(0.025, 0.006, 0.88, 12);
+        const stylus = new THREE.Mesh(stylusGeom, goldMaterial);
+        stylus.position.set(0.24, 0.1, 0.16);
+        stylus.rotation.z = -Math.PI / 4.5;
+        stylus.rotation.x = Math.PI / 12;
+        iconGroup.add(stylus);
+
+        const tipGeom = new THREE.ConeGeometry(0.035, 0.1, 12);
+        const tip = new THREE.Mesh(tipGeom, copperMaterial);
+        tip.position.set(0.24 - 0.32, 0.1 - 0.32, 0.16);
+        tip.rotation.z = -Math.PI / 4.5;
+        iconGroup.add(tip);
       }
 
-      // Lights
-      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.2);
+      // Cinematic Luxury Light System
+      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.4); // Bright luxury warm ambient
       scene.add(ambientLight);
 
-      const dirLight = new THREE.DirectionalLight(0xFFFFFF, 2.0);
+      const dirLight = new THREE.DirectionalLight(0xFFFFFF, 2.2); // Intense clean main light
       dirLight.position.set(2, 4, 3);
       scene.add(dirLight);
 
-      // Reduced motion respect
+      const backlight = new THREE.DirectionalLight(0xC89B5B, 1.2); // Gold key rim backlight
+      backlight.position.set(-2, -4, -3);
+      scene.add(backlight);
+
+      // Reduced motion support
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       // Visibility controls to pause loop when tab is hidden
@@ -362,10 +432,13 @@ export default function ThreeDIcons({ type = 'bag' }) {
         if (!isTabVisible) return;
 
         if (!prefersReducedMotion) {
-          iconGroup.rotation.y += 0.012;
-          iconGroup.rotation.x = Math.sin(performance.now() * 0.001) * 0.15;
+          // Exquisite Apple-like slow floating movement and smooth rotation
+          iconGroup.rotation.y += 0.01;
+          iconGroup.rotation.x = Math.sin(performance.now() * 0.001) * 0.1;
+          iconGroup.position.y = Math.sin(performance.now() * 0.0015) * 0.08;
         } else {
-          iconGroup.rotation.y = 0.5;
+          iconGroup.rotation.y = 0.45;
+          iconGroup.position.y = 0;
         }
 
         if (renderer) {
@@ -391,7 +464,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
     };
   }, [isInViewport, type]);
 
-  // Fallback visual design if WebGL is off or failed
+  // Fallback visual design if WebGL is off or failed (Sleek minimalist flat icons with floating shadows)
   if (has3DError || !isInViewport) {
     let Icon = ShoppingBag;
     if (type === 'monitor') Icon = Globe;
@@ -405,11 +478,17 @@ export default function ThreeDIcons({ type = 'bag' }) {
     return (
       <div 
         ref={containerRef}
-        className="w-[120px] h-[120px] flex items-center justify-center bg-gradient-to-tr from-[#7A4A2A]/5 to-[#2B1A12]/5 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none mx-auto"
+        className="w-[120px] h-[120px] flex items-center justify-center bg-[#FFFBF7]/40 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none mx-auto relative group overflow-hidden"
       >
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border border-[#C89B5B]/30 flex items-center justify-center text-[#C89B5B] shadow-md">
-          <Icon size={26} className="animate-float" />
+        {/* Soft background glow */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#C89B5B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+        
+        <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#FFFBF7] to-[#F4ECE3] border border-[#C89B5B]/25 flex items-center justify-center text-[#7A4A2A] shadow-md group-hover:text-[#C89B5B] group-hover:scale-105 group-hover:border-[#C89B5B]/40 transition-all duration-300 relative z-10">
+          <Icon size={22} className="animate-float" />
         </div>
+        
+        {/* Floating shadow */}
+        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#7A4A2A]/10 rounded-full blur-[3px] scale-x-90 animate-pulse pointer-events-none" />
       </div>
     );
   }
@@ -417,7 +496,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
   return (
     <div 
       ref={containerRef} 
-      className="w-[120px] h-[120px] mx-auto relative select-none overflow-visible"
+      className="w-[120px] h-[120px] mx-auto relative select-none overflow-visible flex items-center justify-center"
       style={{ zIndex: 10, opacity: 1 }}
     >
       <canvas 

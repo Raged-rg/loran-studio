@@ -345,7 +345,7 @@ export default function ThreeDLogo() {
             <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
             
             {/* Metallic golden central shield with wood styling */}
-            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#C89B5B] shadow-premium flex items-center justify-center bg-[#2B1A12]">
+            <div className="w-20 h-20 rounded-full overflow-hidden border border-[#C89B5B]/20 shadow-premium flex items-center justify-center bg-[#FFFBF7]/30 backdrop-blur-sm">
               <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Logo Icon" />
             </div>
             
