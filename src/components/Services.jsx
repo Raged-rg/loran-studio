@@ -2,33 +2,25 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, X, Check, Star, ShieldAlert,
-  ShoppingBag, Globe, Share2, Megaphone, FileText, Palette, Code, CheckCircle2 
+  ShoppingBag, Monitor, Share2, Megaphone, TrendingUp, Braces, Sparkles, PenLine
 } from 'lucide-react';
-import ThreeDIcons from './ThreeDIcons';
-import ErrorBoundary from './ErrorBoundary';
 
-// Luxury static fallback styled to match our branding if WebGL fails
-function ThreeDIconFallback({ type }) {
+function ServiceIcon2D({ type }) {
   let Icon = ShoppingBag;
-  if (type === 'monitor') Icon = Globe;
+  if (type === 'monitor') Icon = Monitor;
   else if (type === 'social') Icon = Share2;
   else if (type === 'megaphone') Icon = Megaphone;
-  else if (type === 'content') Icon = FileText;
-  else if (type === 'branding') Icon = Palette;
-  else if (type === 'script') Icon = Code;
-  else if (type === 'sales') Icon = CheckCircle2;
+  else if (type === 'content') Icon = PenLine;
+  else if (type === 'branding') Icon = Sparkles;
+  else if (type === 'script') Icon = Braces;
+  else if (type === 'sales') Icon = TrendingUp;
 
   return (
-    <div className="w-[120px] h-[120px] flex items-center justify-center bg-[#FFFBF7]/40 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none mx-auto relative group overflow-hidden">
-      {/* Soft background glow */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#C89B5B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+    <div className="w-14 h-14 rounded-2xl border border-[#C89B5B]/15 bg-[#FFFBF7]/90 flex items-center justify-center text-[#7A4A2A] shadow-soft group-hover:scale-[1.03] group-hover:border-[#C89B5B]/45 transition-all duration-300 relative overflow-hidden mx-auto">
+      {/* Soft background gold glow */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#C89B5B]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
-      <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#FFFBF7] to-[#F4ECE3] border border-[#C89B5B]/25 flex items-center justify-center text-[#7A4A2A] shadow-md group-hover:text-[#C89B5B] group-hover:scale-105 group-hover:border-[#C89B5B]/40 transition-all duration-300 relative z-10">
-        <Icon size={22} className="animate-float" />
-      </div>
-      
-      {/* Floating shadow */}
-      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#7A4A2A]/10 rounded-full blur-[3px] scale-x-90 animate-pulse pointer-events-none" />
+      <Icon size={24} strokeWidth={1.2} className="text-[#7A4A2A] group-hover:text-[#C89B5B] transition-colors duration-300" />
     </div>
   );
 }
@@ -251,11 +243,9 @@ export default function Services() {
               <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-[#C89B5B]/5 group-hover:bg-[#C89B5B]/12 blur-xl transition-all" />
 
               <div style={{ transform: 'translateZ(20px)' }}>
-                {/* 3D Realistic Procedural Icon wrapped with ErrorBoundary */}
-                <div className="mb-4 flex justify-center items-center h-[130px] w-full select-none">
-                  <ErrorBoundary fallback={<ThreeDIconFallback type={service.type} />}>
-                    <ThreeDIcons type={service.type} />
-                  </ErrorBoundary>
+                {/* Premium 2D Minimal Icon */}
+                <div className="mb-4 flex justify-center items-center h-[90px] w-full select-none">
+                  <ServiceIcon2D type={service.type} />
                 </div>
                 
                 {/* Title */}
@@ -317,10 +307,8 @@ export default function Services() {
 
               {/* Service header */}
               <div className="flex flex-col md:flex-row items-center gap-4 border-b border-[#7A4A2A]/10 pb-6 mb-6">
-                <div className="w-[120px] h-[120px] flex items-center justify-center select-none">
-                  <ErrorBoundary fallback={<ThreeDIconFallback type={selectedService.type} />}>
-                    <ThreeDIcons type={selectedService.type} />
-                  </ErrorBoundary>
+                <div className="w-20 h-20 flex items-center justify-center select-none">
+                  <ServiceIcon2D type={selectedService.type} />
                 </div>
                 <div className="text-center md:text-right flex flex-col gap-1">
                   <span className="text-[10px] text-[#C89B5B] font-extrabold tracking-wider uppercase">لوران ستوديو • تفاصيل المنتج الرقمي</span>

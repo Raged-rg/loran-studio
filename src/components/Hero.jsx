@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowLeft, Play } from 'lucide-react';
+import { ArrowLeft, Play, Calendar, Users, FolderCheck, Clock, Heart, Award } from 'lucide-react';
 import ThreeDLogo from './ThreeDLogo';
 import ErrorBoundary from './ErrorBoundary';
 import logoIcon from '../assets/logo-icon.png';
@@ -19,14 +19,13 @@ function AnimatedCounter({ value, duration = 1.2, suffix = '', prefix = '' }) {
     if (start === end) return;
 
     const timer = setInterval(() => {
-      // Dynamic increment step to count up seamlessly in ~60 frames
       start += Math.ceil(end / 60);
       if (start >= end) {
         start = end;
         clearInterval(timer);
       }
       setCount(start);
-    }, 16);
+    }, 1000 / 60);
 
     return () => clearInterval(timer);
   }, [isInView, value, duration]);
@@ -58,12 +57,10 @@ export default function Hero({ setActiveSection }) {
   useEffect(() => {
     const handleMouseMove = (e) => {
       const { innerWidth, innerHeight } = window;
-      // Get normalized cursor coordinates (-0.5 to 0.5)
-      const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
-      const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+      const x = (e.clientX / innerWidth) - 0.5;
+      const y = (e.clientY / innerHeight) - 0.5;
       setMousePos({ x, y });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
@@ -105,7 +102,7 @@ export default function Hero({ setActiveSection }) {
         }}
       />
 
-      {/* Main Grid: Left 3D Logo, Right Typography */}
+      {/* Main Grid: Left Medallion, Right Typography */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         
         {/* Right Area (Arabic Typography with soft parallax drift) */}
@@ -120,67 +117,89 @@ export default function Hero({ setActiveSection }) {
         >
           {/* Badge */}
           <div className="flex justify-start">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C89B5B]/35 bg-[#C89B5B]/8 text-[#C89B5B] text-xs font-black select-none animate-pulse">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C89B5B]/35 bg-[#C89B5B]/8 text-[#C89B5B] text-xs font-black select-none">
               ✨ استشارة مجانية متوفرة الآن
             </span>
           </div>
 
-          {/* Main Title */}
-          <h1 className="font-marcellus text-4xl sm:text-5xl md:text-6xl font-black text-[#2B1A12] leading-[1.15]">
-            لوران ستوديو
+          {/* Main Title inspired by reference image */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#2B1A12] leading-[1.2]">
+            نصمم علامات تجارية
             <br />
-            <span className="metallic-gold font-extrabold text-3xl sm:text-4xl md:text-5xl">الفخامة والإبداع الرقمي</span>
+            <span className="bg-gradient-to-tr from-[#EADCCB] via-[#C89B5B] to-[#B87333] bg-clip-text text-transparent font-extrabold filter drop-shadow-sm">تترك أثراً</span>
+            {" "}وتحدث فرقاً
           </h1>
 
-          {/* Subtitle */}
-          <p className="max-w-lg text-[#7A4A2A] font-bold text-sm sm:text-base leading-relaxed">
-            حلول احترافية متكاملة لنمو وتطوير علامتك التجارية. نجمع بين سلاسة الأداء وفخامة الهوية لنصنع لك حضوراً رقمياً استثنائياً.
+          {/* Subtitle inspired by reference image */}
+          <p className="max-w-lg text-[#7A4A2A]/90 font-bold text-sm sm:text-base leading-relaxed">
+            في لوران ستوديو نحول الأفكار إلى تصاميم احترافية تعبر عن هوية علامتك التجارية بأفضل صورة.
           </p>
 
-          {/* Buttons */}
+          {/* Luxury Rounded Pill Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
             <button
               onClick={() => handleNavClick('wizard')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#7A4A2A] to-[#2B1A12] text-white rounded-xl text-sm font-black border border-[#C89B5B]/20 shadow-md hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 clickable-hover"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#7A4A2A] to-[#2B1A12] text-white rounded-full text-sm font-black border border-[#C89B5B]/20 shadow-md hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 clickable-hover"
             >
-              ابدأ مشروعك
-              <ArrowLeft size={16} className="text-[#C89B5B]" />
+              احجز استشارة مجانية
+              <Calendar size={16} className="text-[#C89B5B]" />
             </button>
 
             <button
               onClick={() => handleNavClick('portfolio')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 border border-[#7A4A2A]/15 bg-[#FFFBF7]/80 rounded-xl text-sm font-black text-[#2B1A12] shadow-soft hover:bg-[#F4ECE3] transition-all clickable-hover"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 border border-[#7A4A2A]/15 bg-[#FFFBF7]/80 rounded-full text-sm font-black text-[#2B1A12] shadow-soft hover:bg-[#F4ECE3] transition-all clickable-hover"
             >
               <Play size={14} className="fill-[#C89B5B] text-[#C89B5B]" />
               شاهد أعمالنا
             </button>
           </div>
 
-          {/* Bullet achievements summary (Counters animate on scroll) */}
-          <div className="grid grid-cols-3 gap-4 border-t border-[#7A4A2A]/10 pt-6 mt-4 text-[#2B1A12] font-black text-xs sm:text-sm">
-            <div className="flex flex-col">
-              <span className="text-sm sm:text-base text-[#C89B5B]">
+          {/* Refined Horizontal Stats Card matching reference image */}
+          <div className="grid grid-cols-5 gap-1 md:gap-2 bg-[#FFFBF7]/85 border border-[#C89B5B]/20 rounded-3xl p-3 md:p-4 mt-6 shadow-soft text-center text-[#2B1A12]">
+            <div className="flex flex-col items-center gap-1 border-l border-[#7A4A2A]/10 last:border-0 pl-0.5">
+              <Users size={18} strokeWidth={1.5} className="text-[#C89B5B]" />
+              <span className="text-xs sm:text-sm font-black text-[#7A4A2A] mt-0.5">
+                <AnimatedCounter value={150} suffix="+" />
+              </span>
+              <span className="text-[8px] sm:text-[9px] text-[#7A4A2A]/80 font-bold leading-tight">عميل سعيد</span>
+            </div>
+
+            <div className="flex flex-col items-center gap-1 border-l border-[#7A4A2A]/10 last:border-0 pl-0.5">
+              <FolderCheck size={18} strokeWidth={1.5} className="text-[#C89B5B]" />
+              <span className="text-xs sm:text-sm font-black text-[#7A4A2A] mt-0.5">
                 <AnimatedCounter value={300} suffix="+" />
               </span>
-              <span className="text-[9px] sm:text-[10px] text-[#7A4A2A] mt-0.5">مشروع مكتمل</span>
+              <span className="text-[8px] sm:text-[9px] text-[#7A4A2A]/80 font-bold leading-tight">مشروع مكتمل</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm sm:text-base text-[#C89B5B]">
-                <AnimatedCounter value={98} suffix="%" />
-              </span>
-              <span className="text-[9px] sm:text-[10px] text-[#7A4A2A] mt-0.5">رضا العملاء</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm sm:text-base text-[#C89B5B]">
+
+            <div className="flex flex-col items-center gap-1 border-l border-[#7A4A2A]/10 last:border-0 pl-0.5">
+              <Clock size={18} strokeWidth={1.5} className="text-[#C89B5B]" />
+              <span className="text-xs sm:text-sm font-black text-[#7A4A2A] mt-0.5">
                 <AnimatedCounter value={5} suffix="+" />
               </span>
-              <span className="text-[9px] sm:text-[10px] text-[#7A4A2A] mt-0.5">سنوات خبرة</span>
+              <span className="text-[8px] sm:text-[9px] text-[#7A4A2A]/80 font-bold leading-tight">سنوات خبرة</span>
+            </div>
+
+            <div className="flex flex-col items-center gap-1 border-l border-[#7A4A2A]/10 last:border-0 pl-0.5">
+              <Heart size={18} strokeWidth={1.5} className="text-[#C89B5B]" />
+              <span className="text-xs sm:text-sm font-black text-[#7A4A2A] mt-0.5">
+                <AnimatedCounter value={98} suffix="%" />
+              </span>
+              <span className="text-[8px] sm:text-[9px] text-[#7A4A2A]/80 font-bold leading-tight">رضا العملاء</span>
+            </div>
+
+            <div className="flex flex-col items-center gap-1 pl-0.5">
+              <Award size={18} strokeWidth={1.5} className="text-[#C89B5B]" />
+              <span className="text-xs sm:text-sm font-black text-[#7A4A2A] mt-0.5">
+                <AnimatedCounter value={20} suffix="+" />
+              </span>
+              <span className="text-[8px] sm:text-[9px] text-[#7A4A2A]/80 font-bold leading-tight">جوائز محلية</span>
             </div>
           </div>
 
         </motion.div>
 
-        {/* Left Area (rotating Three.js logo with parallax reaction) */}
+        {/* Left Area (rotating Three.js logo medallion with parallax reaction) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -196,7 +215,7 @@ export default function Hero({ setActiveSection }) {
             <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_50s_linear_infinite]" />
             <div className="absolute inset-6 rounded-full border border-[#C89B5B]/10 animate-[spin_30s_linear_infinite_reverse]" />
             
-            {/* 3D Canvas element wrapped with ErrorBoundary */}
+            {/* 3D Medallion Canvas wrapped with ErrorBoundary */}
             <ErrorBoundary fallback={<ThreeDLogoFallback />}>
               <ThreeDLogo />
             </ErrorBoundary>

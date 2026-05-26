@@ -22,8 +22,8 @@ export default {
         'ibm-plex': ["IBM Plex Sans Arabic", "sans-serif"],
       },
       boxShadow: {
-        'soft': '0 18px 42px rgba(92, 48, 18, 0.08)',
-        'premium': '0 24px 70px rgba(92, 48, 18, 0.12)',
+        'soft': '0 12px 30px rgba(122, 74, 42, 0.035)',
+        'premium': '0 20px 50px rgba(122, 74, 42, 0.06)',
       },
       borderRadius: {
         'xl': '32px',
