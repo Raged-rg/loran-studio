@@ -38,22 +38,22 @@ function StatItem({ icon: Icon, value, label, suffix = '', prefix = '', delay = 
       <div className="w-12 h-12 rounded-full bg-[#C8A97E]/10 flex items-center justify-center text-[#C8A97E] mb-4 group-hover:scale-105 group-hover:bg-[#C8A97E] group-hover:text-[#3A2B24] transition-all duration-300">
         <Icon size={20} strokeWidth={1.5} />
       </div>
-      <span className="font-marcellus text-3xl md:text-4xl font-black text-[#3A2B24] mb-2 leading-none">
+      <span className="font-marcellus text-3xl md:text-4xl font-semibold text-[#3A2B24] mb-2 leading-none">
         {prefix}
         {count}
         {suffix}
       </span>
-      <span className="text-xs md:text-sm font-black text-[#3A2B24]/80">{label}</span>
+      <span className="text-xs md:text-sm font-medium text-[#3A2B24]/80">{label}</span>
     </motion.div>
   );
 }
 
 export default function Stats() {
   const statsList = [
-    { icon: Smile, value: '120', label: 'عميل سعيد', suffix: '+', delay: 0 },
-    { icon: Briefcase, value: '350', label: 'مشروع مكتمل', suffix: '+', delay: 0.1 },
-    { icon: Trophy, value: '8', label: 'سنوات خبرة', suffix: '+', delay: 0.2 },
-    { icon: Heart, value: '98', label: 'رضا العملاء', suffix: '%', delay: 0.3 }
+    { icon: Smile, value: '120', label: 'شراكة نجاح متميزة', suffix: '+', delay: 0 },
+    { icon: Briefcase, value: '350', label: 'تحفة رقمية استثنائية', suffix: '+', delay: 0.1 },
+    { icon: Trophy, value: '8', label: 'سنوات من الريادة الفنية', suffix: '+', delay: 0.2 },
+    { icon: Heart, value: '98', label: 'معدل رضا وثقة شركائنا', suffix: '%', delay: 0.3 }
   ];
 
   return (

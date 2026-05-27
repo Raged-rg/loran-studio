@@ -99,10 +99,10 @@ export default function Footer() {
           
           {/* Column 1: Contact Details (lg:span-3) */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <h4 className="font-marcellus text-sm font-black text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
+            <h4 className="font-marcellus text-sm font-semibold text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
               تواصل معنا
             </h4>
-            <ul className="flex flex-col gap-3.5 text-xs font-bold text-[#F7F2EC]/85">
+            <ul className="flex flex-col gap-3.5 text-xs font-medium text-[#F7F2EC]/85">
               <li className="flex items-center justify-start gap-2.5">
                 <MapPin size={14} className="text-[#C8A97E]" />
                 <span>بغداد - العراق</span>
@@ -120,10 +120,10 @@ export default function Footer() {
 
           {/* Column 2: Information / About (lg:span-2) */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <h4 className="font-marcellus text-sm font-black text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
+            <h4 className="font-marcellus text-sm font-semibold text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
               من نحن
             </h4>
-            <ul className="flex flex-col gap-3 text-xs font-bold text-[#F7F2EC]/85">
+            <ul className="flex flex-col gap-3 text-xs font-medium text-[#F7F2EC]/85">
               <li>
                 <button onClick={() => handleNavClick('why-loran')} className="hover:text-[#C8A97E] transition-colors cursor-pointer">فريق العمل</button>
               </li>
@@ -141,10 +141,10 @@ export default function Footer() {
 
           {/* Column 3: Our Services (lg:span-2) */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <h4 className="font-marcellus text-sm font-black text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
+            <h4 className="font-marcellus text-sm font-semibold text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
               خدماتنا
             </h4>
-            <ul className="flex flex-col gap-3 text-xs font-bold text-[#F7F2EC]/85">
+            <ul className="flex flex-col gap-3 text-xs font-medium text-[#F7F2EC]/85">
               <li>
                 <button onClick={() => handleNavClick('services')} className="hover:text-[#C8A97E] transition-colors cursor-pointer">تصميم المواقع</button>
               </li>
@@ -165,10 +165,10 @@ export default function Footer() {
 
           {/* Column 4: Quick Links (lg:span-2) */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <h4 className="font-marcellus text-sm font-black text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
+            <h4 className="font-marcellus text-sm font-semibold text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
               روابط سريعة
             </h4>
-            <ul className="flex flex-col gap-3 text-xs font-bold text-[#F7F2EC]/85">
+            <ul className="flex flex-col gap-3 text-xs font-medium text-[#F7F2EC]/85">
               <li>
                 <button onClick={() => handleScrollToTop()} className="hover:text-[#C8A97E] transition-colors cursor-pointer">الرئيسية</button>
               </li>
@@ -186,10 +186,10 @@ export default function Footer() {
 
           {/* Column 5: Newsletter Subscription (lg:span-3) */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <h4 className="font-marcellus text-sm font-black text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
+            <h4 className="font-marcellus text-sm font-semibold text-[#C8A97E] border-b border-[#C8A97E]/12 pb-3 mb-2">
               اشترك في نشرتنا
             </h4>
-            <p className="text-[10px] text-[#F7F2EC]/75 font-bold leading-relaxed mb-1">
+            <p className="text-[10px] text-[#F7F2EC]/75 font-medium leading-relaxed mb-1">
               احصل على أحدث دراسات الحالة والنصائح التطويرية الفخمة لتنمية أعمالك.
             </p>
             <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
@@ -198,12 +198,12 @@ export default function Footer() {
                 placeholder="ادخل بريدك الإلكتروني"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="px-4 py-2.5 rounded-xl border border-[#C8A97E]/25 bg-[#FFFDF9]/10 text-white text-[11px] font-bold outline-none focus:border-[#C8A97E] transition-all"
+                className="px-4 py-2.5 rounded-xl border border-[#C8A97E]/25 bg-[#FFFDF9]/10 text-white text-[11px] font-medium outline-none focus:border-[#C8A97E] transition-all"
                 required
               />
               <button
                 type="submit"
-                className="w-full py-2.5 bg-[#C8A97E] text-[#3A2B24] rounded-xl text-[10px] font-black hover:bg-[#bfa075] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2.5 bg-[#C8A97E] text-[#3A2B24] rounded-xl text-[10px] font-semibold hover:bg-[#bfa075] active:scale-[0.98] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 {subscribed ? 'تم الاشتراك بنجاح!' : 'اشترك الآن'}
                 <Send size={10} className="text-[#3A2B24]" />
@@ -214,7 +214,7 @@ export default function Footer() {
         </div>
 
         {/* Divider and Copyright bottom segment */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#C8A97E]/12 pt-8 text-[10px] font-bold text-[#F7F2EC]/50 text-center">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#C8A97E]/12 pt-8 text-[10px] font-medium text-[#F7F2EC]/50 text-center">
           
           {/* Logo & Brand descriptor */}
           <div className="flex items-center gap-3">
@@ -222,8 +222,8 @@ export default function Footer() {
               <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
             </div>
             <div className="flex flex-col text-right">
-              <span className="font-marcellus text-xs font-black tracking-widest text-[#F7F2EC] leading-none">LORAN STUDIO</span>
-              <span className="text-[7px] text-[#C8A97E] font-black mt-0.5 leading-none">لوران ستوديو</span>
+              <span className="font-marcellus text-xs font-semibold tracking-widest text-[#F7F2EC] leading-none">LORAN STUDIO</span>
+              <span className="text-[7px] text-[#C8A97E] font-semibold mt-0.5 leading-none">لوران ستوديو</span>
             </div>
           </div>
 
@@ -241,7 +241,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-1 items-center md:items-end">
             <span>لوران ستوديو • كافة الحقوق محفوظة © {new Date().getFullYear()}</span>
-            <span className="text-[8px] text-[#C8A97E] font-black flex items-center gap-1">
+            <span className="text-[8px] text-[#C8A97E] font-medium flex items-center gap-1">
               صنع بشغف في العراق لأجل التميز الرقمي المطلق
               <span className="text-red-500">♥</span>
             </span>

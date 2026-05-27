@@ -86,7 +86,7 @@ function OptionCard({ label, icon: Icon, isSelected, onClick }) {
           {isSelected && <Check size={10} strokeWidth={3} />}
         </div>
       </div>
-      <span className="text-xs sm:text-sm font-black tracking-wide" style={{ transform: 'translateZ(20px)' }}>
+      <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ transform: 'translateZ(20px)' }}>
         {label}
       </span>
     </motion.div>
@@ -109,7 +109,7 @@ function FloatingInput({ label, id, value, onChange, type = 'text', required = f
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={isFocused ? placeholder : ''}
-        className={`w-full h-14 px-4 pt-4 rounded-xl border bg-[#FFFDF9]/40 text-xs sm:text-sm font-bold text-[#3A2B24] focus:outline-none transition-all duration-300 shadow-soft ${
+        className={`w-full h-14 px-4 pt-4 rounded-xl border bg-[#FFFDF9]/40 text-xs sm:text-sm font-medium text-[#3A2B24] focus:outline-none transition-all duration-300 shadow-soft ${
           isFocused 
             ? 'border-[#C8A97E] ring-2 ring-[#C8A97E]/10 bg-[#FFFDF9]/80' 
             : 'border-[#3A2B24]/12 hover:border-[#3A2B24]/25'
@@ -117,7 +117,7 @@ function FloatingInput({ label, id, value, onChange, type = 'text', required = f
       />
       <label
         htmlFor={id}
-        className={`absolute right-4 pointer-events-none transition-all duration-300 font-bold ${
+        className={`absolute right-4 pointer-events-none transition-all duration-300 font-medium ${
           isFocused || hasValue
             ? 'top-1 text-[9px] text-[#C8A97E]'
             : 'top-4 text-xs text-[#3A2B24]/40'
@@ -145,7 +145,7 @@ function FloatingTextarea({ label, id, value, onChange, required = false, rows =
         onBlur={() => setIsFocused(false)}
         rows={rows}
         maxLength={maxLength}
-        className={`w-full p-4 pt-6 rounded-xl border bg-[#FFFDF9]/40 text-xs sm:text-sm font-bold text-[#3A2B24] focus:outline-none transition-all duration-300 shadow-soft resize-none ${
+        className={`w-full p-4 pt-6 rounded-xl border bg-[#FFFDF9]/40 text-xs sm:text-sm font-medium text-[#3A2B24] focus:outline-none transition-all duration-300 shadow-soft resize-none ${
           isFocused 
             ? 'border-[#C8A97E] ring-2 ring-[#C8A97E]/10 bg-[#FFFDF9]/80' 
             : 'border-[#3A2B24]/12 hover:border-[#3A2B24]/25'
@@ -153,7 +153,7 @@ function FloatingTextarea({ label, id, value, onChange, required = false, rows =
       />
       <label
         htmlFor={id}
-        className={`absolute right-4 pointer-events-none transition-all duration-300 font-bold ${
+        className={`absolute right-4 pointer-events-none transition-all duration-300 font-medium ${
           isFocused || hasValue
             ? 'top-1.5 text-[9px] text-[#C8A97E]'
             : 'top-4 text-xs text-[#3A2B24]/40'
@@ -161,7 +161,7 @@ function FloatingTextarea({ label, id, value, onChange, required = false, rows =
       >
         {label} {required && '*'}
       </label>
-      <span className="absolute bottom-2 left-4 text-[9px] text-[#3A2B24]/50 font-bold">
+      <span className="absolute bottom-2 left-4 text-[9px] text-[#3A2B24]/50 font-medium">
         {value.length}/{maxLength}
       </span>
     </div>
@@ -340,15 +340,15 @@ export default function ProjectWizard({ isOpen, onClose }) {
 
         {/* PAGE INTRO */}
         <div className="text-center flex flex-col items-center gap-2 mb-10 relative z-10 pr-6 pl-6">
-          <span className="px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] font-black text-[10px] tracking-widest uppercase">
+          <span className="px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] font-semibold text-[10px] tracking-widest uppercase">
             مخطط مشروعك الرقمي
           </span>
           
-          <h2 className="font-marcellus text-2xl md:text-4xl font-black text-[#3A2B24] leading-tight">
+          <h2 className="font-marcellus text-2xl md:text-4xl font-semibold text-[#3A2B24] leading-tight">
             دعنا نبني مشروعك الرقمي خطوة بخطوة
           </h2>
           
-          <p className="max-w-xl text-[#3A2B24]/80 font-bold text-xs sm:text-sm leading-relaxed">
+          <p className="max-w-xl text-[#3A2B24]/80 font-medium text-xs sm:text-sm leading-relaxed">
             أجب عن بعض الأسئلة السريعة لنفهم احتياج مشروعك ونقدّم لك أفضل حل ممكن وبأعلى كفاءة.
           </p>
         </div>
@@ -382,16 +382,16 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   }}
                   className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? 'bg-[#3A2B24] border-[#C8A97E] text-white font-black shadow-md scale-110'
+                      ? 'bg-[#3A2B24] border-[#C8A97E] text-white font-semibold shadow-md scale-110'
                       : isCompleted
                         ? 'bg-[#C8A97E] border-[#C8A97E] text-white shadow-soft'
-                        : 'bg-[#FFFDF9] border-[#3A2B24]/12 text-[#3A2B24]/40 font-bold hover:border-[#3A2B24]/30'
+                        : 'bg-[#FFFDF9] border-[#3A2B24]/12 text-[#3A2B24]/40 font-medium hover:border-[#3A2B24]/30'
                   }`}
                 >
                   {isCompleted ? <Check size={16} strokeWidth={3} /> : idx + 1}
                 </button>
                 <span
-                  className={`hidden md:block text-[10px] font-black tracking-wide transition-all duration-300 ${
+                  className={`hidden md:block text-[10px] font-semibold tracking-wide transition-all duration-300 ${
                     isActive ? 'text-[#3A2B24] scale-105' : 'text-[#3A2B24]/40'
                   }`}
                 >
@@ -409,7 +409,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-800 text-xs font-bold flex items-center gap-2"
+              className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-800 text-xs font-medium flex items-center gap-2"
             >
               <AlertCircle size={16} className="shrink-0" />
               <span>{validationError}</span>
@@ -436,8 +436,8 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   className="flex flex-col gap-6"
                 >
                   <div className="mb-4">
-                    <h3 className="font-marcellus text-lg sm:text-xl font-extrabold text-[#3A2B24]">ما نوع المشروع الذي تحتاجه؟</h3>
-                    <p className="text-xs text-[#3A2B24] font-bold mt-1">اختر إحدى الفئات التالية لنقوم بتخصيص باقي الخطوات لمشروعك.</p>
+                    <h3 className="font-marcellus text-lg sm:text-xl font-semibold text-[#3A2B24]">ما نوع المشروع الذي تحتاجه؟</h3>
+                    <p className="text-xs text-[#3A2B24] font-medium mt-1">اختر إحدى الفئات التالية لنقوم بتخصيص باقي الخطوات لمشروعك.</p>
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -465,8 +465,8 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   className="flex flex-col gap-4"
                 >
                   <div className="mb-4">
-                    <h3 className="font-marcellus text-lg sm:text-xl font-extrabold text-[#3A2B24]">تفاصيل مشروعك وفكرته الرئيسية</h3>
-                    <p className="text-xs text-[#3A2B24] font-bold mt-1">أدخل معلومات المشروع لمساعدتنا في تصور الأبعاد الفنية والهوية.</p>
+                    <h3 className="font-marcellus text-lg sm:text-xl font-semibold text-[#3A2B24]">تفاصيل مشروعك وفكرته الرئيسية</h3>
+                    <p className="text-xs text-[#3A2B24] font-medium mt-1">أدخل معلومات المشروع لمساعدتنا في تصور الأبعاد الفنية والهوية.</p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -499,9 +499,9 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   {/* Number of Pages range input / custom number */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 items-center">
                     <div className="flex flex-col gap-2">
-                      <div className="flex justify-between items-center text-xs font-bold text-[#3A2B24]">
+                      <div className="flex justify-between items-center text-xs font-medium text-[#3A2B24]">
                         <span>عدد الصفحات التقريبي المطلوب</span>
-                        <span className="text-[#C8A97E] font-extrabold">{formData.pagesCount} صفحات</span>
+                        <span className="text-[#C8A97E] font-semibold">{formData.pagesCount} صفحات</span>
                       </div>
                       <input
                         type="range"
@@ -514,7 +514,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <span className="text-xs font-bold text-[#3A2B24]">هل لديك هوية بصرية مسبقة؟</span>
+                      <span className="text-xs font-medium text-[#3A2B24]">هل لديك هوية بصرية مسبقة؟</span>
                       <div className="flex gap-2">
                         {identityStatuses.map((status) => {
                           const isSelected = formData.hasIdentity === status;
@@ -523,7 +523,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                               key={status}
                               type="button"
                               onClick={() => handleInputChange('hasIdentity', status)}
-                              className={`flex-1 py-3 text-xs font-bold rounded-xl border transition-all ${
+                              className={`flex-1 py-3 text-xs font-medium rounded-xl border transition-all ${
                                 isSelected
                                   ? 'bg-[#3A2B24] border-[#C8A97E] text-white shadow-soft'
                                   : 'bg-[#FFFDF9]/60 border-[#3A2B24]/12 text-[#3A2B24]/70 hover:bg-[#E8DDD0]/50'
@@ -550,15 +550,15 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   className="flex flex-col gap-6"
                 >
                   <div className="mb-4">
-                    <h3 className="font-marcellus text-lg sm:text-xl font-extrabold text-[#3A2B24]">الميزانية المتوقعة والخط الزمني</h3>
-                    <p className="text-xs text-[#3A2B24] font-bold mt-1">حدّد النطاق الاستثماري والوقت الملائم لتسليم المشروع بنجاح.</p>
+                    <h3 className="font-marcellus text-lg sm:text-xl font-semibold text-[#3A2B24]">الميزانية المتوقعة والخط الزمني</h3>
+                    <p className="text-xs text-[#3A2B24] font-medium mt-1">حدّد النطاق الاستثماري والوقت الملائم لتسليم المشروع بنجاح.</p>
                   </div>
 
                   {/* Luxury Range Slider for Budget */}
                   <div className="flex flex-col gap-4 mb-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs font-black text-[#3A2B24]">الميزانية المتوقعة للاستثمار</span>
-                      <span className="text-base sm:text-lg font-marcellus font-black text-[#C8A97E] bg-[#3A2B24]/8 px-4 py-1.5 rounded-xl border border-[#C8A97E]/20">
+                      <span className="text-xs font-semibold text-[#3A2B24]">الميزانية المتوقعة للاستثمار</span>
+                      <span className="text-base sm:text-lg font-marcellus font-semibold text-[#C8A97E] bg-[#3A2B24]/8 px-4 py-1.5 rounded-xl border border-[#C8A97E]/20">
                         ${formData.budget.toLocaleString()}
                       </span>
                     </div>
@@ -573,14 +573,14 @@ export default function ProjectWizard({ isOpen, onClose }) {
                       className="w-full h-2 rounded-lg bg-[#3A2B24]/10 appearance-none cursor-pointer accent-[#3A2B24] focus:outline-none"
                     />
                     
-                    <div className="flex justify-between text-[10px] text-[#3A2B24]/60 font-bold px-1">
+                    <div className="flex justify-between text-[10px] text-[#3A2B24]/60 font-medium px-1">
                       <span>$500</span>
                       <span>$5,000</span>
                       <span>$10,000</span>
                       <span>$15,000+</span>
                     </div>
                     
-                    <div className="p-4 rounded-xl bg-[#E8DDD0]/50 border border-[#3A2B24]/8 text-center text-xs font-bold text-[#3A2B24] italic">
+                    <div className="p-4 rounded-xl bg-[#E8DDD0]/50 border border-[#3A2B24]/8 text-center text-xs font-medium text-[#3A2B24] italic">
                       {formData.budget <= 1500 && "• باقة البداية: ملائمة للمشاريع التعريفية والمتاجر المبسطة."}
                       {formData.budget > 1500 && formData.budget <= 5000 && "• باقة الأعمال: مثالية للشركات والمتاجر الاحترافية التي تطمح للنمو القوي."}
                       {formData.budget > 5000 && formData.budget <= 10000 && "• باقة النخبة: أنظمة مخصصة و3D Animations مصممة للتميز الإبداعي الفاخر."}
@@ -593,7 +593,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     
                     {/* Timeframe */}
                     <div className="flex flex-col gap-2">
-                      <span className="text-xs font-bold text-[#3A2B24] flex items-center gap-1.5">
+                      <span className="text-xs font-medium text-[#3A2B24] flex items-center gap-1.5">
                         <DollarSign size={14} className="text-[#C8A97E]" />
                         المدة الزمنية المتوقعة للتسليم
                       </span>
@@ -605,7 +605,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                               key={t}
                               type="button"
                               onClick={() => handleInputChange('timeline', t)}
-                              className={`w-full py-3 px-4 text-right text-xs font-bold rounded-xl border transition-all ${
+                              className={`w-full py-3 px-4 text-right text-xs font-medium rounded-xl border transition-all ${
                                 isSelected
                                   ? 'bg-[#3A2B24] border-[#C8A97E] text-white shadow-soft'
                                   : 'bg-[#FFFDF9]/60 border-[#3A2B24]/12 text-[#3A2B24]/70 hover:bg-[#E8DDD0]/50'
@@ -620,7 +620,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
 
                     {/* Urgency */}
                     <div className="flex flex-col gap-2">
-                      <span className="text-xs font-bold text-[#3A2B24]">هل إطلاق هذا المشروع مستعجل؟</span>
+                      <span className="text-xs font-medium text-[#3A2B24]">هل إطلاق هذا المشروع مستعجل؟</span>
                       <div className="flex flex-col gap-2">
                         {urgencies.map((u) => {
                           const isSelected = formData.isUrgent === u;
@@ -629,7 +629,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                               key={u}
                               type="button"
                               onClick={() => handleInputChange('isUrgent', u)}
-                              className={`w-full py-3 px-4 text-right text-xs font-bold rounded-xl border transition-all ${
+                              className={`w-full py-3 px-4 text-right text-xs font-medium rounded-xl border transition-all ${
                                 isSelected
                                   ? 'bg-[#3A2B24] border-[#C8A97E] text-white shadow-soft'
                                   : 'bg-[#FFFDF9]/60 border-[#3A2B24]/12 text-[#3A2B24]/70 hover:bg-[#E8DDD0]/50'
@@ -657,8 +657,8 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   className="flex flex-col gap-4"
                 >
                   <div className="mb-4">
-                    <h3 className="font-marcellus text-lg sm:text-xl font-extrabold text-[#3A2B24]">معلومات الاتصال بك</h3>
-                    <p className="text-xs text-[#3A2B24] font-bold mt-1">كيف يمكن لمستشار الهوية الرقمية في لوران التواصل معك لعرض التفاصيل؟</p>
+                    <h3 className="font-marcellus text-lg sm:text-xl font-semibold text-[#3A2B24]">معلومات الاتصال بك</h3>
+                    <p className="text-xs text-[#3A2B24] font-medium mt-1">كيف يمكن لمستشار الهوية الرقمية في لوران التواصل معك لعرض التفاصيل؟</p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -718,18 +718,18 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   className="flex flex-col gap-6"
                 >
                   <div className="mb-4">
-                    <h3 className="font-marcellus text-lg sm:text-xl font-extrabold text-[#3A2B24]">مراجعة وتأكيد وثيقة طلبك</h3>
-                    <p className="text-xs text-[#3A2B24] font-bold mt-1">راجع كافة التفاصيل المحددة مسبقاً قبل الإرسال الرسمي للطلب.</p>
+                    <h3 className="font-marcellus text-lg sm:text-xl font-semibold text-[#3A2B24]">مراجعة وتأكيد وثيقة طلبك</h3>
+                    <p className="text-xs text-[#3A2B24] font-medium mt-1">راجع كافة التفاصيل المحددة مسبقاً قبل الإرسال الرسمي للطلب.</p>
                   </div>
 
                   {/* Luxury Summary Card */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-right text-xs font-bold text-[#3A2B24]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-right text-xs font-medium text-[#3A2B24]">
                     
                     {/* Section 1 Type */}
                     <div className="relative p-4 bg-[#E8DDD0]/50 rounded-2xl border border-[#3A2B24]/8 flex items-center justify-between">
                       <div className="flex flex-col gap-1">
                         <span className="text-[#3A2B24] text-[10px]">نوع المشروع المطلوبة:</span>
-                        <span className="text-sm font-black text-[#3A2B24]">{getSelectedTypeLabel()}</span>
+                        <span className="text-sm font-semibold text-[#3A2B24]">{getSelectedTypeLabel()}</span>
                       </div>
                       <button 
                         type="button" 
@@ -744,7 +744,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     <div className="relative p-4 bg-[#E8DDD0]/50 rounded-2xl border border-[#3A2B24]/8 flex items-center justify-between">
                       <div className="flex flex-col gap-1">
                         <span className="text-[#3A2B24] text-[10px]">اسم المشروع والنشاط:</span>
-                        <span className="text-sm font-black text-[#3A2B24]">{formData.projectName} • {formData.businessType}</span>
+                        <span className="text-sm font-semibold text-[#3A2B24]">{formData.projectName} • {formData.businessType}</span>
                       </div>
                       <button 
                         type="button" 
@@ -759,7 +759,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     <div className="relative p-4 bg-[#E8DDD0]/50 rounded-2xl border border-[#3A2B24]/8 flex items-center justify-between">
                       <div className="flex flex-col gap-1">
                         <span className="text-[#3A2B24] text-[10px]">الاستثمار والمدة الزمنية:</span>
-                        <span className="text-sm font-black text-[#3A2B24]">${formData.budget.toLocaleString()} • {formData.timeline} ({formData.isUrgent})</span>
+                        <span className="text-sm font-semibold text-[#3A2B24]">${formData.budget.toLocaleString()} • {formData.timeline} ({formData.isUrgent})</span>
                       </div>
                       <button 
                         type="button" 
@@ -774,7 +774,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     <div className="relative p-4 bg-[#E8DDD0]/50 rounded-2xl border border-[#3A2B24]/8 flex items-center justify-between">
                       <div className="flex flex-col gap-1">
                         <span className="text-[#3A2B24] text-[10px]">معلومات العميل للتواصل:</span>
-                        <span className="text-sm font-black text-[#3A2B24]">{formData.clientName} • {formData.clientPhone || formData.clientWhatsapp}</span>
+                        <span className="text-sm font-semibold text-[#3A2B24]">{formData.clientName} • {formData.clientPhone || formData.clientWhatsapp}</span>
                       </div>
                       <button 
                         type="button" 
@@ -797,7 +797,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                           <Edit2 size={12} />
                         </button>
                       </div>
-                      <p className="text-[#3A2B24]/80 leading-relaxed font-bold mt-1 text-xs">{formData.projectDesc}</p>
+                      <p className="text-[#3A2B24]/80 leading-relaxed font-medium mt-1 text-xs">{formData.projectDesc}</p>
                     </div>
 
                     {/* Meta stats page limits */}
@@ -805,14 +805,14 @@ export default function ProjectWizard({ isOpen, onClose }) {
                       <div className="flex gap-4">
                         <div>
                           <span className="text-[#3A2B24] text-[10px]">عدد صفحات المنصة: </span>
-                          <span className="font-extrabold text-[#3A2B24]">{formData.pagesCount}</span>
+                          <span className="font-semibold text-[#3A2B24]">{formData.pagesCount}</span>
                         </div>
                         <div>
                           <span className="text-[#3A2B24] text-[10px]">الهوية البصرية مسبقاً: </span>
-                          <span className="font-extrabold text-[#3A2B24]">{formData.hasIdentity}</span>
+                          <span className="font-semibold text-[#3A2B24]">{formData.hasIdentity}</span>
                         </div>
                       </div>
-                      <span className="text-emerald-700 font-extrabold flex items-center gap-1">
+                      <span className="text-emerald-700 font-semibold flex items-center gap-1">
                         جاهز للمراجعة الفنية 
                         <Check size={12} />
                       </span>
@@ -833,7 +833,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     onClick={handlePrev}
                     animate={{ x: magneticPrev.position.x, y: magneticPrev.position.y }}
                     transition={{ type: 'spring', stiffness: 150, damping: 15 }}
-                    className="flex items-center gap-2 px-5 py-3.5 border border-[#3A2B24]/15 bg-[#FFFDF9]/80 rounded-xl text-xs font-black text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all cursor-pointer"
+                    className="flex items-center gap-2 px-5 py-3.5 border border-[#3A2B24]/15 bg-[#FFFDF9]/80 rounded-xl text-xs font-semibold text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all cursor-pointer"
                   >
                     <ArrowRight size={14} />
                     <span>الخطوة السابقة</span>
@@ -851,7 +851,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     onClick={handleNext}
                     animate={{ x: magneticNext.position.x, y: magneticNext.position.y }}
                     transition={{ type: 'spring', stiffness: 150, damping: 15 }}
-                    className="flex items-center gap-2 px-6 py-3.5 bg-[#3A2B24] text-white rounded-xl text-xs font-black shadow-md border border-[#3A2B24] hover:bg-[#3A2B24] transition-all cursor-pointer select-none"
+                    className="flex items-center gap-2 px-6 py-3.5 bg-[#3A2B24] text-white rounded-xl text-xs font-semibold shadow-md border border-[#3A2B24] hover:bg-[#3A2B24] transition-all cursor-pointer select-none"
                   >
                     <span>الخطوة التالية</span>
                     <ArrowLeft size={14} />
@@ -864,7 +864,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                     type="submit"
                     animate={{ x: magneticSubmit.position.x, y: magneticSubmit.position.y }}
                     transition={{ type: 'spring', stiffness: 150, damping: 15 }}
-                    className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#3A2B24] to-[#3A2B24] text-white rounded-xl text-xs font-black shadow-lg border border-[#C8A97E]/30 cursor-pointer select-none hover:scale-[1.02] active:scale-95 transition-all"
+                    className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#3A2B24] to-[#3A2B24] text-white rounded-xl text-xs font-semibold shadow-lg border border-[#C8A97E]/30 cursor-pointer select-none hover:scale-[1.02] active:scale-95 transition-all"
                   >
                     <span>إرسال الطلب</span>
                     <Send size={14} className="text-[#C8A97E] ml-0.5" />
@@ -905,33 +905,33 @@ export default function ProjectWizard({ isOpen, onClose }) {
                 </motion.div>
               </div>
 
-              <h3 className="font-marcellus text-2xl font-black text-[#3A2B24] mb-3">تم إرسال طلبك بنجاح</h3>
-              <p className="text-xs sm:text-sm font-bold text-[#3A2B24] leading-relaxed mb-8">
+              <h3 className="font-marcellus text-2xl font-semibold text-[#3A2B24] mb-3">تم إرسال طلبك بنجاح</h3>
+              <p className="text-xs sm:text-sm font-medium text-[#3A2B24] leading-relaxed mb-8">
                 لقد تم تلقي مواصفات وطلبات مشروعك **"{formData.projectName}"** بنجاح. سيقوم مهندسو التصميم والهوية بدراسة تفاصيلك وصياغة العرض التقني المخصص لك خلال 12 ساعة كحد أقصى.
               </p>
 
               {/* Receipt Summary Details */}
-              <div className="w-full bg-[#FFFDF9]/60 rounded-2xl border border-[#3A2B24]/8 p-4 mb-8 text-right flex flex-col gap-2 font-bold text-[11px] text-[#3A2B24]">
-                <div className="border-b border-[#3A2B24]/10 pb-2 text-center text-xs font-black text-[#3A2B24]">إيصال التخطيط الذكي</div>
+              <div className="w-full bg-[#FFFDF9]/60 rounded-2xl border border-[#3A2B24]/8 p-4 mb-8 text-right flex flex-col gap-2 font-medium text-[11px] text-[#3A2B24]">
+                <div className="border-b border-[#3A2B24]/10 pb-2 text-center text-xs font-semibold text-[#3A2B24]">إيصال التخطيط الذكي</div>
                 <div className="flex justify-between mt-1">
                   <span className="text-[#3A2B24]/80 font-medium">الرقم التعريفي للطلب:</span>
-                  <span className="font-black text-[#3A2B24]">LRN-{Math.floor(100000 + Math.random() * 900000)}</span>
+                  <span className="font-semibold text-[#3A2B24]">LRN-{Math.floor(100000 + Math.random() * 900000)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#3A2B24]/80 font-medium">الخدمة المطلوبة:</span>
-                  <span className="font-black text-[#3A2B24]">{getSelectedTypeLabel()}</span>
+                  <span className="font-semibold text-[#3A2B24]">{getSelectedTypeLabel()}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#3A2B24]/80 font-medium">الميزانية الاستثمارية:</span>
-                  <span className="font-black text-[#3A2B24]">${formData.budget.toLocaleString()}</span>
+                  <span className="font-semibold text-[#3A2B24]">${formData.budget.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#3A2B24]/80 font-medium">الوقت المطلوب:</span>
-                  <span className="font-black text-[#3A2B24]">{formData.timeline}</span>
+                  <span className="font-semibold text-[#3A2B24]">{formData.timeline}</span>
                 </div>
                 <div className="flex justify-between items-center mt-1 pt-1.5 border-t border-[#3A2B24]/8">
                   <span className="text-[#3A2B24]/80 font-medium">حالة الاستشارة الأولية:</span>
-                  <span className="text-emerald-700 font-extrabold flex items-center gap-0.5">
+                  <span className="text-emerald-700 font-semibold flex items-center gap-0.5">
                     مؤهلة للمراجعة المجانية 
                     <Check size={10} strokeWidth={3} />
                   </span>
@@ -952,7 +952,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                   )}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full py-4 bg-[#3A2B24] hover:bg-[#3A2B24] text-white border border-[#3A2B24] rounded-xl text-xs font-black shadow-md flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all"
+                  className="w-full py-4 bg-[#3A2B24] hover:bg-[#3A2B24] text-white border border-[#3A2B24] rounded-xl text-xs font-semibold shadow-md flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all"
                 >
                   <span>تواصل معنا عبر WhatsApp مباشرة</span>
                   <MessageCircle size={16} />
@@ -960,7 +960,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                 
                 <button
                   onClick={handleCloseSuccess}
-                  className="w-full py-3.5 border border-[#3A2B24]/15 bg-[#FFFDF9]/60 hover:bg-[#E8DDD0] rounded-xl text-xs font-black text-[#3A2B24] shadow-soft transition-all"
+                  className="w-full py-3.5 border border-[#3A2B24]/15 bg-[#FFFDF9]/60 hover:bg-[#E8DDD0] rounded-xl text-xs font-semibold text-[#3A2B24] shadow-soft transition-all"
                 >
                   الرجوع للموقع
                 </button>

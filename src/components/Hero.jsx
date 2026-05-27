@@ -167,38 +167,38 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
           >
             {/* Elegant Luxury Badge */}
             <div className="flex justify-start">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] text-[10px] font-black tracking-widest uppercase select-none">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] text-[10px] font-medium tracking-widest uppercase select-none">
                 ✦ تصميم مبتكر ، تجربة استثنائية
               </span>
             </div>
 
             {/* Main Title matching reference layout exactly */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#3A2B24] leading-[1.25]">
-              نحو <span className="text-[#C8A97E]">أفكار</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-[#3A2B24] leading-[1.3] tracking-tight">
+              نصنع حضوراً رقمياً
               <br />
-              تُحدث فرقاً
+              <span className="text-[#C8A97E]">يصنع فرقاً استثنائياً</span>
             </h1>
 
             {/* Luxury Subtitle */}
-            <p className="max-w-lg text-[#3A2B24]/90 font-bold text-sm sm:text-base leading-relaxed text-left">
-              في لوران ستوديو نحول الأفكار إلى تصاميم احترافية تعبر عن هوية علامتك التجارية بأفضل صورة.
+            <p className="max-w-lg text-[#3A2B24]/80 font-normal text-xs sm:text-sm leading-relaxed text-right">
+              في لوران ستوديو، نبتكر منصات رقمية فاخرة وهويات بصرية متكاملة تجسد وقار علامتك التجارية وتخلق أثراً بليغاً يعيش مع الزمن.
             </p>
 
             {/* CTA Actions */}
             <div className="flex flex-row items-center gap-5 mt-2">
               <button
                 onClick={() => handleNavClick('wizard')}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-black shadow-md hover:bg-[#bfa075] hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 cursor-pointer clickable-hover"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-medium shadow-sm hover:shadow-[0_0_22px_rgba(200,169,126,0.4)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer clickable-hover"
               >
-                استشارة مجانية الآن
-                <span className="text-[#3A2B24] font-black">✦</span>
+                احجز استشارتك الآن
+                <span className="text-[#3A2B24] font-medium">✦</span>
               </button>
 
               <button
                 onClick={() => handleNavClick('portfolio')}
-                className="inline-flex items-center justify-center gap-1.5 py-3 text-xs font-black text-[#3A2B24] hover:text-[#C8A97E] transition-colors cursor-pointer clickable-hover border-b border-transparent hover:border-[#C8A97E]"
+                className="inline-flex items-center justify-center gap-1.5 py-3 text-xs font-medium text-[#3A2B24] hover:text-[#C8A97E] transition-colors cursor-pointer clickable-hover border-b border-transparent hover:border-[#C8A97E] duration-500"
               >
-                استكشف أعمالنا
+                اكتشف أعمالنا المميزة
                 <span className="text-xs">➔</span>
               </button>
             </div>
@@ -228,8 +228,8 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
                 />
               </div>
               <div className="flex flex-col gap-0.5 text-right md:text-left">
-                <span className="text-xs font-black text-[#3A2B24]">120+ عميل سعيد</span>
-                <span className="text-[9px] text-[#3A2B24]/60 font-bold">شركات وأفراد حول العالم</span>
+                <span className="text-xs font-semibold text-[#3A2B24]">120+ عميل سعيد</span>
+                <span className="text-[9px] text-[#3A2B24]/60 font-medium">شركات وأفراد حول العالم</span>
               </div>
             </div>
 
@@ -252,7 +252,7 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-        <span className="text-[9px] text-[#3A2B24]/60 font-black tracking-widest uppercase">اسحب للأسفل</span>
+        <span className="text-[9px] text-[#3A2B24]/60 font-medium tracking-widest uppercase">اسحب للأسفل</span>
       </motion.div>
 
     </section>

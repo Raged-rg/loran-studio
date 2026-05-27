@@ -119,12 +119,12 @@ export default function Services() {
 
       {/* TOP Header Area */}
       <div className="text-center flex flex-col items-center gap-3 mb-16 relative z-10">
-        <span className="px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] font-black text-[10px] tracking-widest uppercase">
-          ✦ ما نقدمه
+        <span className="px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] font-medium text-[10px] tracking-widest uppercase">
+          ✦ خدماتنا الإبداعية
         </span>
         
-        <h2 className="font-marcellus text-3xl md:text-5xl font-black text-[#3A2B24] leading-tight">
-          حلول إبداعية متكاملة تساعدك على النمو والتميز
+        <h2 className="font-marcellus text-3xl md:text-5xl font-semibold text-[#3A2B24] leading-tight">
+          حلول رقمية استراتيجية مصممة لنمو أعمالك
         </h2>
 
         <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C8A97E] to-transparent mt-2" />
@@ -153,19 +153,19 @@ export default function Services() {
               </div>
               
               {/* Title */}
-              <h3 className="font-marcellus text-base font-black text-[#3A2B24] mb-3 group-hover:text-[#C8A97E] transition-colors">
+              <h3 className="font-marcellus text-base font-semibold text-[#3A2B24] mb-3 group-hover:text-[#C8A97E] transition-colors">
                 {service.title}
               </h3>
               
               {/* Elegant Desc */}
-              <p className="text-[11px] text-[#3A2B24]/80 font-bold leading-relaxed mb-6">
+              <p className="text-[11px] text-[#3A2B24]/75 font-normal leading-relaxed mb-6">
                 {service.desc}
               </p>
             </div>
 
             {/* Action button */}
             <div className="mt-auto">
-              <span className="w-full flex items-center justify-center gap-1.5 py-2.5 bg-[#F7F2EC]/60 group-hover:bg-[#3A2B24] text-[#3A2B24] group-hover:text-white rounded-xl text-[10px] font-black border border-[#C8A97E]/10 group-hover:border-[#3A2B24] shadow-soft transition-all duration-300">
+              <span className="w-full flex items-center justify-center gap-1.5 py-2.5 bg-[#F7F2EC]/60 group-hover:bg-[#3A2B24] text-[#3A2B24] group-hover:text-white rounded-xl text-[10px] font-semibold border border-[#C8A97E]/10 group-hover:border-[#3A2B24] shadow-soft transition-all duration-300">
                 <span>اعرف المزيد</span>
                 <ArrowLeft size={10} className="transition-transform group-hover:-translate-x-1" />
               </span>
@@ -180,9 +180,9 @@ export default function Services() {
           href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D9%88%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20LORAN%20STUDIO%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84%D8%A9."
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-black text-[#3A2B24] hover:text-[#C8A97E] transition-colors border-b border-transparent hover:border-[#C8A97E] pb-0.5"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#3A2B24] hover:text-[#C8A97E] transition-colors border-b border-transparent hover:border-[#C8A97E] pb-0.5 duration-500"
         >
-          <span>عرض جميع الخدمات</span>
+          <span>عرض كافة خدماتنا النخبوية</span>
           <ArrowLeft size={12} />
         </a>
       </div>
@@ -220,22 +220,22 @@ export default function Services() {
                   <ServiceIcon2D type={selectedService.type} />
                 </div>
                 <div className="text-center md:text-right flex flex-col gap-1">
-                  <span className="text-[10px] text-[#C8A97E] font-black tracking-widest uppercase">لوران ستوديو • تفاصيل الخدمة</span>
-                  <h3 className="font-marcellus text-2xl font-black text-[#3A2B24]">{selectedService.title}</h3>
-                  <p className="text-xs text-[#3A2B24]/80 font-bold leading-relaxed">{selectedService.details.accent}</p>
+                  <span className="text-[10px] text-[#C8A97E] font-medium tracking-widest uppercase">لوران ستوديو • تفاصيل الخدمة النخبوية</span>
+                  <h3 className="font-marcellus text-2xl font-semibold text-[#3A2B24]">{selectedService.title}</h3>
+                  <p className="text-xs text-[#3A2B24]/80 font-normal leading-relaxed">{selectedService.details.accent}</p>
                 </div>
               </div>
 
               {/* Includes checklist */}
               <div className="flex flex-col gap-3 mb-6">
-                <h4 className="font-marcellus text-sm font-black text-[#3A2B24] flex items-center gap-2">
+                <h4 className="font-marcellus text-sm font-semibold text-[#3A2B24] flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C8A97E]" />
                   ماذا تشمل هذه الخدمة الاستثنائية؟
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                   {selectedService.details.includes.map((inc, i) => (
-                    <div key={i} className="flex items-center gap-2.5 p-3 rounded-xl bg-[#FFFDF9]/60 border border-[#C8A97E]/10 text-xs text-[#3A2B24] font-bold">
-                      <span className="w-4 h-4 rounded-full bg-[#C8A97E]/15 flex items-center justify-center text-[#C8A97E] text-[9px] font-bold">✓</span>
+                    <div key={i} className="flex items-center gap-2.5 p-3 rounded-xl bg-[#FFFDF9]/60 border border-[#C8A97E]/10 text-xs text-[#3A2B24] font-normal">
+                      <span className="w-4 h-4 rounded-full bg-[#C8A97E]/15 flex items-center justify-center text-[#C8A97E] text-[9px] font-medium">✓</span>
                       <span>{inc}</span>
                     </div>
                   ))}
@@ -243,8 +243,8 @@ export default function Services() {
               </div>
 
               {/* Why Loran block */}
-              <div className="p-4 bg-[#C8A97E]/6 rounded-xl border border-[#C8A97E]/15 text-xs font-bold text-[#3A2B24] leading-relaxed mb-8">
-                <span className="text-[#C8A97E] block font-black mb-1">لماذا لوران ستوديو في هذه الخدمة؟</span>
+              <div className="p-4 bg-[#C8A97E]/6 rounded-xl border border-[#C8A97E]/15 text-xs font-normal text-[#3A2B24] leading-relaxed mb-8">
+                <span className="text-[#C8A97E] block font-semibold mb-1">لماذا لوران ستوديو في هذه الخدمة؟</span>
                 {selectedService.details.why}
               </div>
 
@@ -255,16 +255,16 @@ export default function Services() {
                   onClick={() => {
                     setSelectedService(null);
                     // trigger wizard opening manually or let home scroll
-                    const btn = document.querySelector('button[aria-label="ابدأ مشروعك"]');
+                    const btn = document.querySelector('button[aria-label="ابدأ رحلتك الرقمية"]');
                     if (btn) btn.click();
                   }}
-                  className="w-full sm:w-auto py-3 px-8 bg-gradient-to-r from-[#C8A97E] to-[#bfa075] text-[#3A2B24] rounded-xl text-xs font-black shadow-md border border-[#C8A97E]/20 text-center"
+                  className="w-full sm:w-auto py-3 px-8 bg-gradient-to-r from-[#C8A97E] to-[#bfa075] text-[#3A2B24] rounded-xl text-xs font-medium shadow-sm hover:shadow-[0_0_20px_rgba(200,169,126,0.35)] border border-[#C8A97E]/20 text-center hover:scale-[1.02] active:scale-[0.97] transition-all duration-500"
                 >
-                  احجز استشارة مجانية للمشروع
+                  احجز استشارتك الاستراتيجية مجاناً
                 </a>
                 <button
                   onClick={() => setSelectedService(null)}
-                  className="hidden sm:inline-block py-3 px-6 border border-[#C8A97E]/15 bg-[#FFFDF9]/80 rounded-xl text-xs font-black text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all cursor-pointer"
+                  className="hidden sm:inline-block py-3 px-6 border border-[#C8A97E]/15 bg-[#FFFDF9]/80 rounded-xl text-xs font-medium text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all duration-500 cursor-pointer active:scale-[0.97]"
                 >
                   الرجوع للخدمات
                 </button>

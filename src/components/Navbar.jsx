@@ -85,9 +85,9 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
 
             <button
               onClick={() => handleLinkClick('wizard')}
-              className="px-6 py-2.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-black shadow-md hover:bg-[#bfa075] hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 cursor-pointer"
+              className="px-6 py-2.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-medium shadow-sm hover:shadow-[0_0_22px_rgba(200,169,126,0.4)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer"
             >
-              ابدأ مشروعك
+              ابدأ رحلتك الرقمية
             </button>
           </div>
 
@@ -97,7 +97,7 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id)}
-                className={`px-4.5 py-2 rounded-xl text-xs font-black transition-all duration-300 cursor-pointer ${
+                className={`px-4.5 py-2 rounded-xl text-xs font-medium transition-all duration-500 cursor-pointer ${
                   activeSection === link.id
                     ? 'bg-[#3A2B24] text-white shadow-md'
                     : 'text-[#3A2B24] hover:text-[#C8A97E] hover:bg-[#E8DDD0]/50'
@@ -110,12 +110,12 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
 
           {/* Left Side Visually: Logo brand (appears last in HTML flow) */}
           <div className="flex items-center gap-2.5 select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#C8A97E]/20 flex items-center justify-center shadow-sm bg-[#FFFDF9]/90 group-hover:scale-105 group-hover:border-[#C8A97E]/40 transition-all duration-300">
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#C8A97E]/20 flex items-center justify-center shadow-sm bg-[#FFFDF9]/90 group-hover:scale-105 group-hover:border-[#C8A97E]/45 transition-all duration-500">
               <img src={logoIcon} className="w-full h-full object-cover group-hover:opacity-90 transition-opacity" alt="LORAN STUDIO" />
             </div>
             <div className="flex flex-col text-right">
-              <span className="font-marcellus text-[15px] font-bold tracking-widest text-[#3A2B24] leading-none group-hover:text-[#C8A97E] transition-colors duration-300">LORAN STUDIO</span>
-              <span className="text-[8px] text-[#3A2B24]/75 font-black mt-1 leading-none">لوران ستوديو</span>
+              <span className="font-marcellus text-[15px] font-bold tracking-widest text-[#3A2B24] leading-none group-hover:text-[#C8A97E] transition-colors duration-500">LORAN STUDIO</span>
+              <span className="text-[8px] text-[#3A2B24]/75 font-medium mt-1 leading-none">لوران ستوديو</span>
             </div>
           </div>
 
@@ -157,13 +157,13 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
                 </button>
               </div>
 
-              {/* Navigation Links */}
+               {/* Navigation Links */}
               <nav className="flex flex-col gap-3 py-8">
                 {navLinks.map((link) => (
                   <button
                     key={link.id}
                     onClick={() => handleLinkClick(link.id)}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs font-black text-right border transition-all cursor-pointer ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs font-medium text-right border transition-all cursor-pointer ${
                       activeSection === link.id
                         ? 'bg-[#3A2B24] text-white border-[#3A2B24] shadow-md'
                         : 'bg-[#FFFDF9]/70 text-[#3A2B24] border-[#C8A97E]/10 hover:bg-[#E8DDD0] hover:text-[#C8A97E]'
@@ -179,9 +179,9 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
               <div className="mt-auto flex flex-col gap-3 pt-6 border-t border-[#C8A97E]/15">
                 <button
                   onClick={() => handleLinkClick('wizard')}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-[#C8A97E] text-[#3A2B24] rounded-xl text-xs font-black shadow-md border border-[#C8A97E]/20 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-[#C8A97E] text-[#3A2B24] rounded-xl text-xs font-medium shadow-sm hover:shadow-[0_0_20px_rgba(200,169,126,0.35)] border border-[#C8A97E]/20 cursor-pointer"
                 >
-                  ابدأ مشروعك
+                  ابدأ رحلتك الرقمية
                   <ArrowUpRight size={12} className="text-[#3A2B24]" />
                 </button>
               </div>

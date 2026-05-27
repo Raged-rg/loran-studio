@@ -112,14 +112,14 @@ export default function Portfolio() {
       {/* 👑 SECTION HEADER */}
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-16 relative z-10">
         <div className="text-right flex flex-col gap-3">
-          <span className="px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] font-black text-[10px] tracking-widest uppercase w-fit">
-            ✦ أعمالنا
+          <span className="px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] font-medium text-[10px] tracking-widest uppercase w-fit">
+            ✦ معرض أعمالنا
           </span>
-          <h2 className="font-marcellus text-3xl md:text-5xl font-black text-[#3A2B24] leading-tight">
-            أعمالنا المميزة
+          <h2 className="font-marcellus text-3xl md:text-5xl font-semibold text-[#3A2B24] leading-tight">
+            أعمال نفخر بصياغتها
           </h2>
-          <p className="max-w-xl text-[#3A2B24]/80 font-bold text-xs sm:text-sm leading-relaxed">
-            مجموعة من المشاريع التي نفخر بتنفيذها
+          <p className="max-w-xl text-[#3A2B24]/75 font-normal text-xs sm:text-sm leading-relaxed">
+            نخبة من المشاريع الرقمية والهويات الحصرية التي صممت لتواكب تطلعات عملائنا.
           </p>
         </div>
 
@@ -128,9 +128,9 @@ export default function Portfolio() {
             href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%20%D8%B9%D9%84%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20LORAN%20STUDIO%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84%D8%A9%20%D9%88%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9."
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-[#3A2B24]/15 bg-[#FFFDF9] text-xs font-black text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all duration-300"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-[#3A2B24]/15 bg-[#FFFDF9] text-xs font-medium text-[#3A2B24] shadow-soft hover:shadow-[0_0_15px_rgba(200,169,126,0.2)] hover:bg-[#E8DDD0] transition-all duration-500"
           >
-            <span>عرض جميع الأعمال</span>
+            <span>استكشف كافة المشاريع</span>
             <span>←</span>
           </a>
         </div>
@@ -145,7 +145,7 @@ export default function Portfolio() {
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`relative px-6 py-3 rounded-full text-xs font-black transition-all cursor-pointer select-none active:scale-95 whitespace-nowrap ${
+                className={`relative px-6 py-3 rounded-full text-xs font-medium transition-all duration-500 cursor-pointer select-none active:scale-95 whitespace-nowrap ${
                   isActive
                     ? 'text-white'
                     : 'text-[#3A2B24] hover:text-[#C8A97E]'
@@ -202,7 +202,7 @@ export default function Portfolio() {
                 <div className="absolute inset-0 bg-[#3A2B24]/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <motion.div 
                     whileHover={{ scale: 1.05 }}
-                    className="px-6 py-3 rounded-full bg-[#FFFDF9] text-[#3A2B24] text-xs font-black shadow-premium flex items-center gap-1.5"
+                    className="px-6 py-3 rounded-full bg-[#FFFDF9] text-[#3A2B24] text-xs font-medium shadow-premium flex items-center gap-1.5"
                   >
                     <span>عرض تفاصيل المشروع</span>
                     <Eye size={14} className="text-[#C8A97E]" />
@@ -213,15 +213,15 @@ export default function Portfolio() {
               {/* Card textual info Box */}
               <div className="p-7 flex flex-col justify-between flex-grow bg-[#FFFDF9]/40 backdrop-blur-sm">
                 <div className="flex flex-col gap-2">
-                  <span className="text-[9px] text-[#C8A97E] font-black uppercase tracking-widest">
+                  <span className="text-[9px] text-[#C8A97E] font-medium uppercase tracking-widest">
                     {categories.find(c => c.id === proj.category)?.label || 'مشروع متميز'}
                   </span>
 
-                  <h3 className="font-marcellus text-xl font-black text-[#3A2B24] transition-colors group-hover:text-[#C8A97E]">
+                  <h3 className="font-marcellus text-xl font-semibold text-[#3A2B24] transition-colors group-hover:text-[#C8A97E]">
                     {proj.title}
                   </h3>
 
-                  <p className="text-xs text-[#3A2B24]/85 font-bold leading-relaxed mb-4 text-right">
+                  <p className="text-xs text-[#3A2B24]/75 font-normal leading-relaxed mb-4 text-right">
                     {proj.desc}
                   </p>
                 </div>
@@ -232,14 +232,14 @@ export default function Portfolio() {
                     {proj.tags.map((tag, idx) => (
                       <span 
                         key={idx} 
-                        className="px-2.5 py-1 rounded-full bg-[#F7F2EC] border border-[#C8A97E]/8 text-[9px] font-black text-[#3A2B24]"
+                        className="px-2.5 py-1 rounded-full bg-[#F7F2EC] border border-[#C8A97E]/8 text-[9px] font-medium text-[#3A2B24]"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                   
-                  <div className="w-8 h-8 rounded-full bg-[#C8A97E]/10 group-hover:bg-[#C8A97E] text-[#3A2B24] flex items-center justify-center transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-[#C8A97E]/10 group-hover:bg-[#C8A97E] text-[#3A2B24] flex items-center justify-center transition-all duration-500">
                     <ArrowUpRight size={14} className="text-[#3A2B24]" />
                   </div>
                 </div>
@@ -286,10 +286,10 @@ export default function Portfolio() {
                   alt={selectedProject.title} 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#3A2B24]/90 via-[#3A2B24]/30 to-transparent flex flex-col justify-end p-6 md:p-8 text-right">
-                  <span className="text-[10px] text-white/50 bg-black/40 px-3.5 py-1 rounded-full border border-white/10 w-fit font-black uppercase tracking-widest">
+                  <span className="text-[10px] text-white/75 bg-black/40 px-3.5 py-1 rounded-full border border-white/10 w-fit font-medium uppercase tracking-widest">
                     معرض أعمال لوران ستوديو الحصرية
                   </span>
-                  <h3 className="font-marcellus text-2xl sm:text-3xl font-black text-white mt-2">{selectedProject.title}</h3>
+                  <h3 className="font-marcellus text-2xl sm:text-3xl font-semibold text-white mt-2">{selectedProject.title}</h3>
                 </div>
               </div>
 
@@ -298,22 +298,22 @@ export default function Portfolio() {
                 
                 {/* 1. Project details */}
                 <div className="flex flex-col gap-2">
-                  <h4 className="font-marcellus text-sm font-black text-[#3A2B24] flex items-center gap-2">
+                  <h4 className="font-marcellus text-sm font-semibold text-[#3A2B24] flex items-center gap-2">
                     <Laptop size={16} className="text-[#C8A97E]" />
                     نطاق ومفهوم المشروع:
                   </h4>
-                  <p className="text-xs text-[#3A2B24]/90 font-bold leading-relaxed pr-6">
+                  <p className="text-xs text-[#3A2B24]/75 font-normal leading-relaxed pr-6">
                     {selectedProject.details.scope}
                   </p>
                 </div>
 
                 {/* 2. Project outcome */}
                 <div className="flex flex-col gap-2">
-                  <h4 className="font-marcellus text-sm font-black text-[#3A2B24] flex items-center gap-2">
+                  <h4 className="font-marcellus text-sm font-semibold text-[#3A2B24] flex items-center gap-2">
                     <ShieldCheck size={16} className="text-[#C8A97E]" />
                     النتائج والمقاييس الرقمية المحققة:
                   </h4>
-                  <p className="text-xs text-[#3A2B24]/90 font-bold leading-relaxed pr-6">
+                  <p className="text-xs text-[#3A2B24]/75 font-normal leading-relaxed pr-6">
                     {selectedProject.details.outcome}
                   </p>
                 </div>
@@ -323,13 +323,13 @@ export default function Portfolio() {
                   
                   {/* Tech stack */}
                   <div className="flex flex-col gap-3">
-                    <h4 className="font-marcellus text-sm font-black text-[#3A2B24] flex items-center gap-2">
+                    <h4 className="font-marcellus text-sm font-semibold text-[#3A2B24] flex items-center gap-2">
                       <Cpu size={16} className="text-[#C8A97E]" />
                       التقنيات والمكتبات المستخدمة:
                     </h4>
                     <div className="flex flex-wrap gap-1.5 pr-6">
                       {selectedProject.details.techs.map((tech, i) => (
-                        <span key={i} className="px-3 py-1.5 bg-[#FFFDF9] border border-[#C8A97E]/10 text-[10px] font-black rounded-lg text-[#3A2B24] shadow-soft">
+                        <span key={i} className="px-3 py-1.5 bg-[#FFFDF9] border border-[#C8A97E]/10 text-[10px] font-medium rounded-lg text-[#3A2B24] shadow-soft">
                           {tech}
                         </span>
                       ))}
@@ -338,13 +338,13 @@ export default function Portfolio() {
 
                   {/* Core metrics pills */}
                   <div className="flex flex-col gap-3">
-                    <h4 className="font-marcellus text-sm font-black text-[#3A2B24] flex items-center gap-2">
+                    <h4 className="font-marcellus text-sm font-semibold text-[#3A2B24] flex items-center gap-2">
                       <Star size={16} className="text-[#C8A97E]" />
                       مؤشرات النجاح الإحصائية:
                     </h4>
                     <div className="flex flex-col gap-2 pr-6">
                       {selectedProject.details.metrics.map((m, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs font-black text-emerald-700">
+                        <div key={i} className="flex items-center gap-2 text-xs font-semibold text-emerald-700">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-700 flex-shrink-0" />
                           <span>{m}</span>
                         </div>
@@ -360,16 +360,16 @@ export default function Portfolio() {
                     onClick={() => {
                       setSelectedProject(null);
                       // Trigger wizard manually or let home scroll
-                      const btn = document.querySelector('button[aria-label="ابدأ مشروعك"]');
+                      const btn = document.querySelector('button[aria-label="ابدأ رحلتك الرقمية"]');
                       if (btn) btn.click();
                     }}
-                    className="w-full sm:w-auto py-3.5 px-8 bg-gradient-to-r from-[#C8A97E] to-[#bfa075] text-[#3A2B24] rounded-xl text-xs font-black shadow-md border border-[#C8A97E]/20 text-center hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
+                    className="w-full sm:w-auto py-3.5 px-8 bg-gradient-to-r from-[#C8A97E] to-[#bfa075] text-[#3A2B24] rounded-xl text-xs font-medium shadow-sm hover:shadow-[0_0_20px_rgba(200,169,126,0.35)] border border-[#C8A97E]/20 text-center hover:scale-[1.02] active:scale-95 transition-all duration-500 cursor-pointer"
                   >
-                    اصنع مشروعك المماثل معنا
+                    لنصنع نجاحك المماثل معاً
                   </button>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="hidden sm:inline-block py-3.5 px-6 border border-[#C8A97E]/15 bg-[#FFFDF9]/80 rounded-xl text-xs font-black text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all active:scale-95 cursor-pointer"
+                    className="hidden sm:inline-block py-3.5 px-6 border border-[#C8A97E]/15 bg-[#FFFDF9]/80 rounded-xl text-xs font-medium text-[#3A2B24] shadow-soft hover:bg-[#E8DDD0] transition-all duration-500 active:scale-95 cursor-pointer"
                   >
                     رجوع للمعرض
                   </button>

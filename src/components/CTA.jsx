@@ -24,16 +24,16 @@ export default function CTA({ setActiveSection }) {
 
         {/* Right side visually (Arabic RTL): Text blocks */}
         <div className="flex flex-col gap-5 text-center lg:text-right lg:max-w-2xl">
-          <span className="mx-auto lg:mx-0 w-fit px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] text-[10px] font-black tracking-widest uppercase">
-            ✦ لنبدأ قصة نجاح جديدة معاً
+          <span className="mx-auto lg:mx-0 w-fit px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] text-[10px] font-medium tracking-widest uppercase">
+            ✦ لنبدأ قصة نجاح استثنائية معاً
           </span>
 
-          <h2 className="font-marcellus text-3xl md:text-5xl font-black text-[#3A2B24] leading-tight">
-            هل أنت جاهز لتحويل رؤيتك الرقمية إلى حقيقة؟
+          <h2 className="font-marcellus text-3xl md:text-5xl font-semibold text-[#3A2B24] leading-tight">
+            هل أنت مستعد لصياغة مستقبلك الرقمي الفاخر؟
           </h2>
 
-          <p className="text-[#3A2B24]/85 font-bold text-xs sm:text-sm leading-relaxed">
-            سواء كنت ترغب في تصميم متجر إلكتروني فاخر، موقع تعريفي يمثل علامتك النخبوية، أو استشارة مجانية لمشروعك، نحن هنا لنصنع الفارق البرمجي والبصري الاستثنائي.
+          <p className="text-[#3A2B24]/85 font-medium text-xs sm:text-sm leading-relaxed">
+            ندعوك لشراكة إبداعية ترتقي بحضورك الرقمي إلى آفاق غير مسبوقة. سواء كنت تنشد متجراً إلكترونياً متكاملاً أو منصة تعريفية تعكس تفرد علامتك، فنحن نصمم التفاصيل بدقة متناهية لتنسجم مع تطلعات النخبة.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-4">
@@ -41,7 +41,7 @@ export default function CTA({ setActiveSection }) {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-black shadow-md hover:bg-[#bfa075] hover:scale-[1.02] active:scale-[0.97] transition-all duration-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-semibold shadow-soft hover:bg-[#bfa075] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
             >
               تواصل معنا الآن عبر واتساب
               <MessageSquare size={14} className="text-[#3A2B24]" />
@@ -52,9 +52,9 @@ export default function CTA({ setActiveSection }) {
                 const btn = document.querySelector('button[aria-label="ابدأ مشروعك"]');
                 if (btn) btn.click();
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#C8A97E]/30 bg-[#FFFDF9]/85 text-xs font-black text-[#3A2B24] rounded-full hover:bg-[#E8DDD0] transition-all duration-300 shadow-soft"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#C8A97E]/30 bg-[#FFFDF9]/85 text-xs font-semibold text-[#3A2B24] rounded-full hover:bg-[#E8DDD0] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-soft"
             >
-              ابدأ حجز مشروعك الاستثماري
+              ابدأ رحلتك الرقمية الآن
               <ArrowLeft size={14} className="text-[#3A2B24]" />
             </button>
           </div>
@@ -70,11 +70,11 @@ export default function CTA({ setActiveSection }) {
             transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
             className="absolute inset-0 w-full h-full pointer-events-none"
           >
-            <svg viewBox="0 0 100 100" className="w-full h-full text-[#3A2B24]/40 font-black tracking-widest text-[8px] fill-current">
+            <svg viewBox="0 0 100 100" className="w-full h-full text-[#3A2B24]/40 font-medium tracking-widest text-[8px] fill-current">
               <path id="circlePath" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
               <text>
                 <textPath href="#circlePath" spacing="auto" startOffset="0%">
-                  ✦ LORAN STUDIO ✦ LUXURY AGENCY ✦ CREATIVE DEVELOPMENT
+                  ✦ LORAN STUDIO ✦ LUXURY DIGITAL EXPERIENCE ✦
                 </textPath>
               </text>
             </svg>
