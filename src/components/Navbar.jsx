@@ -24,12 +24,12 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
   }, []);
 
   const navLinks = [
-    { id: 'home', label: 'الرئيسية' },
-    { id: 'portfolio', label: 'أعمالنا' },
-    { id: 'services', label: 'خدماتنا' },
-    { id: 'why-loran', label: 'من نحن' },
-    { id: 'blog', label: 'المدونة' },
-    { id: 'contact', label: 'تواصل معنا' }
+    { id: 'home', label: 'الرئيسية', hideOnTablet: false },
+    { id: 'portfolio', label: 'أعمالنا', hideOnTablet: false },
+    { id: 'services', label: 'خدماتنا', hideOnTablet: false },
+    { id: 'why-loran', label: 'من نحن', hideOnTablet: false },
+    { id: 'blog', label: 'المدونة', hideOnTablet: true },
+    { id: 'contact', label: 'تواصل معنا', hideOnTablet: true }
   ];
 
   const handleLinkClick = (id) => {
@@ -91,21 +91,31 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
             </button>
           </div>
 
-          {/* Center Visually: Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#FFFDF9]/60 backdrop-blur-md px-2 py-1.5 rounded-2xl border border-[#C8A97E]/12 shadow-inner">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleLinkClick(link.id)}
-                className={`px-4.5 py-2 rounded-xl text-xs font-medium transition-all duration-500 cursor-pointer ${
-                  activeSection === link.id
-                    ? 'bg-[#3A2B24] text-white shadow-md'
-                    : 'text-[#3A2B24] hover:text-[#C8A97E] hover:bg-[#E8DDD0]/50'
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
+          {/* Center Visually: Nav Links with premium sliding framer-motion active indicator */}
+          <nav className="hidden md:flex items-center gap-1 bg-[#FFFDF9]/60 backdrop-blur-md p-1 rounded-full border border-[#C8A97E]/15 shadow-[0_4px_30px_rgba(58,43,36,0.03)] relative overflow-hidden">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleLinkClick(link.id)}
+                  className={`relative px-4 lg:px-5 py-2.5 rounded-full text-xs font-semibold transition-all duration-500 cursor-pointer select-none active:scale-95 whitespace-nowrap ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-[#3A2B24] hover:text-[#C8A97E]'
+                  } ${link.hideOnTablet ? 'hidden lg:inline-block' : 'inline-block'}`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavbarSectionBackdrop"
+                      className="absolute inset-0 bg-[#3A2B24] rounded-full border border-[#3A2B24]/20 shadow-md z-0"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
+                </button>
+              );
+            })}
           </nav>
 
           {/* Left Side Visually: Logo brand (appears last in HTML flow) */}
