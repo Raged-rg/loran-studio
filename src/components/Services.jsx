@@ -130,8 +130,8 @@ export default function Services() {
         <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C8A97E] to-transparent mt-2" />
       </div>
 
-      {/* Service Experience Grid (5 Columns on Desktop) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
+      {/* Service Experience Grid (Fluid, responsive columns matching Awwwards layout) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 relative z-10">
         {servicesList.map((service, idx) => (
           <motion.div
             key={service.id}

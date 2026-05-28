@@ -16,10 +16,13 @@ export default {
         copper: '#C8A97E',
       },
       fontFamily: {
-        marcellus: ["Marcellus", "serif"],
-        cinzel: ["Cinzel", "serif"],
-        alexandria: ["Alexandria", "sans-serif"],
-        'ibm-plex': ["IBM Plex Sans Arabic", "sans-serif"],
+        sans: ["'Plus Jakarta Sans'", "'Cairo'", "'IBM Plex Sans Arabic'", "sans-serif"],
+        marcellus: ["'Sora'", "'Cairo'", "sans-serif"],
+        cinzel: ["'Sora'", "'Cairo'", "sans-serif"],
+        alexandria: ["'Cairo'", "sans-serif"],
+        'ibm-plex': ["'IBM Plex Sans Arabic'", "sans-serif"],
+        sora: ["'Sora'", "sans-serif"],
+        cairo: ["'Cairo'", "sans-serif"],
       },
       boxShadow: {
         'soft': '0 12px 30px rgba(122, 74, 42, 0.035)',

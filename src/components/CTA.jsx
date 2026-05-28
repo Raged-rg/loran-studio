@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MessageSquare, ArrowLeft, Send } from 'lucide-react';
 import logoIcon from '../assets/logo-icon.png';
 
-export default function CTA({ setActiveSection }) {
+export default function CTA({ setActiveSection, onOpenWizard }) {
   const whatsappUrl = `https://wa.me/9647842272224?text=${encodeURIComponent('مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي.')}`;
 
   return (
@@ -49,8 +49,12 @@ export default function CTA({ setActiveSection }) {
 
             <button
               onClick={() => {
-                const btn = document.querySelector('button[aria-label="ابدأ مشروعك"]');
-                if (btn) btn.click();
+                if (onOpenWizard) {
+                  onOpenWizard();
+                } else {
+                  const btn = document.querySelector('button[aria-label="ابدأ مشروعك"]');
+                  if (btn) btn.click();
+                }
               }}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#C8A97E]/30 bg-[#FFFDF9]/85 text-xs font-semibold text-[#3A2B24] rounded-full hover:bg-[#E8DDD0] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-soft"
             >

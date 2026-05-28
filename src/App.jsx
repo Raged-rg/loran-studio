@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
+import WhyLoran from './components/WhyLoran';
 import BeforeAfter from './components/BeforeAfter';
 import Stats from './components/Stats';
 import CTA from './components/CTA';
@@ -19,7 +20,7 @@ export default function App() {
 
   // Handle Automatic Section Tracking on Scroll (IntersectionObserver)
   useEffect(() => {
-    const sections = ['home', 'services', 'portfolio', 'before-after', 'stats', 'cta'];
+    const sections = ['home', 'services', 'portfolio', 'why-loran', 'before-after', 'stats', 'cta'];
     
     const observerOptions = {
       root: null,
@@ -98,6 +99,16 @@ export default function App() {
           <Portfolio />
         </motion.div>
 
+        {/* 3.5. Why Loran / About Us Section with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <WhyLoran />
+        </motion.div>
+
         {/* 4. Before / After Interactive Draggable Comparison Slider */}
         <motion.div
           initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
@@ -125,7 +136,7 @@ export default function App() {
           viewport={{ once: true, margin: '-15%' }}
           transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
         >
-          <CTA setActiveSection={setActiveSection} />
+          <CTA setActiveSection={setActiveSection} onOpenWizard={() => setIsWizardOpen(true)} />
         </motion.div>
 
       </main>

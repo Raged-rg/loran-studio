@@ -188,15 +188,13 @@ export default function Portfolio() {
               onClick={() => setSelectedProject(proj)}
             >
               {/* Image Preview Container (Zoom Reveal & Soft Gradients) */}
-              <div className="w-full h-[260px] md:h-[320px] relative overflow-hidden select-none border-b border-[#C8A97E]/12">
+              <div className="w-full aspect-[16/10] relative overflow-hidden select-none border-b border-[#C8A97E]/12 bg-gradient-to-br from-[#FFFDF9] via-[#FAF6F0] to-[#E8DDD0] flex items-center justify-center p-3 group-hover:from-[#FAF6F0] group-hover:to-[#C8A97E]/20 transition-all duration-700">
                 <img 
                   loading="lazy"
                   src={proj.image} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                  className="w-full h-full object-contain object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out drop-shadow-[0_6px_16px_rgba(58,43,36,0.05)]" 
                   alt={proj.title} 
                 />
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
                 {/* Hover direct action trigger */}
                 <div className="absolute inset-0 bg-[#3A2B24]/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -274,22 +272,24 @@ export default function Portfolio() {
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 left-4 p-2.5 rounded-full border border-[#C8A97E]/15 bg-[#FFFDF9]/80 text-[#3A2B24] hover:bg-[#E8DDD0] transition-all z-10 active:scale-95 cursor-pointer"
+                aria-label="إغلاق تفاصيل المشروع"
               >
                 <X size={16} />
               </button>
 
               {/* Large project banner representation */}
-              <div className="w-full h-[240px] md:h-[320px] relative overflow-hidden select-none border-b border-[#C8A97E]/15">
+              {/* Large project banner representation */}
+              <div className="w-full aspect-[16/10] relative overflow-hidden select-none border-b border-[#C8A97E]/15 bg-gradient-to-br from-[#FFFDF9] via-[#FAF6F0] to-[#E8DDD0] flex items-center justify-center p-4">
                 <img 
                   src={selectedProject.image} 
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-contain object-center drop-shadow-[0_8px_32px_rgba(58,43,36,0.08)]" 
                   alt={selectedProject.title} 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3A2B24]/90 via-[#3A2B24]/30 to-transparent flex flex-col justify-end p-6 md:p-8 text-right">
-                  <span className="text-[10px] text-white/75 bg-black/40 px-3.5 py-1 rounded-full border border-white/10 w-fit font-medium uppercase tracking-widest">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3A2B24]/85 via-transparent to-transparent flex flex-col justify-end p-6 md:p-8 text-right pointer-events-none">
+                  <span className="text-[10px] text-white/90 bg-[#3A2B24]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C8A97E]/20 w-fit font-medium uppercase tracking-widest">
                     معرض أعمال لوران ستوديو الحصرية
                   </span>
-                  <h3 className="font-marcellus text-2xl sm:text-3xl font-semibold text-white mt-2">{selectedProject.title}</h3>
+                  <h3 className="font-marcellus text-2xl sm:text-3xl font-semibold text-white mt-2.5 drop-shadow-md">{selectedProject.title}</h3>
                 </div>
               </div>
 

@@ -152,9 +152,9 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
           </motion.div>
         </div>
 
-        {/* Left Area Visually (Arabic Typography aligned Left for high-end feel) */}
+        {/* Left Area Visually (Arabic Typography centered on mobile, right-aligned on desktop for premium look) */}
         <div 
-          className="lg:col-span-6 flex flex-col gap-6 text-left transition-transform duration-700 ease-out"
+          className="lg:col-span-6 flex flex-col gap-6 text-center lg:text-right items-center lg:items-start transition-transform duration-700 ease-out"
           style={{
             transform: 'translate3d(calc(var(--mouse-x, 0) * 6px), calc(var(--mouse-y, 0) * 6px), 0)'
           }}
@@ -163,32 +163,32 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 w-full items-center lg:items-start"
           >
             {/* Elegant Luxury Badge */}
-            <div className="flex justify-start">
+            <div className="flex justify-center lg:justify-start w-full">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C8A97E]/30 bg-[#C8A97E]/8 text-[#C8A97E] text-[10px] font-medium tracking-widest uppercase select-none">
                 ✦ تصميم مبتكر ، تجربة استثنائية
               </span>
             </div>
 
-            {/* Main Title matching reference layout exactly */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-[#3A2B24] leading-[1.3] tracking-tight">
+            {/* Main Title matching reference layout exactly with fluid typography */}
+            <h1 className="text-fluid-h1 font-semibold text-[#3A2B24] text-center lg:text-right">
               نصنع حضوراً رقمياً
               <br />
               <span className="text-[#C8A97E]">يصنع فرقاً استثنائياً</span>
             </h1>
 
-            {/* Luxury Subtitle */}
-            <p className="max-w-lg text-[#3A2B24]/80 font-normal text-xs sm:text-sm leading-relaxed text-right">
+            {/* Luxury Subtitle with fluid scaling */}
+            <p className="max-w-lg text-[#3A2B24]/80 font-normal text-fluid-body text-center lg:text-right mx-auto lg:mx-0">
               في لوران ستوديو، نبتكر منصات رقمية فاخرة وهويات بصرية متكاملة تجسد وقار علامتك التجارية وتخلق أثراً بليغاً يعيش مع الزمن.
             </p>
 
-            {/* CTA Actions */}
-            <div className="flex flex-row items-center gap-5 mt-2">
+            {/* CTA Actions with responsive flex wrapping */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2 w-full">
               <button
                 onClick={() => handleNavClick('wizard')}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-medium shadow-sm hover:shadow-[0_0_22px_rgba(200,169,126,0.4)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer clickable-hover"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-medium shadow-sm hover:shadow-[0_0_22px_rgba(200,169,126,0.4)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer clickable-hover animate-pulse-glow"
               >
                 احجز استشارتك الآن
                 <span className="text-[#3A2B24] font-medium">✦</span>
@@ -203,31 +203,35 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
               </button>
             </div>
 
-            {/* Client stats with real elegant Unsplash avatars */}
-            <div className="flex items-center gap-3.5 mt-8 border-t border-[#C8A97E]/15 pt-6 justify-start">
+            {/* Client stats with lazy loading and high accessibility */}
+            <div className="flex flex-row items-center gap-3.5 mt-8 border-t border-[#C8A97E]/15 pt-6 justify-center lg:justify-start w-full">
               <div className="flex -space-x-3 rtl:space-x-reverse select-none">
                 <img 
+                  loading="lazy"
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" 
                   className="w-9 h-9 rounded-full border-2 border-[#FFFDF9] object-cover" 
-                  alt="Client" 
+                  alt="Client Avatar 1" 
                 />
                 <img 
+                  loading="lazy"
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" 
                   className="w-9 h-9 rounded-full border-2 border-[#FFFDF9] object-cover" 
-                  alt="Client" 
+                  alt="Client Avatar 2" 
                 />
                 <img 
+                  loading="lazy"
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" 
                   className="w-9 h-9 rounded-full border-2 border-[#FFFDF9] object-cover" 
-                  alt="Client" 
+                  alt="Client Avatar 3" 
                 />
                 <img 
+                  loading="lazy"
                   src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" 
                   className="w-9 h-9 rounded-full border-2 border-[#FFFDF9] object-cover" 
-                  alt="Client" 
+                  alt="Client Avatar 4" 
                 />
               </div>
-              <div className="flex flex-col gap-0.5 text-right md:text-left">
+              <div className="flex flex-col gap-0.5 text-right">
                 <span className="text-xs font-semibold text-[#3A2B24]">120+ عميل سعيد</span>
                 <span className="text-[9px] text-[#3A2B24]/60 font-medium">شركات وأفراد حول العالم</span>
               </div>

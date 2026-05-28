@@ -321,15 +321,16 @@ export default function ProjectWizard({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] bg-[#3A2B24]/60 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto">
-      <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
+    <div className="fixed inset-0 z-[150] bg-[#3A2B24]/60 backdrop-blur-xl overflow-y-auto py-6 sm:py-10 px-4 sm:px-6 md:px-10 flex justify-center items-start">
+      <div className="absolute inset-0 cursor-pointer fixed h-full w-full" onClick={onClose} />
       
-      <div className="relative w-full max-w-4xl bg-[#F7F2EC] rounded-[36px] border border-[#C8A97E]/20 shadow-premium p-6 md:p-10 overflow-hidden select-none z-10 my-auto text-right">
+      <div className="relative w-full max-w-4xl bg-[#F7F2EC] rounded-[28px] sm:rounded-[36px] border border-[#C8A97E]/20 shadow-premium p-5 sm:p-8 md:p-10 overflow-hidden select-none z-10 my-auto text-right">
         
         {/* Close Button top-left */}
         <button 
           onClick={onClose}
           className="absolute top-4 left-4 p-2.5 rounded-full border border-[#C8A97E]/15 bg-[#FFFDF9]/85 text-[#3A2B24] hover:bg-[#E8DDD0] transition-all cursor-pointer z-[20]"
+          aria-label="إغلاق نافذة التخطيط"
         >
           <X size={16} />
         </button>
@@ -907,7 +908,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
 
               <h3 className="font-marcellus text-2xl font-semibold text-[#3A2B24] mb-3">تم إرسال طلبك بنجاح</h3>
               <p className="text-xs sm:text-sm font-medium text-[#3A2B24] leading-relaxed mb-8">
-                لقد تم تلقي مواصفات وطلبات مشروعك **"{formData.projectName}"** بنجاح. سيقوم مهندسو التصميم والهوية بدراسة تفاصيلك وصياغة العرض التقني المخصص لك خلال 12 ساعة كحد أقصى.
+                لقد تم تلقي مواصفات وطلبات مشروعك <strong>"{formData.projectName}"</strong> بنجاح. سيقوم مهندسو التصميم والهوية بدراسة تفاصيلك وصياغة العرض التقني المخصص لك خلال 12 ساعة كحد أقصى.
               </p>
 
               {/* Receipt Summary Details */}
