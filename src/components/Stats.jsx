@@ -33,17 +33,17 @@ function StatItem({ icon: Icon, value, label, suffix = '', prefix = '', delay = 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1], delay }}
-      className="flex flex-col items-center p-6 md:p-8 rounded-[24px] border border-[#C8A97E]/12 bg-[#FFFDF9]/60 backdrop-blur-md text-center shadow-soft hover:border-[#C8A97E]/40 hover:shadow-premium transition-all duration-300 group flex-grow"
+      className="flex flex-col items-center p-6 md:p-8 rounded-[24px] border border-blue-500/10 bg-[#030B1A]/60 backdrop-blur-md text-center shadow-soft hover:border-blue-500/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300 group flex-grow"
     >
-      <div className="w-12 h-12 rounded-full bg-[#C8A97E]/10 flex items-center justify-center text-[#C8A97E] mb-4 group-hover:scale-105 group-hover:bg-[#C8A97E] group-hover:text-[#3A2B24] transition-all duration-300">
+      <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
         <Icon size={20} strokeWidth={1.5} />
       </div>
-      <span className="font-marcellus text-3xl md:text-4xl font-semibold text-[#3A2B24] mb-2 leading-none">
+      <span className="font-sans text-3xl md:text-4xl font-semibold text-white mb-2 leading-none">
         {prefix}
         {count}
         {suffix}
       </span>
-      <span className="text-xs md:text-sm font-medium text-[#3A2B24]/80">{label}</span>
+      <span className="text-xs md:text-sm font-medium text-[#94A3B8]">{label}</span>
     </motion.div>
   );
 }
@@ -59,8 +59,8 @@ export default function Stats() {
   return (
     <section id="stats" className="py-16 max-w-7xl mx-auto px-6 relative overflow-hidden select-none">
       {/* Background Soft Gradients */}
-      <div className="absolute top-[20%] left-[20%] w-[200px] h-[200px] rounded-full bg-[#C8A97E]/4 blur-[90px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[20%] w-[180px] h-[180px] rounded-full bg-[#3A2B24]/3 blur-[75px] pointer-events-none" />
+      <div className="absolute top-[20%] left-[20%] w-[200px] h-[200px] rounded-full bg-blue-600/5 blur-[90px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[20%] w-[180px] h-[180px] rounded-full bg-indigo-600/5 blur-[75px] pointer-events-none" />
 
       <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
         {statsList.map((stat, i) => (
@@ -77,3 +77,4 @@ export default function Stats() {
     </section>
   );
 }
+

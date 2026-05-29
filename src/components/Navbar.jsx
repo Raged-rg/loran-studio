@@ -67,7 +67,7 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled 
-            ? 'bg-[#F7F2EC]/85 backdrop-blur-xl border-b border-[#C8A97E]/15 shadow-soft py-3' 
+            ? 'bg-[#020817]/85 backdrop-blur-xl border-b border-blue-500/10 shadow-[0_4px_30px_rgba(0,0,0,0.2)] py-3' 
             : 'bg-transparent py-5'
         }`}
       >
@@ -77,7 +77,7 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
           <div className="flex items-center gap-3">
             <button 
               onClick={() => setIsOpen(true)}
-              className="md:hidden p-2 rounded-xl border border-[#C8A97E]/25 bg-[#FFFDF9]/80 shadow-soft text-[#3A2B24] hover:bg-[#E8DDD0] transition-all cursor-pointer"
+              className="md:hidden p-2 rounded-xl border border-blue-500/20 bg-[#030B1A]/80 shadow-md text-white hover:bg-blue-950 transition-all cursor-pointer"
               aria-label="فتح القائمة"
             >
               <Menu size={20} />
@@ -85,14 +85,14 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
 
             <button
               onClick={() => handleLinkClick('wizard')}
-              className="px-6 py-2.5 bg-[#C8A97E] text-[#3A2B24] rounded-full text-xs font-medium shadow-sm hover:shadow-[0_0_22px_rgba(200,169,126,0.4)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer"
+              className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-xs font-semibold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer"
             >
               ابدأ رحلتك الرقمية
             </button>
           </div>
 
           {/* Center Visually: Nav Links with premium sliding framer-motion active indicator */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#FFFDF9]/60 backdrop-blur-md p-1 rounded-full border border-[#C8A97E]/15 shadow-[0_4px_30px_rgba(58,43,36,0.03)] relative overflow-hidden">
+          <nav className="hidden md:flex items-center gap-1 bg-[#030B1A]/60 backdrop-blur-md p-1 rounded-full border border-blue-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.15)] relative overflow-hidden">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -102,13 +102,13 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
                   className={`relative px-4 lg:px-5 py-2.5 rounded-full text-xs font-semibold transition-all duration-500 cursor-pointer select-none active:scale-95 whitespace-nowrap ${
                     isActive
                       ? 'text-white'
-                      : 'text-[#3A2B24] hover:text-[#C8A97E]'
+                      : 'text-[#94A3B8] hover:text-[#60A5FA]'
                   } ${link.hideOnTablet ? 'hidden lg:inline-block' : 'inline-block'}`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNavbarSectionBackdrop"
-                      className="absolute inset-0 bg-[#3A2B24] rounded-full border border-[#3A2B24]/20 shadow-md z-0"
+                      className="absolute inset-0 bg-[#2563EB] rounded-full border border-blue-500/20 shadow-[0_0_12px_rgba(37,99,235,0.4)] z-0"
                       transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -120,12 +120,12 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
 
           {/* Left Side Visually: Logo brand (appears last in HTML flow) */}
           <div className="flex items-center gap-2.5 select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#C8A97E]/20 flex items-center justify-center shadow-sm bg-[#FFFDF9]/90 group-hover:scale-105 group-hover:border-[#C8A97E]/45 transition-all duration-500">
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-500/20 flex items-center justify-center shadow-sm bg-[#030B1A] group-hover:scale-105 group-hover:border-[#3B82F6]/45 transition-all duration-500">
               <img src={logoIcon} className="w-full h-full object-cover group-hover:opacity-90 transition-opacity" alt="LORAN STUDIO" />
             </div>
             <div className="flex flex-col text-right">
-              <span className="font-marcellus text-[15px] font-bold tracking-widest text-[#3A2B24] leading-none group-hover:text-[#C8A97E] transition-colors duration-500">LORAN STUDIO</span>
-              <span className="text-[8px] text-[#3A2B24]/75 font-medium mt-1 leading-none">لوران ستوديو</span>
+              <span className="font-marcellus text-[15px] font-bold tracking-widest text-white leading-none group-hover:text-[#60A5FA] transition-colors duration-500">LORAN STUDIO</span>
+              <span className="text-[8px] text-[#94A3B8] font-medium mt-1 leading-none">لوران ستوديو</span>
             </div>
           </div>
 
@@ -147,21 +147,21 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-              className="w-[280px] h-full bg-[#F7F2EC] shadow-premium flex flex-col p-6 border-l border-[#C8A97E]/15"
+              className="w-[280px] h-full bg-[#020817] shadow-2xl flex flex-col p-6 border-l border-blue-500/10"
               onClick={(e) => e.stopPropagation()}
             >
               
               {/* Close & Header */}
-              <div className="flex items-center justify-between pb-6 border-b border-[#C8A97E]/15">
+              <div className="flex items-center justify-between pb-6 border-b border-blue-500/10">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-full overflow-hidden border border-[#C8A97E]/20 flex items-center justify-center bg-[#FFFDF9]/80 shadow-sm">
+                  <div className="w-7 h-7 rounded-full overflow-hidden border border-blue-500/20 flex items-center justify-center bg-[#030B1A] shadow-sm">
                     <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
                   </div>
-                  <span className="font-marcellus font-bold text-xs tracking-widest text-[#3A2B24]">LORAN STUDIO</span>
+                  <span className="font-marcellus font-bold text-xs tracking-widest text-white">LORAN STUDIO</span>
                 </div>
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg border border-[#C8A97E]/15 text-[#3A2B24] hover:bg-[#E8DDD0] transition-all cursor-pointer"
+                  className="p-2 rounded-lg border border-blue-500/20 text-[#94A3B8] hover:bg-[#030B1A] hover:text-white transition-all cursor-pointer"
                 >
                   <X size={16} />
                 </button>
@@ -175,24 +175,24 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
                     onClick={() => handleLinkClick(link.id)}
                     className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs font-medium text-right border transition-all cursor-pointer ${
                       activeSection === link.id
-                        ? 'bg-[#3A2B24] text-white border-[#3A2B24] shadow-md'
-                        : 'bg-[#FFFDF9]/70 text-[#3A2B24] border-[#C8A97E]/10 hover:bg-[#E8DDD0] hover:text-[#C8A97E]'
+                        ? 'bg-[#2563EB] text-white border-[#2563EB] shadow-md shadow-blue-500/10'
+                        : 'bg-[#030B1A]/70 text-[#94A3B8] border-blue-500/5 hover:bg-blue-950/40 hover:text-[#60A5FA]'
                     }`}
                   >
                     <span>{link.label}</span>
-                    <span className={`text-[10px] ${activeSection === link.id ? 'text-[#C8A97E]' : 'text-[#3A2B24]/40'}`}>‹</span>
+                    <span className={`text-[10px] ${activeSection === link.id ? 'text-[#60A5FA]' : 'text-[#94A3B8]/40'}`}>‹</span>
                   </button>
                 ))}
               </nav>
 
               {/* Drawer Footer Call to action */}
-              <div className="mt-auto flex flex-col gap-3 pt-6 border-t border-[#C8A97E]/15">
+              <div className="mt-auto flex flex-col gap-3 pt-6 border-t border-blue-500/10">
                 <button
                   onClick={() => handleLinkClick('wizard')}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-[#C8A97E] text-[#3A2B24] rounded-xl text-xs font-medium shadow-sm hover:shadow-[0_0_20px_rgba(200,169,126,0.35)] border border-[#C8A97E]/20 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl text-xs font-medium shadow-[0_0_12px_rgba(37,99,235,0.2)] border border-blue-500/20 cursor-pointer"
                 >
                   ابدأ رحلتك الرقمية
-                  <ArrowUpRight size={12} className="text-[#3A2B24]" />
+                  <ArrowUpRight size={12} className="text-white" />
                 </button>
               </div>
 

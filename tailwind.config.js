@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#F7F2EC',
-        'soft-beige': '#E8DDD0',
-        'light-beige': '#FFFDF9',
-        'warm-brown': '#3A2B24',
-        'dark-brown': '#3A2B24',
-        gold: '#C8A97E',
-        copper: '#C8A97E',
+        cream: '#020817',
+        'soft-beige': '#071224',
+        'light-beige': '#030B1A',
+        'warm-brown': '#E5E7EB',
+        'dark-brown': '#020817',
+        gold: '#3B82F6',
+        copper: '#2563EB',
       },
       fontFamily: {
         sans: ["'Plus Jakarta Sans'", "'Cairo'", "'IBM Plex Sans Arabic'", "sans-serif"],
@@ -25,8 +25,8 @@ export default {
         cairo: ["'Cairo'", "sans-serif"],
       },
       boxShadow: {
-        'soft': '0 12px 30px rgba(122, 74, 42, 0.035)',
-        'premium': '0 20px 50px rgba(122, 74, 42, 0.06)',
+        'soft': '0 12px 30px rgba(37, 99, 235, 0.035)',
+        'premium': '0 20px 50px rgba(37, 99, 235, 0.08)',
       },
       borderRadius: {
         'xl': '32px',

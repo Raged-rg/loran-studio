@@ -55,9 +55,9 @@ export default function BottomNav({ activeSection, setActiveSection, onOpenWizar
       
       {/* Dock container */}
       <div 
-        className="mx-auto max-w-md h-[68px] glass-card rounded-2xl flex items-center justify-around px-3 border border-[#C8A97E]/15 shadow-premium"
+        className="mx-auto max-w-md h-[68px] glass-card rounded-2xl flex items-center justify-around px-3 border border-blue-500/15 shadow-[0_-8px_30px_rgba(0,0,0,0.3)]"
         style={{
-          background: 'rgba(255, 253, 249, 0.85)',
+          background: 'rgba(2, 8, 23, 0.85)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)'
         }}
@@ -77,20 +77,20 @@ export default function BottomNav({ activeSection, setActiveSection, onOpenWizar
               {isActive && (
                 <motion.div
                   layoutId="bottomActive"
-                  className="absolute inset-0.5 bg-gradient-to-tr from-[#C8A97E]/12 to-[#3A2B24]/5 rounded-xl border border-[#C8A97E]/30"
+                  className="absolute inset-0.5 bg-gradient-to-tr from-[#2563EB]/15 to-[#3B82F6]/5 rounded-xl border border-blue-500/30"
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
 
               {/* Icon */}
-              <div className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-[#C8A97E]' : 'text-[#3A2B24]/60'}`}>
+              <div className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-[#60A5FA]' : 'text-[#94A3B8]/60'}`}>
                 <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
               </div>
 
               {/* Text Label */}
               <span 
                 className={`relative z-10 text-[9px] font-semibold mt-1 select-none transition-colors duration-300 ${
-                  isActive ? 'text-[#3A2B24]' : 'text-[#3A2B24]/50'
+                  isActive ? 'text-white' : 'text-[#94A3B8]/50'
                 }`}
               >
                 {item.label}
@@ -98,7 +98,7 @@ export default function BottomNav({ activeSection, setActiveSection, onOpenWizar
 
               {/* Glowing Top Active Dot */}
               {isActive && (
-                <span className="absolute -top-1 w-1.5 h-1.5 rounded-full bg-[#C8A97E] shadow-lg shadow-[#C8A97E]/50" />
+                <span className="absolute -top-1 w-1.5 h-1.5 rounded-full bg-[#2563EB] shadow-lg shadow-blue-500/50" />
               )}
             </button>
           );
