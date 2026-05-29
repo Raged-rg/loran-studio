@@ -96,7 +96,8 @@ export default function BeforeAfter() {
           </div>
         </div>
 
-        {/* Right Side (Desktop): Text        <div className="lg:col-span-5 flex flex-col gap-6 text-right lg:text-right">
+        {/* Right Side (Desktop): Text */}
+        <div className="lg:col-span-5 flex flex-col gap-6 text-right lg:text-right">
           <div className="flex justify-end">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/8 text-[#60A5FA] text-[10px] font-medium tracking-widest uppercase">
               <Sparkles size={10} />
@@ -136,12 +137,6 @@ export default function BeforeAfter() {
             >
               <span>عرض المزيد من دراسات الحالة</span>
               <MoveLeft size={14} className="text-white" />
-            </a>
-          </div>
-        </div>9] text-xs font-medium text-[#3A2B24] hover:bg-[#E8DDD0] hover:shadow-[0_0_15px_rgba(200,169,126,0.25)] transition-all duration-500 shadow-soft"
-            >
-              <span>عرض المزيد من دراسات الحالة</span>
-              <MoveLeft size={14} className="text-[#3A2B24]" />
             </a>
           </div>
         </div>
