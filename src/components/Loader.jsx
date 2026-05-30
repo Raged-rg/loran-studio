@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 
 export default function Loader() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const ua = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
