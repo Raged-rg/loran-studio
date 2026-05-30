@@ -65,27 +65,27 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
   return (
     <>
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex items-center ${
           scrolled 
-            ? 'bg-[#020817]/85 backdrop-blur-xl border-b border-blue-500/10 shadow-[0_4px_30px_rgba(0,0,0,0.2)] py-2' 
-            : 'bg-transparent py-3.5'
+            ? 'bg-[#020817]/85 backdrop-blur-xl border-b border-blue-500/10 shadow-[0_4px_30px_rgba(0,0,0,0.2)] h-[48px] md:h-[54px]' 
+            : 'bg-transparent h-[56px] md:h-[64px]'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between w-full">
           
           {/* Right Side Visually: CTA button & hamburger on mobile/tablet (appears first in RTL html flow) */}
           <div className="flex items-center gap-2.5">
             <button 
               onClick={() => setIsOpen(true)}
-              className="md:hidden p-1.5 rounded-lg border border-blue-500/20 bg-[#030B1A]/80 shadow-md text-white hover:bg-blue-950 transition-all cursor-pointer"
+              className="md:hidden w-8.5 h-8.5 rounded-lg border border-blue-500/20 bg-[#030B1A]/80 shadow-md text-white hover:bg-blue-950 transition-all cursor-pointer flex items-center justify-center"
               aria-label="فتح القائمة"
             >
-              <Menu size={18} />
+              <Menu size={16} />
             </button>
 
             <button
               onClick={() => handleLinkClick('wizard')}
-              className="px-3.5 sm:px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-[11px] font-bold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer"
+              className="h-[32px] sm:h-[36px] px-3.5 sm:px-5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-[10px] md:text-[11px] font-bold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer flex items-center justify-center whitespace-nowrap"
             >
               <span className="hidden sm:inline">ابدأ رحلتك الرقمية</span>
               <span className="inline sm:hidden">ابدأ الآن</span>
@@ -93,14 +93,14 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
           </div>
 
           {/* Center Visually: Nav Links with premium sliding framer-motion active indicator */}
-          <nav className="hidden md:flex items-center gap-0.5 bg-[#030B1A]/60 backdrop-blur-md p-1 rounded-full border border-blue-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.15)] relative overflow-hidden">
+          <nav className="hidden md:flex items-center gap-0.5 bg-[#030B1A]/60 backdrop-blur-md p-1 rounded-full border border-blue-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.15)] relative overflow-hidden h-[36px]">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`relative px-3.5 lg:px-4.5 py-1.5 rounded-full text-[11px] font-bold transition-all duration-500 cursor-pointer select-none active:scale-95 whitespace-nowrap ${
+                  className={`relative px-3.5 lg:px-4.5 h-full rounded-full text-[10px] md:text-[11px] font-bold transition-all duration-500 cursor-pointer select-none active:scale-95 whitespace-nowrap flex items-center justify-center ${
                     isActive
                       ? 'text-white'
                       : 'text-[#94A3B8] hover:text-[#60A5FA]'
@@ -123,7 +123,7 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
           <div className="flex items-center select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
             <img 
               src={logo} 
-              className="h-6.5 sm:h-7.5 md:h-8.5 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" 
+              className="h-[26px] sm:h-[30px] md:h-[34px] w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" 
               alt="SADEEM | سديم" 
             />
           </div>
