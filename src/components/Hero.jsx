@@ -133,10 +133,10 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2 w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2 w-full">
               <button
                 onClick={() => handleNavClick('wizard')}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-xs font-bold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 cursor-pointer clickable-hover"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-xs font-bold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 cursor-pointer clickable-hover"
               >
                 ابدأ مشروعك
                 <span className="text-white font-medium">✦</span>
@@ -144,7 +144,7 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
 
               <button
                 onClick={() => handleNavClick('portfolio')}
-                className="inline-flex items-center justify-center gap-1.5 py-3.5 text-xs font-semibold text-[#94A3B8] hover:text-[#60A5FA] transition-colors cursor-pointer clickable-hover border-b border-transparent hover:border-[#60A5FA] duration-300"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 py-3.5 text-xs font-semibold text-[#94A3B8] hover:text-[#60A5FA] transition-colors cursor-pointer clickable-hover border-b border-transparent hover:border-[#60A5FA] duration-300"
               >
                 استكشف أعمالنا
                 <span className="text-xs">➔</span>
