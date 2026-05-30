@@ -125,7 +125,7 @@ export default function Portfolio() {
  
         <div className="self-end">
           <a 
-            href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%20%D8%B9%D9%84%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20LORAN%20STUDIO%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84%D8%A9%20%D9%88%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9."
+            href={`https://wa.me/9647842272224?text=${encodeURIComponent("مرحباً، أرغب بالاطلاع على معرض أعمال SADEEM الكاملة ومناقشة تفاصيل المشاريع.")}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-blue-500/20 bg-[#030B1A] text-xs font-medium text-white shadow-soft hover:shadow-[0_0_15px_rgba(37,99,235,0.2)] hover:bg-[#071224] transition-all duration-500"
@@ -286,7 +286,7 @@ export default function Portfolio() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020817]/95 via-transparent to-transparent flex flex-col justify-end p-6 md:p-8 text-right pointer-events-none">
                   <span className="text-[10px] text-white/90 bg-[#030B1A]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-blue-500/20 w-fit font-medium uppercase tracking-widest">
-                    معرض أعمال لوران ستوديو الحصرية
+                    معرض أعمال SADEEM الحصرية
                   </span>
                   <h3 className="font-marcellus text-2xl sm:text-3xl font-semibold text-white mt-2.5 drop-shadow-md">{selectedProject.title}</h3>
                 </div>
@@ -354,7 +354,7 @@ export default function Portfolio() {
                 </div>
  
                 {/* Modal CTA actions */}
-                <div className="flex items-center gap-3 border-t border-blue-500/15 pt-6 mt-6">
+                <div className="flex flex-col sm:flex-row items-center gap-3 border-t border-blue-500/15 pt-6 mt-6 w-full">
                   <button
                     onClick={() => {
                       setSelectedProject(null);
@@ -368,7 +368,7 @@ export default function Portfolio() {
                   </button>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="hidden sm:inline-block py-3.5 px-6 border border-blue-500/15 bg-[#030B1A]/80 rounded-xl text-xs font-medium text-white shadow-soft hover:bg-blue-950 transition-all duration-500 active:scale-95 cursor-pointer"
+                    className="w-full sm:w-auto hidden sm:inline-block py-3.5 px-6 border border-blue-500/15 bg-[#030B1A]/80 rounded-xl text-xs font-medium text-white shadow-soft hover:bg-blue-950 transition-all duration-500 active:scale-95 cursor-pointer"
                   >
                     رجوع للمعرض
                   </button>

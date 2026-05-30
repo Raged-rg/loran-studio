@@ -35,15 +35,15 @@ export default function Process() {
     <section id="process" className="py-20 max-w-5xl mx-auto px-6 relative">
       
       {/* Background glowing line */}
-      <div className="absolute top-1/4 bottom-1/4 right-[38px] md:right-1/2 w-[2px] bg-gradient-to-b from-[#C89B5B]/10 via-[#7A4A2A]/40 to-[#C89B5B]/10 pointer-events-none hidden md:block" />
+      <div className="absolute top-1/4 bottom-1/4 right-[38px] md:right-1/2 w-[2px] bg-gradient-to-b from-[#2563EB]/10 via-[#3B82F6]/40 to-[#2563EB]/10 pointer-events-none hidden md:block" />
 
       {/* Headings */}
       <div className="text-center flex flex-col items-center gap-3 mb-16">
-        <span className="px-4 py-1.5 rounded-full border border-[#C89B5B]/30 bg-[#C89B5B]/8 text-[#C89B5B] font-extrabold text-xs tracking-wider">
+        <span className="px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/8 text-[#60A5FA] font-extrabold text-xs tracking-wider">
           خارطة الطريق للإبداع
         </span>
-        <h2 className="font-marcellus text-3xl md:text-4xl font-extrabold text-[#2B1A12]">خطوات عملنا الإستراتيجية</h2>
-        <p className="max-w-xl text-[#7A4A2A] font-bold text-sm leading-relaxed">
+        <h2 className="font-marcellus text-3xl md:text-4xl font-extrabold text-white">خطوات عملنا الإستراتيجية</h2>
+        <p className="max-w-xl text-[#94A3B8] font-bold text-sm leading-relaxed">
           نتبع منهجية علمية وفنية صارمة في تنفيذ مشروعك، لنضمن لك تجربة إطلاق فاخرة خالية تماماً من العقبات أو الأخطاء.
         </p>
       </div>
@@ -67,8 +67,8 @@ export default function Process() {
             >
               
               {/* Step indicator node on central line */}
-              <div className="absolute right-[16px] md:right-1/2 md:translate-x-1/2 top-4 w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7A4A2A] to-[#2B1A12] border-2 border-[#C89B5B] flex items-center justify-center text-white shadow-lg z-10 select-none">
-                <StepIcon size={14} className="text-[#C89B5B]" />
+              <div className="absolute right-[16px] md:right-1/2 md:translate-x-1/2 top-4 w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-950 to-slate-950 border-2 border-blue-500 flex items-center justify-center text-white shadow-lg z-10 select-none">
+                <StepIcon size={14} className="text-[#60A5FA]" />
               </div>
 
               {/* Grid block placeholders */}
@@ -76,16 +76,16 @@ export default function Process() {
 
               {/* Step content card */}
               <div className="w-full md:w-1/2 pr-12 md:pr-0 md:px-8">
-                <div className="glass-card rounded-2xl p-6 border border-[#7A4A2A]/10 hover:border-[#C89B5B] hover:shadow-soft transition-all duration-300 group relative">
+                <div className="glass-card rounded-2xl p-6 border border-blue-500/10 hover:border-[#3B82F6] hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all duration-300 group relative">
                   
                   {/* Glowing micro dot */}
-                  <span className="absolute top-4 left-4 w-2.5 h-2.5 rounded-full bg-[#C89B5B]/30 group-hover:bg-[#C89B5B]" />
+                  <span className="absolute top-4 left-4 w-2.5 h-2.5 rounded-full bg-blue-500/30 group-hover:bg-[#3B82F6]" />
 
-                  <h3 className="font-marcellus text-lg font-bold text-[#2B1A12] mb-3 group-hover:text-[#C89B5B] transition-colors text-right">
+                  <h3 className="font-marcellus text-lg font-bold text-white mb-3 group-hover:text-[#60A5FA] transition-colors text-right">
                     {step.title}
                   </h3>
 
-                  <p className="text-xs text-[#7A4A2A]/90 font-bold leading-relaxed text-right">
+                  <p className="text-xs text-[#94A3B8] font-bold leading-relaxed text-right">
                     {step.desc}
                   </p>
                 </div>

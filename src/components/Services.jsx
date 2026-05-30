@@ -177,7 +177,7 @@ export default function Services() {
       {/* Left-aligned Services Link */}
       <div className="flex justify-start mt-10 relative z-10 px-2">
         <a 
-          href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D9%88%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20LORAN%20STUDIO%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84%D8%A9."
+          href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D9%88%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20SADEEM%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84%D8%A9."
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 text-xs font-medium text-[#94A3B8] hover:text-[#60A5FA] transition-colors border-b border-transparent hover:border-[#60A5FA] pb-0.5 duration-500"
@@ -220,7 +220,7 @@ export default function Services() {
                   <ServiceIcon2D type={selectedService.type} />
                 </div>
                 <div className="text-center md:text-right flex flex-col gap-1">
-                  <span className="text-[10px] text-[#60A5FA] font-medium tracking-widest uppercase">لوران ستوديو • تفاصيل الخدمة النخبوية</span>
+                  <span className="text-[10px] text-[#60A5FA] font-medium tracking-widest uppercase">سديم • تفاصيل الخدمة النخبوية</span>
                   <h3 className="font-marcellus text-2xl font-semibold text-white">{selectedService.title}</h3>
                   <p className="text-xs text-[#94A3B8] font-normal leading-relaxed">{selectedService.details.accent}</p>
                 </div>
@@ -242,9 +242,9 @@ export default function Services() {
                 </div>
               </div>
  
-              {/* Why Loran block */}
+              {/* Why Sadeem block */}
               <div className="p-4 bg-[#2563EB]/5 rounded-xl border border-blue-500/15 text-xs font-normal text-white leading-relaxed mb-8">
-                <span className="text-[#60A5FA] block font-semibold mb-1">لماذا لوران ستوديو في هذه الخدمة؟</span>
+                <span className="text-[#60A5FA] block font-semibold mb-1">لماذا سديم في هذه الخدمة؟</span>
                 {selectedService.details.why}
               </div>
  

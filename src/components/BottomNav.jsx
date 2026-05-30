@@ -18,7 +18,7 @@ export default function BottomNav({ activeSection, setActiveSection, onOpenWizar
     }
 
     if (id === 'contact') {
-      const element = document.getElementById('cta');
+      const element = document.getElementById('contact');
       if (element) {
         const offset = 80;
         const bodyRect = document.body.getBoundingClientRect().top;

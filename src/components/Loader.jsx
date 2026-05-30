@@ -57,9 +57,9 @@ export default function Loader() {
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-2 rounded-full border border-double border-[#3B82F6]/40"
               />
-              {/* Central Premium Golden Seal */}
+              {/* Central Premium Seal */}
               <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center border border-blue-500/20 bg-[#030B1A]/40 backdrop-blur-md shadow-sm">
-                <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN Seal" />
+                <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM Seal" />
               </div>
             </div>
  
@@ -69,9 +69,9 @@ export default function Loader() {
                 initial={{ letterSpacing: '4px', opacity: 0 }}
                 animate={{ letterSpacing: '2px', opacity: 1 }}
                 transition={{ duration: 1.0, delay: 0.2 }}
-                className="font-marcellus text-3xl font-extrabold text-white uppercase tracking-[2px]"
+                className="font-sans text-3xl font-extrabold text-white uppercase tracking-[2px]"
               >
-                LORAN STUDIO
+                SADEEM
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 10 }}
@@ -79,7 +79,7 @@ export default function Loader() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="text-[#60A5FA] font-bold text-sm tracking-wide"
               >
-                لوران ستوديو • الفخامة الرقمية
+                سديم • الفخامة الرقمية
               </motion.p>
             </div>
  
@@ -98,3 +98,4 @@ export default function Loader() {
     </AnimatePresence>
   );
 }
+

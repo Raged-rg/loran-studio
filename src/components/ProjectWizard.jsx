@@ -477,7 +477,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                       required
                       value={formData.projectName}
                       onChange={(e) => handleInputChange('projectName', e.target.value)}
-                      placeholder="مثال: لوران فاشن، نجد للمقاولات"
+                      placeholder="مثال: سديم فاشن، نجد للمقاولات"
                     />
                     <FloatingInput
                       label="نوع النشاط التجاري"
@@ -659,7 +659,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
                 >
                   <div className="mb-4">
                     <h3 className="font-marcellus text-lg sm:text-xl font-semibold text-white">معلومات الاتصال بك</h3>
-                    <p className="text-xs text-[#94A3B8] font-medium mt-1">كيف يمكن لمستشار الهوية الرقمية في لوران التواصل معك لعرض التفاصيل؟</p>
+                    <p className="text-xs text-[#94A3B8] font-medium mt-1">كيف يمكن لمستشار الهوية الرقمية في سديم التواصل معك لعرض التفاصيل؟</p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -943,7 +943,7 @@ export default function ProjectWizard({ isOpen, onClose }) {
               <div className="flex flex-col gap-3 w-full">
                 <a
                   href={`https://wa.me/9647842272224?text=${encodeURIComponent(
-                    `مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي.
+                    `مرحباً، أرغب بالاستفسار عن خدمات SADEEM وتنفيذ مشروع احترافي.
 
 * تفاصيل الطلب المقدم:
 - الاسم: ${formData.clientName || 'غير مدخل'}

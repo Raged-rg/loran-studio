@@ -4,7 +4,7 @@ import { MessageSquare, ArrowLeft } from 'lucide-react';
 import logoIcon from '../assets/logo-icon.png';
 
 export default function CTA({ setActiveSection, onOpenWizard }) {
-  const whatsappUrl = `https://wa.me/9647842272224?text=${encodeURIComponent('مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتنفيذ مشروع احترافي.')}`;
+  const whatsappUrl = `https://wa.me/9647842272224?text=${encodeURIComponent('مرحباً، أرغب بالاستفسار عن خدمات SADEEM وتنفيذ مشروع احترافي.')}`;
 
   return (
     <section id="cta" className="py-24 max-w-7xl mx-auto px-6 relative overflow-hidden select-none">
@@ -78,14 +78,14 @@ export default function CTA({ setActiveSection, onOpenWizard }) {
               <path id="circlePath" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
               <text>
                 <textPath href="#circlePath" spacing="auto" startOffset="0%">
-                  ✦ LORAN STUDIO ✦ LUXURY DIGITAL EXPERIENCE ✦
+                  ✦ SADEEM ✦ LUXURY DIGITAL EXPERIENCE ✦
                 </textPath>
               </text>
             </svg>
           </motion.div>
 
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-blue-500/30 bg-[#071224] shadow-[0_0_30px_rgba(59,130,246,0.2)] p-2 flex items-center justify-center hover:scale-105 transition-transform duration-300">
-            <img src={logoIcon} className="w-full h-full object-cover rounded-full" alt="LORAN STUDIO SEAL" />
+            <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%] rounded-full" alt="SADEEM SEAL" />
           </div>
         </div>
 

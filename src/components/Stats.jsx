@@ -33,7 +33,7 @@ function StatItem({ icon: Icon, value, label, suffix = '', prefix = '', delay = 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1], delay }}
-      className="flex flex-col items-center p-6 md:p-8 rounded-[24px] border border-blue-500/10 bg-[#030B1A]/60 backdrop-blur-md text-center shadow-soft hover:border-blue-500/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300 group flex-grow"
+      className="flex flex-col items-center p-4 sm:p-6 md:p-8 rounded-[24px] border border-blue-500/10 bg-[#030B1A]/60 backdrop-blur-md text-center shadow-soft hover:border-blue-500/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300 group flex-grow"
     >
       <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
         <Icon size={20} strokeWidth={1.5} />

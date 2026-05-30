@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowLeft, Play, Calendar, Users, FolderCheck, Clock, Heart, Award } from 'lucide-react';
-import logoIcon from '../assets/logo-icon.png';
+import { ArrowLeft } from 'lucide-react';
 import heroWorkspace from '../assets/hero-workspace.png';
 
 // Reusable Scroll-Triggered smooth 60FPS counter component
@@ -86,75 +85,63 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
     <section 
       ref={sectionRef}
       id="home" 
-      className="relative min-h-[92vh] md:min-h-screen pt-24 pb-16 flex flex-col justify-center max-w-7xl mx-auto px-6 overflow-hidden select-none"
+      className="relative min-h-[92vh] md:min-h-screen pt-20 md:pt-28 pb-12 md:pb-20 flex flex-col justify-center max-w-7xl mx-auto px-6 overflow-hidden select-none"
     >
       
       {/* Background Animated Gradient Blobs with smooth Parallax shifts */}
       <div 
-        className="absolute top-[20%] left-[10%] w-[250px] h-[250px] rounded-full bg-[#2563EB]/8 blur-[85px] pointer-events-none transition-transform duration-700 ease-out"
+        className="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-[#2563EB]/5 blur-[95px] pointer-events-none transition-transform duration-700 ease-out"
         style={{
           transform: 'translate3d(calc(var(--mouse-x, 0) * 20px), calc(var(--mouse-y, 0) * 20px), 0)'
         }}
       />
       <div 
-        className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-[#1D4ED8]/6 blur-[100px] pointer-events-none transition-transform duration-700 ease-out"
+        className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full bg-[#1D4ED8]/4 blur-[110px] pointer-events-none transition-transform duration-700 ease-out"
         style={{
           transform: 'translate3d(calc(var(--mouse-x, 0) * -18px), calc(var(--mouse-y, 0) * -18px), 0)'
         }}
       />
 
-      {/* Main Grid: Left Typography (visually left/order-last in RTL), Right Scene (visually right/order-first in RTL) */}
+      {/* Main Grid: Left Typography, Right Scene */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mt-6">
         
-        {/* Right Area Visually (Reception desk scene - placed first in HTML to float to the right) */}
+        {/* Right Area Visually (Floating Laptop Visual - placed first in HTML to float to the right in RTL) */}
         <div 
-          className="lg:col-span-6 flex justify-center items-center select-none transition-transform duration-700 ease-out"
+          className="lg:col-span-7 flex justify-center items-center select-none transition-transform duration-700 ease-out z-10 gpu-accelerated"
           style={{
             transform: 'translate3d(calc(var(--mouse-x, 0) * -12px), calc(var(--mouse-y, 0) * -12px), 0)'
           }}
         >
           <motion.div 
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
-            className="w-full flex justify-center items-center"
+            className="w-full flex justify-center items-center relative"
           >
-            <div className="relative w-full max-w-xl aspect-square flex items-center justify-center">
-              
-              {/* Outer Rotating Dotted Borders for architectural depth */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-[#2563EB]/25 animate-[spin_60s_linear_infinite]" />
-              <div className="absolute inset-6 rounded-full border border-blue-500/10 animate-[spin_45s_linear_infinite_reverse]" />
-              
-              {/* Soft Ambient Blue Glow behind the visual */}
-              <div className="absolute inset-16 rounded-full bg-[#3B82F6]/10 blur-3xl pointer-events-none" />
- 
-              {/* Premium Creative Workspace Mockup Card */}
-              <div className="relative w-[92%] h-[92%] rounded-[48px] border border-blue-500/20 bg-[#030B1A]/35 backdrop-blur-md p-3.5 shadow-premium animate-float overflow-hidden flex items-center justify-center group">
-                <div className="absolute inset-0 rounded-[48px] border border-white/10 pointer-events-none z-10" />
-                
-                {/* Luxury Mockup Image with smooth zoom interaction on hover */}
-                <div className="w-full h-full rounded-[36px] overflow-hidden shadow-inner relative">
-                  <img 
-                    src={heroWorkspace} 
-                    className="w-full h-full object-cover transform scale-100 group-hover:scale-[1.03] transition-transform duration-1000 ease-out select-none" 
-                    alt="LORAN STUDIO Reception Desk" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#020817]/40 via-transparent to-transparent pointer-events-none" />
-                </div>
- 
-                {/* Minimal Luxury Monogram Badge floating over the mockup */}
-                <div className="absolute -bottom-2 -left-2 w-20 h-20 rounded-full border border-blue-500/25 bg-[#030B1A]/90 backdrop-blur-md shadow-premium p-1.5 flex items-center justify-center animate-[float_4s_ease-in-out_infinite_reverse] hover:scale-105 transition-all">
-                  <img src={logoIcon} className="w-full h-full object-cover rounded-full" alt="L Monogram" />
-                </div>
-              </div>
+            {/* Soft Ambient Cyber Blue Glows behind the visual - Layered Depth */}
+            <div className="absolute w-[95%] h-[80%] rounded-full bg-gradient-to-tr from-[#3B82F6]/18 to-[#2563EB]/15 blur-[100px] pointer-events-none" />
+            <div className="absolute w-[75%] h-[60%] rounded-full bg-[#1D4ED8]/10 blur-[80px] pointer-events-none" />
 
+            {/* Seamless Cinematic Laptop Presentation - Fully Frame-Free & Floating */}
+            <div 
+              className="relative w-full max-w-3xl lg:max-w-[130%] xl:max-w-[140%] h-auto overflow-hidden group flex items-center justify-center pointer-events-none"
+              style={{
+                maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 96%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 96%)'
+              }}
+            >
+              <img 
+                src={heroWorkspace} 
+                className="w-full h-auto object-contain transform scale-100 group-hover:scale-[1.01] transition-transform duration-1000 ease-out select-none pointer-events-none" 
+                alt="SADEEM Workspace Scene" 
+              />
             </div>
           </motion.div>
         </div>
 
-        {/* Left Area Visually (Arabic Typography centered on mobile, right-aligned on desktop for premium look) */}
+        {/* Left Area Visually (Arabic Typography) */}
         <div 
-          className="lg:col-span-6 flex flex-col gap-6 text-center lg:text-right items-center lg:items-start transition-transform duration-700 ease-out"
+          className="lg:col-span-5 flex flex-col gap-6 text-center lg:text-right items-center lg:items-start transition-transform duration-700 ease-out gpu-accelerated"
           style={{
             transform: 'translate3d(calc(var(--mouse-x, 0) * 6px), calc(var(--mouse-y, 0) * 6px), 0)'
           }}
@@ -174,36 +161,36 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
  
             {/* Main Title matching reference layout exactly with fluid typography */}
             <h1 className="text-fluid-h1 font-semibold text-white text-center lg:text-right">
-              نصنع حضوراً رقمياً
+              نحول الأفكار إلى
               <br />
-              <span className="text-[#3B82F6]">يصنع فرقاً استثنائياً</span>
+              <span className="text-[#3B82F6] font-bold">تجارب رقمية استثنائية</span>
             </h1>
  
             {/* Luxury Subtitle with fluid scaling */}
-            <p className="max-w-lg text-[#94A3B8] font-normal text-fluid-body text-center lg:text-right mx-auto lg:mx-0">
-              في لوران ستوديو، نبتكر منصات رقمية فاخرة وهويات بصرية متكاملة تجسد وقار علامتك التجارية وتخلق أثراً بليغاً يعيش مع الزمن.
+            <p className="max-w-lg text-[#94A3B8] font-normal text-fluid-body text-center lg:text-right mx-auto lg:mx-0 leading-relaxed">
+              نحن سديم. نصمم ونطور حلولاً رقمية ذكية تساعد العلامات التجارية على النمو في العالم الرقمي.
             </p>
  
             {/* CTA Actions with responsive flex wrapping */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2 w-full">
               <button
                 onClick={() => handleNavClick('wizard')}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-xs font-medium shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer clickable-hover animate-pulse-glow"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full text-xs font-semibold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_22px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 cursor-pointer clickable-hover animate-pulse-glow"
               >
-                احجز استشارتك الآن
+                ابدأ مشروعك
                 <span className="text-white font-medium">✦</span>
               </button>
  
               <button
                 onClick={() => handleNavClick('portfolio')}
-                className="inline-flex items-center justify-center gap-1.5 py-3 text-xs font-medium text-[#94A3B8] hover:text-[#60A5FA] transition-colors cursor-pointer clickable-hover border-b border-transparent hover:border-[#60A5FA] duration-500"
+                className="inline-flex items-center justify-center gap-1.5 py-3 text-xs font-semibold text-[#94A3B8] hover:text-[#60A5FA] transition-colors cursor-pointer clickable-hover border-b border-transparent hover:border-[#60A5FA] duration-500"
               >
-                اكتشف أعمالنا المميزة
+                استكشف أعمالنا
                 <span className="text-xs">➔</span>
               </button>
             </div>
  
-            {/* Client stats with lazy loading and high accessibility */}
+            {/* Client stats with lazy loading */}
             <div className="flex flex-row items-center gap-3.5 mt-8 border-t border-blue-500/10 pt-6 justify-center lg:justify-start w-full">
               <div className="flex -space-x-3 rtl:space-x-reverse select-none">
                 <img 
@@ -232,7 +219,9 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
                 />
               </div>
               <div className="flex flex-col gap-0.5 text-right">
-                <span className="text-xs font-semibold text-white">120+ عميل سعيد</span>
+                <span className="text-xs font-semibold text-white">
+                  <AnimatedCounter value="120" suffix="+" /> عميل سعيد
+                </span>
                 <span className="text-[9px] text-[#94A3B8] font-medium">شركات وأفراد حول العالم</span>
               </div>
             </div>
@@ -262,3 +251,4 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
     </section>
   );
 }
+

@@ -113,31 +113,31 @@ export default function ThreeDIcons({ type = 'bag' }) {
 
       // --- BRAND MATERIAL SYSTEM ---
       const goldMaterial = new THREE.MeshStandardMaterial({
-        color: 0xC89B5B,
+        color: 0x60A5FA, // Ice blue neon
         metalness: 0.95,
         roughness: 0.12
       });
 
       const copperMaterial = new THREE.MeshStandardMaterial({
-        color: 0xB87333,
+        color: 0x2563EB, // Royal blue metallic
         metalness: 0.95,
         roughness: 0.18
       });
 
       const darkMaterial = new THREE.MeshStandardMaterial({
-        color: 0x2B1A12,
+        color: 0x030B1A, // Obsidian cyber black
         metalness: 0.35,
         roughness: 0.25
       });
 
       const glassMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0xEADCCB,
+        color: 0x60A5FA, // Cyber glass
         metalness: 0.05,
         roughness: 0.08,
-        transmission: 0.8,
-        thickness: 0.25,
+        transmission: 0.9,
+        thickness: 0.3,
         transparent: true,
-        opacity: 0.75
+        opacity: 0.8
       });
 
       // --- PREMIUM MINIMAL 3D GEOMETRY SYSTEM ---
@@ -404,14 +404,14 @@ export default function ThreeDIcons({ type = 'bag' }) {
       }
 
       // Cinematic Luxury Light System
-      const ambientLight = new THREE.AmbientLight(0xFFFAF5, 1.4); // Bright luxury warm ambient
+      const ambientLight = new THREE.AmbientLight(0xE0F2FE, 1.4); // Cool ice-blue ambient
       scene.add(ambientLight);
 
       const dirLight = new THREE.DirectionalLight(0xFFFFFF, 2.2); // Intense clean main light
       dirLight.position.set(2, 4, 3);
       scene.add(dirLight);
 
-      const backlight = new THREE.DirectionalLight(0xC89B5B, 1.2); // Gold key rim backlight
+      const backlight = new THREE.DirectionalLight(0x3B82F6, 2.0); // Neon blue key rim backlight
       backlight.position.set(-2, -4, -3);
       scene.add(backlight);
 
@@ -448,7 +448,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
       animate();
 
     } catch (err) {
-      console.warn("Loran Studio - ThreeDIcons error caught in initialization:", err);
+      console.warn("Sadeem - ThreeDIcons error caught in initialization:", err);
       setHas3DError(true);
     }
 
@@ -459,7 +459,7 @@ export default function ThreeDIcons({ type = 'bag' }) {
         if (handleVisibilityChange) document.removeEventListener('visibilitychange', handleVisibilityChange);
         if (renderer) renderer.dispose();
       } catch (e) {
-        console.warn("Loran Studio - ThreeDIcons cleanup warning:", e);
+        console.warn("Sadeem - ThreeDIcons cleanup warning:", e);
       }
     };
   }, [isInViewport, type]);
@@ -478,17 +478,17 @@ export default function ThreeDIcons({ type = 'bag' }) {
     return (
       <div 
         ref={containerRef}
-        className="w-[120px] h-[120px] flex items-center justify-center bg-[#FFFBF7]/40 rounded-3xl border border-[#7A4A2A]/10 shadow-soft transition-all select-none mx-auto relative group overflow-hidden"
+        className="w-[120px] h-[120px] flex items-center justify-center bg-[#030B1A]/40 rounded-3xl border border-blue-500/10 shadow-soft transition-all select-none mx-auto relative group overflow-hidden"
       >
         {/* Soft background glow */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#C89B5B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
         
-        <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#FFFBF7] to-[#F4ECE3] border border-[#C89B5B]/25 flex items-center justify-center text-[#7A4A2A] shadow-md group-hover:text-[#C89B5B] group-hover:scale-105 group-hover:border-[#C89B5B]/40 transition-all duration-300 relative z-10">
+        <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#020817] to-[#071224] border border-blue-500/25 flex items-center justify-center text-[#60A5FA] shadow-md group-hover:text-[#3B82F6] group-hover:scale-105 group-hover:border-blue-500/40 transition-all duration-300 relative z-10">
           <Icon size={22} className="animate-float" />
         </div>
         
         {/* Floating shadow */}
-        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#7A4A2A]/10 rounded-full blur-[3px] scale-x-90 animate-pulse pointer-events-none" />
+        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-blue-500/10 rounded-full blur-[3px] scale-x-90 animate-pulse pointer-events-none" />
       </div>
     );
   }

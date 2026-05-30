@@ -92,19 +92,19 @@ function PricingCard({
       }}
       className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
         isHighlighted
-          ? 'bg-gradient-to-b from-[#3D251A] to-[#2B1A12] text-white border-2 border-[#C89B5B] shadow-premium scale-100 lg:scale-[1.04] z-10 btn-glow'
-          : 'glass-card text-[#2B1A12] border border-[#7A4A2A]/10 hover:border-[#C89B5B]/60 shadow-soft'
+          ? 'bg-gradient-to-b from-[#030B1A]/95 to-[#020817]/95 text-white border-2 border-blue-500 shadow-premium scale-100 lg:scale-[1.04] z-10 btn-glow'
+          : 'glass-card text-white border border-blue-500/10 hover:border-blue-500/40 shadow-soft'
       }`}
     >
-      {/* Soft Gold Ambient Glow inside Business card */}
+      {/* Soft Blue Ambient Glow inside Business card */}
       {isHighlighted && (
-        <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#C89B5B]/8 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-blue-500/8 blur-3xl pointer-events-none" />
       )}
 
-      {/* Dynamic Rotating Gold Border overlay */}
+      {/* Dynamic Rotating Blue Border overlay */}
       {isHighlighted && (
         <motion.div
-          className="absolute inset-0 rounded-[22px] border-2 border-transparent bg-[linear-gradient(120deg,#C89B5B,#EADCCB,#7A4A2A,#C89B5B)] bg-[length:300%_300%] -m-[2px] pointer-events-none"
+          className="absolute inset-0 rounded-[22px] border-2 border-transparent bg-[linear-gradient(120deg,#3B82F6,#60A5FA,#1D4ED8,#3B82F6)] bg-[length:300%_300%] -m-[2px] pointer-events-none"
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
@@ -123,27 +123,27 @@ function PricingCard({
 
       {/* Premium Badge */}
       {isHighlighted && badge && (
-        <div className="absolute top-4 left-4 px-3 py-1 bg-[#C89B5B] text-[#2B1A12] rounded-full text-[9px] font-black uppercase flex items-center gap-1 shadow-md z-20">
-          <Award size={10} className="text-[#2B1A12]" />
+        <div className="absolute top-4 left-4 px-3 py-1 bg-blue-500 text-white rounded-full text-[9px] font-black uppercase flex items-center gap-1 shadow-md z-20">
+          <Award size={10} className="text-white" />
           {badge}
         </div>
       )}
 
       <div style={{ transform: 'translateZ(30px)' }} className="transition-transform duration-200">
-        <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isHighlighted ? 'text-[#C89B5B]' : 'text-[#7A4A2A]'}`}>
+        <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isHighlighted ? 'text-[#60A5FA]' : 'text-[#94A3B8]'}`}>
           {name}
         </span>
         
         <div className="flex items-baseline gap-1 mt-3 mb-2">
-          <span className={`font-marcellus text-4xl sm:text-5xl font-black ${isHighlighted ? 'text-white' : 'text-[#2B1A12]'}`}>
+          <span className={`font-marcellus text-4xl sm:text-5xl font-black text-white`}>
             {price}
           </span>
-          <span className={`text-[10px] font-bold ${isHighlighted ? 'text-white/50' : 'text-[#7A4A2A]/60'}`}>
+          <span className={`text-[10px] font-bold ${isHighlighted ? 'text-white/50' : 'text-[#94A3B8]/60'}`}>
             {period}
           </span>
         </div>
         
-        <p className={`text-[11px] font-bold leading-relaxed mb-6 border-b pb-4 ${isHighlighted ? 'text-white/70 border-white/10' : 'text-[#7A4A2A]/80 border-[#7A4A2A]/10'}`}>
+        <p className={`text-[11px] font-bold leading-relaxed mb-6 border-b pb-4 ${isHighlighted ? 'text-white/70 border-white/10' : 'text-[#94A3B8]/80 border-blue-500/10'}`}>
           {bestFor}
         </p>
         
@@ -151,11 +151,11 @@ function PricingCard({
           {features.map((feat, i) => (
             <li key={i} className="flex items-start gap-2.5 text-xs font-bold leading-relaxed text-right">
               <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                isHighlighted ? 'bg-[#C89B5B]/20 text-[#C89B5B]' : 'bg-[#7A4A2A]/10 text-[#7A4A2A]'
+                isHighlighted ? 'bg-blue-500/20 text-[#60A5FA]' : 'bg-blue-500/10 text-[#60A5FA]'
               }`}>
                 <Check size={10} strokeWidth={3} />
               </div>
-              <span className={isHighlighted ? 'text-white/90' : 'text-[#2B1A12]/90'}>{feat}</span>
+              <span className={isHighlighted ? 'text-white/90' : 'text-white/90'}>{feat}</span>
             </li>
           ))}
         </ul>
@@ -170,10 +170,10 @@ function PricingCard({
         animate={{ x: magneticCta.position.x, y: magneticCta.position.y }}
         transition={{ type: 'spring', stiffness: 150, damping: 15 }}
         style={{ transform: 'translateZ(20px)' }}
-        className={`w-full py-4 rounded-xl text-xs font-black transition-all cursor-pointer select-none active:scale-95 shadow-md flex items-center justify-center gap-1.5 ${
+        className={`w-full py-4 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none active:scale-95 shadow-md flex items-center justify-center gap-1.5 ${
           isHighlighted
-            ? 'bg-gradient-to-r from-[#EADCCB] to-[#C89B5B] hover:from-[#C89B5B] hover:to-[#B87333] text-[#2B1A12] border border-[#C89B5B]/20 font-black'
-            : 'bg-[#FFFBF7]/60 hover:bg-[#7A4A2A] text-[#2B1A12] hover:text-white border border-[#7A4A2A]/10 hover:border-[#7A4A2A]'
+            ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white border border-blue-500/20 font-semibold'
+            : 'bg-[#030B1A]/60 hover:bg-blue-950/40 text-[#60A5FA] border border-blue-500/10 hover:border-blue-500'
         }`}
       >
         <span>{ctaText}</span>
@@ -371,9 +371,9 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-28 max-w-7xl mx-auto px-6 relative overflow-hidden select-none">
       
-      {/* Luxury Background Ambient Lighting */}
-      <div className="absolute top-[10%] left-[2%] w-[250px] h-[250px] rounded-full bg-[#C89B5B]/5 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[2%] w-[250px] h-[250px] rounded-full bg-[#7A4A2A]/4 blur-[100px] pointer-events-none" />
+      {/* Background Ambient Lighting */}
+      <div className="absolute top-[10%] left-[2%] w-[250px] h-[250px] rounded-full bg-[#2563EB]/5 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[2%] w-[250px] h-[250px] rounded-full bg-[#1D4ED8]/4 blur-[100px] pointer-events-none" />
 
       {/* SECTION HEADER */}
       <div className="text-center flex flex-col items-center gap-3 mb-16 relative z-10">
@@ -382,7 +382,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="px-4 py-1.5 rounded-full border border-[#C89B5B]/30 bg-[#C89B5B]/8 text-[#C89B5B] font-extrabold text-xs tracking-wider"
+          className="px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/8 text-[#60A5FA] font-extrabold text-xs tracking-wider"
         >
           الباقات
         </motion.span>
@@ -392,7 +392,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-marcellus text-3xl md:text-5xl font-extrabold text-[#2B1A12] leading-tight"
+          className="font-marcellus text-3xl md:text-5xl font-extrabold text-white leading-tight"
         >
           اختر الباقة المناسبة لنمو مشروعك
         </motion.h2>
@@ -402,7 +402,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-xl text-[#7A4A2A] font-bold text-sm sm:text-base leading-relaxed"
+          className="max-w-xl text-[#94A3B8] font-bold text-sm sm:text-base leading-relaxed"
         >
           باقات مرنة مصممة لتناسب مختلف مراحل المشاريع، من البداية وحتى التوسع الكامل.
         </motion.p>
@@ -410,23 +410,23 @@ export default function Pricing() {
 
       {/* PRICE TOGGLE TABS */}
       <div className="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar pb-6 mb-16 select-none relative z-10">
-        <div className="flex gap-2 p-1.5 rounded-2xl bg-[#FFFBF7]/60 border border-[#7A4A2A]/8 shadow-inner backdrop-blur-md">
+        <div className="flex gap-2 p-1.5 rounded-2xl bg-[#030B1A]/60 border border-blue-500/10 shadow-inner backdrop-blur-md">
           {pricingTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative px-8 py-3 rounded-xl text-xs font-black transition-all cursor-pointer select-none active:scale-95 ${
+                className={`relative px-8 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none active:scale-95 ${
                   isActive
                     ? 'text-white'
-                    : 'text-[#2B1A12] hover:text-[#C89B5B]'
+                    : 'text-[#94A3B8] hover:text-[#60A5FA]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activePriceTabBackdrop"
-                    className="absolute inset-0 bg-[#7A4A2A] rounded-xl border border-[#C89B5B]/20 shadow-md"
+                    className="absolute inset-0 bg-blue-600 rounded-xl border border-blue-500/20 shadow-md"
                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                   />
                 )}
@@ -491,13 +491,13 @@ export default function Pricing() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="wood-card rounded-3xl p-8 md:p-12 border border-[#C89B5B]/20 flex flex-col lg:flex-row items-center justify-between gap-8 mb-20 relative z-10 overflow-hidden"
+        className="glass-card rounded-3xl p-8 md:p-12 border border-blue-500/25 flex flex-col lg:flex-row items-center justify-between gap-8 mb-20 relative z-10 overflow-hidden"
       >
         {/* Decorative Ambient Light overlay inside wood box */}
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#C89B5B]/8 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-500/8 blur-3xl pointer-events-none" />
         
         <div className="flex flex-col gap-3 text-right max-w-xl relative z-10">
-          <span className="text-[10px] font-extrabold text-[#C89B5B] tracking-wide uppercase flex items-center gap-1.5 justify-start">
+          <span className="text-[10px] font-extrabold text-[#60A5FA] tracking-wide uppercase flex items-center gap-1.5 justify-start">
             <Settings size={12} className="animate-spin-slow" />
             بناء الأنظمة المخصصة والحلول البرمجية الفاخرة
           </span>
@@ -514,10 +514,10 @@ export default function Pricing() {
           onClick={() => handleNavClick('wizard')}
           animate={{ x: customQuoteBtn.position.x, y: customQuoteBtn.position.y }}
           transition={{ type: 'spring', stiffness: 120, damping: 12 }}
-          className="w-full lg:w-auto px-8 py-4 bg-gradient-to-r from-[#EADCCB] to-[#C89B5B] hover:from-[#C89B5B] hover:to-[#B87333] text-[#2B1A12] font-black rounded-xl text-xs text-center shadow-lg border border-[#C89B5B]/20 cursor-pointer select-none active:scale-95 transition-all flex items-center justify-center gap-2 relative z-10 shrink-0"
+          className="w-full lg:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl text-xs text-center shadow-lg border border-blue-500/20 cursor-pointer select-none active:scale-95 transition-all flex items-center justify-center gap-2 relative z-10 shrink-0"
         >
           <span>اطلب عرض سعر مخصص</span>
-          <Sparkles size={12} className="text-[#2B1A12]" />
+          <Sparkles size={12} className="text-white" />
         </motion.button>
       </motion.div>
 
@@ -527,64 +527,64 @@ export default function Pricing() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="glass-card rounded-3xl p-6 md:p-8 border border-[#7A4A2A]/12 shadow-premium overflow-x-auto no-scrollbar relative z-10"
+        className="glass-card rounded-3xl p-6 md:p-8 border border-blue-500/12 shadow-premium overflow-x-auto no-scrollbar relative z-10 bg-[#030B1A]/80 backdrop-blur-md"
       >
         <div className="flex items-center justify-center gap-2 mb-6">
-          <HelpCircle size={16} className="text-[#C89B5B]" />
-          <h3 className="font-marcellus text-lg md:text-xl font-bold text-[#2B1A12]">جدول المقارنة الفنية والخدمات</h3>
+          <HelpCircle size={16} className="text-[#60A5FA]" />
+          <h3 className="font-marcellus text-lg md:text-xl font-bold text-white">جدول المقارنة الفنية والخدمات</h3>
         </div>
 
-        <table className="w-full text-right text-xs font-bold text-[#2B1A12] min-w-[600px] border-collapse">
+        <table className="w-full text-right text-xs font-bold text-white min-w-[600px] border-collapse">
           <thead>
-            <tr className="border-b border-[#7A4A2A]/15 pb-4 text-[#7A4A2A]">
+            <tr className="border-b border-blue-500/15 pb-4 text-[#60A5FA]">
               <th className="pb-4 text-right font-black text-xs">تفاصيل المعايير والخدمة</th>
               <th className="pb-4 text-center font-black text-xs">باقة البداية</th>
-              <th className="pb-4 text-center font-black text-xs text-[#C89B5B]">باقة الأعمال (الأكثر طلباً)</th>
+              <th className="pb-4 text-center font-black text-xs text-[#60A5FA]">باقة الأعمال (الأكثر طلباً)</th>
               <th className="pb-4 text-center font-black text-xs">باقة النخبة</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">طبيعة الهيكل والموقع</td>
-              <td className="py-4 text-center text-emerald-800/80">صفحة تعريفية / متجر بسيط</td>
-              <td className="py-4 text-center text-[#C89B5B] font-extrabold">موقع متكامل أو متجر إلكتروني</td>
-              <td className="py-4 text-center text-emerald-800">متعدد الصفحات والأنظمة بالكامل</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">طبيعة الهيكل والموقع</td>
+              <td className="py-4 text-center text-emerald-400/80">صفحة تعريفية / متجر بسيط</td>
+              <td className="py-4 text-center text-[#60A5FA] font-extrabold">موقع متكامل أو متجر إلكتروني</td>
+              <td className="py-4 text-center text-emerald-400">متعدد الصفحات والأنظمة بالكامل</td>
             </tr>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">تصميم الواجهة الفنية والـ UI/UX</td>
-              <td className="py-4 text-center text-[#7A4A2A]/60">تصميم وتنسيق أساسي فاخر</td>
-              <td className="py-4 text-center text-[#C89B5B] font-extrabold">تصميم UI/UX حصري ومبتكر</td>
-              <td className="py-4 text-center text-emerald-800">واجهات إبداعية مع 3D Animations</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">تصميم الواجهة الفنية والـ UI/UX</td>
+              <td className="py-4 text-center text-[#94A3B8]/60">تصميم وتنسيق أساسي فاخر</td>
+              <td className="py-4 text-center text-[#60A5FA] font-extrabold">تصميم UI/UX حصري ومبتكر</td>
+              <td className="py-4 text-center text-emerald-400">واجهات إبداعية مع 3D Animations</td>
             </tr>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">تحسين سرعة التصفح والأداء</td>
-              <td className="py-4 text-center text-emerald-800/80">تحسين سرعة وتصفح أساسي</td>
-              <td className="py-4 text-center text-[#C89B5B] font-extrabold">تحسين سرعة Apple-smooth فائق</td>
-              <td className="py-4 text-center text-emerald-800">تحسين سرعة وتوافقي أقصى 100%</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">تحسين سرعة التصفح والأداء</td>
+              <td className="py-4 text-center text-emerald-400/80">تحسين سرعة وتصفح أساسي</td>
+              <td className="py-4 text-center text-[#60A5FA] font-extrabold">تحسين سرعة Apple-smooth فائق</td>
+              <td className="py-4 text-center text-emerald-400">تحسين سرعة وتوافقي أقصى 100%</td>
             </tr>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">لوحة التحكم وإدارة البيانات</td>
-              <td className="py-4 text-center text-[#7A4A2A]/40">غير متوفرة / تواصل بالواتساب</td>
-              <td className="py-4 text-center text-[#C89B5B] font-extrabold">لوحة تحكم سهلة وسلسة</td>
-              <td className="py-4 text-center text-emerald-800">لوحة تحكم مخصصة ذكية متقدمة</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">لوحة التحكم وإدارة البيانات</td>
+              <td className="py-4 text-center text-[#94A3B8]/40">غير متوفرة / تواصل بالواتساب</td>
+              <td className="py-4 text-center text-[#60A5FA] font-extrabold">لوحة تحكم سهلة وسلسة</td>
+              <td className="py-4 text-center text-emerald-400">لوحة تحكم مخصصة ذكية متقدمة</td>
             </tr>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">البرمجة والربط والسكربتات (APIs)</td>
-              <td className="py-4 text-center text-[#7A4A2A]/40">—</td>
-              <td className="py-4 text-center text-[#7A4A2A]/40">—</td>
-              <td className="py-4 text-center text-emerald-800">برمجة سكربتات خاصة وأتمتة كاملة</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">البرمجة والربط والسكربتات (APIs)</td>
+              <td className="py-4 text-center text-[#94A3B8]/40">—</td>
+              <td className="py-4 text-center text-[#94A3B8]/40">—</td>
+              <td className="py-4 text-center text-emerald-400">برمجة سكربتات خاصة وأتمتة كاملة</td>
             </tr>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">إعداد الحملات الإعلانية</td>
-              <td className="py-4 text-center text-[#7A4A2A]/40">—</td>
-              <td className="py-4 text-center text-[#C89B5B] font-extrabold">✓ إطلاق حملات إعلانية أولية</td>
-              <td className="py-4 text-center text-emerald-800">✓ خطة تسويق أولية وحملات متطورة</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">إعداد الحملات الإعلانية</td>
+              <td className="py-4 text-center text-[#94A3B8]/40">—</td>
+              <td className="py-4 text-center text-[#60A5FA] font-extrabold">✓ إطلاق حملات إعلانية أولية</td>
+              <td className="py-4 text-center text-emerald-400">✓ خطة تسويق أولية وحملات متطورة</td>
             </tr>
-            <tr className="border-b border-[#7A4A2A]/8 hover:bg-[#7A4A2A]/2 transition-colors duration-200">
-              <td className="py-4 font-extrabold text-[#2B1A12]/95">مدة الدعم والصيانة الفنية</td>
-              <td className="py-4 text-center text-emerald-800/80">دعم وصيانة لمدة 7 أيام</td>
-              <td className="py-4 text-center text-[#C89B5B] font-extrabold">دعم وصيانة لمدة 30 يوم</td>
-              <td className="py-4 text-center text-emerald-800">دعم متكامل وصيانة لمدة 60 يوم</td>
+            <tr className="border-b border-blue-500/8 hover:bg-blue-950/20 transition-colors duration-200">
+              <td className="py-4 font-extrabold text-white/95">مدة الدعم والصيانة الفنية</td>
+              <td className="py-4 text-center text-emerald-400/80">دعم وصيانة لمدة 7 أيام</td>
+              <td className="py-4 text-center text-[#60A5FA] font-extrabold">دعم وصيانة لمدة 30 يوم</td>
+              <td className="py-4 text-center text-emerald-400">دعم متكامل وصيانة لمدة 60 يوم</td>
             </tr>
           </tbody>
         </table>

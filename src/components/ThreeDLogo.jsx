@@ -7,24 +7,24 @@ const Spline = lazy(() => import('@splinetool/react-spline'));
 // Premium glassmorphic loading experience matching the agency visual identity
 function SplineLoader() {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center select-none bg-[#FFFBF7]/35 backdrop-blur-md rounded-[40px] border border-[#C89B5B]/15 transition-all duration-700 ease-out z-20">
-      {/* Golden Pulsating Rings */}
+    <div className="absolute inset-0 flex flex-col items-center justify-center select-none bg-[#030B1A]/35 backdrop-blur-md rounded-[40px] border border-blue-500/15 transition-all duration-700 ease-out z-20">
+      {/* Blue Pulsating Rings */}
       <div className="relative w-24 h-24 flex items-center justify-center animate-float">
-        <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
-        <div className="absolute inset-3 rounded-full border border-double border-[#B87333]/20 animate-[spin_20s_linear_infinite_reverse]" />
+        <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/30 animate-[spin_40s_linear_infinite]" />
+        <div className="absolute inset-3 rounded-full border border-double border-blue-600/20 animate-[spin_20s_linear_infinite_reverse]" />
         
         {/* Pulsating glowing center */}
-        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#C89B5B]/25 to-[#B87333]/25 animate-pulse flex items-center justify-center shadow-[0_0_20px_rgba(200,155,91,0.15)]">
-          <span className="text-xs text-[#7A4A2A] font-black">L</span>
+        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500/25 to-blue-600/25 animate-pulse flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.15)]">
+          <span className="text-xs text-[#60A5FA] font-black">S</span>
         </div>
       </div>
       
       {/* Arabic + English elegant caption */}
       <div className="text-center mt-6 px-4">
-        <p className="text-xs text-[#7A4A2A] font-black tracking-wider animate-[pulse_2s_infinite]">
+        <p className="text-xs text-[#60A5FA] font-black tracking-wider animate-[pulse_2s_infinite]">
           جاري تحميل التجربة ثلاثية الأبعاد الفاخرة...
         </p>
-        <p className="text-[9px] text-[#7A4A2A]/60 font-bold uppercase mt-1 tracking-widest">
+        <p className="text-[9px] text-[#60A5FA]/60 font-bold uppercase mt-1 tracking-widest">
           Initializing 3D Experience
         </p>
       </div>
@@ -37,15 +37,15 @@ export function ThreeDLogoFallback() {
   return (
     <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
       <div className="relative w-44 h-44 flex items-center justify-center animate-float">
-        <div className="absolute inset-0 rounded-full border border-dashed border-[#C89B5B]/30 animate-[spin_40s_linear_infinite]" />
-        <div className="absolute inset-4 rounded-full border border-double border-[#B87333]/30 animate-[spin_20s_linear_infinite_reverse]" />
+        <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/30 animate-[spin_40s_linear_infinite]" />
+        <div className="absolute inset-4 rounded-full border border-double border-blue-600/30 animate-[spin_20s_linear_infinite_reverse]" />
         
-        <div className="w-20 h-20 rounded-full overflow-hidden border border-[#C89B5B]/20 shadow-premium flex items-center justify-center bg-[#FFFBF7]/30 backdrop-blur-sm">
-          <img src={logoIcon} className="w-full h-full object-cover animate-[pulse_4s_infinite]" alt="LORAN Logo Icon" />
+        <div className="w-20 h-20 rounded-full overflow-hidden border border-blue-500/20 shadow-premium flex items-center justify-center bg-[#030B1A]/30 backdrop-blur-sm">
+          <img src={logoIcon} className="w-full h-full object-cover animate-[pulse_4s_infinite]" alt="SADEEM Logo Icon" />
         </div>
         
-        <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#B87333] border border-[#C89B5B]/30" />
-        <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#C89B5B] to-[#EADCCB] border border-[#C89B5B]/30" />
+        <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] border border-blue-500/30" />
+        <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] border border-blue-500/30" />
       </div>
     </div>
   );
@@ -136,7 +136,7 @@ export default function ThreeDLogo() {
         touchAction: 'none', 
         zIndex: 10, 
         opacity: 1,
-        filter: 'drop-shadow(0 20px 40px rgba(122, 74, 42, 0.04))'
+        filter: 'drop-shadow(0 20px 40px rgba(59, 130, 246, 0.04))'
       }}
     >
       <Suspense fallback={<SplineLoader />}>

@@ -130,7 +130,9 @@ export default function BeforeAfter() {
  
           <div className="mt-4 flex justify-end">
             <a 
-              href="https://wa.me/9647842272224?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%88%D8%AA%D8%AD%D8%B3%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9%20%D9%84%D8%AF%D9%89%20%D9%84%D9%88%D8%B1%D8%A7%D9%86%20%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88."
+              href={`https://wa.me/9647842272224?text=${encodeURIComponent(
+                "مرحباً سديم، أرغب بالاستفسار عن خدمات التطوير وتحسين المواقع لديكم."
+              )}`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-blue-500/30 bg-[#030B1A] text-xs font-medium text-white hover:bg-blue-950 hover:shadow-[0_0_15px_rgba(37,99,235,0.25)] transition-all duration-500 shadow-soft"

@@ -59,7 +59,7 @@ export default function Footer() {
     }
   };
 
-  const whatsappUrl = `https://wa.me/9647842272224?text=${encodeURIComponent('مرحباً، أرغب بالاستفسار عن خدمات LORAN STUDIO وتفاصيل المشاريع.')}`;
+  const whatsappUrl = `https://wa.me/9647842272224?text=${encodeURIComponent('مرحباً، أرغب بالاستفسار عن خدمات SADEEM وتفاصيل المشاريع.')}`;
 
   return (
     <footer className="w-full bg-[#020817] border-t border-blue-500/15 text-[#E5E7EB] py-20 px-6 relative overflow-hidden select-none z-10">
@@ -113,7 +113,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center justify-start gap-2.5">
                 <Mail size={14} className="text-[#3B82F6]" />
-                <a href="mailto:info@loranstudio.com" className="hover:text-[#60A5FA] transition-colors">info@loranstudio.com</a>
+                <a href="mailto:info@sadeemdigital.com" className="hover:text-[#60A5FA] transition-colors">info@sadeemdigital.com</a>
               </li>
             </ul>
           </div>
@@ -125,16 +125,16 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3 text-xs font-medium text-[#E5E7EB]/85">
               <li>
-                <button onClick={() => handleNavClick('why-loran')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">فريق العمل</button>
+                <button onClick={() => handleNavClick('why-sadeem')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">فريق العمل</button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('why-loran')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">الرؤية والأهداف</button>
+                <button onClick={() => handleNavClick('why-sadeem')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">الرؤية والأهداف</button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('why-loran')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">الأسئلة الشائعة</button>
+                <button onClick={() => handleNavClick('why-sadeem')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">الأسئلة الشائعة</button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('why-loran')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">سياسة الخصوصية</button>
+                <button onClick={() => handleNavClick('why-sadeem')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">سياسة الخصوصية</button>
               </li>
             </ul>
           </div>
@@ -190,7 +190,7 @@ export default function Footer() {
               اشترك في نشرتنا
             </h4>
             <p className="text-[10px] text-[#E5E7EB]/75 font-medium leading-relaxed mb-1">
-              احصل على أحدث دراسات الحالة والنصائح التطويرية الفخمة لتنمية أعمالك.
+              اشترك الآن لتصلك استراتيجيات التقنية والتسويق الحصرية.
             </p>
             <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
               <input
@@ -218,12 +218,12 @@ export default function Footer() {
           
           {/* Logo & Brand descriptor */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-500/20 bg-[#030B1A] flex items-center justify-center shadow-inner">
-              <img src={logoIcon} className="w-full h-full object-cover" alt="LORAN STUDIO" />
+            <div className="w-8 h-8 rounded-xl overflow-hidden border border-blue-500/20 bg-[#030B1A] flex items-center justify-center shadow-inner">
+              <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM" />
             </div>
             <div className="flex flex-col text-right">
-              <span className="font-marcellus text-xs font-semibold tracking-widest text-white leading-none">LORAN STUDIO</span>
-              <span className="text-[7px] text-[#60A5FA] font-semibold mt-0.5 leading-none">لوران ستوديو</span>
+              <span className="font-sans text-xs font-semibold tracking-widest text-white leading-none">SADEEM</span>
+              <span className="text-[7px] text-[#60A5FA] font-semibold mt-0.5 leading-none">سديم</span>
             </div>
           </div>
  
@@ -231,18 +231,18 @@ export default function Footer() {
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#E5E7EB]/70 hover:text-[#60A5FA] hover:border-blue-500/30 transition-all">
               <MessageSquare size={14} />
             </a>
-            <a href="https://instagram.com/loran_studio" target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#E5E7EB]/70 hover:text-[#60A5FA] hover:border-blue-500/30 transition-all">
+            <a href="https://instagram.com/sadeem_digital" target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#E5E7EB]/70 hover:text-[#60A5FA] hover:border-blue-500/30 transition-all">
               <Instagram size={14} />
             </a>
-            <a href="mailto:info@loranstudio.com" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#E5E7EB]/70 hover:text-[#60A5FA] hover:border-blue-500/30 transition-all">
+            <a href="mailto:info@sadeemdigital.com" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#E5E7EB]/70 hover:text-[#60A5FA] hover:border-blue-500/30 transition-all">
               <Mail size={14} />
             </a>
           </div>
  
           <div className="flex flex-col gap-1 items-center md:items-end">
-            <span>لوران ستوديو • كافة الحقوق محفوظة © {new Date().getFullYear()}</span>
+            <span>سديم • كافة الحقوق محفوظة © {new Date().getFullYear()}</span>
             <span className="text-[8px] text-[#60A5FA] font-medium flex items-center gap-1">
-              صنع بشغف في العراق لأجل التميز الرقمي المطلق
+              صنع بشغف لأجل التميز الرقمي المطلق
               <span className="text-red-500">♥</span>
             </span>
           </div>
@@ -269,3 +269,4 @@ export default function Footer() {
     </footer>
   );
 }
+

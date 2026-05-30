@@ -13,7 +13,7 @@ export default class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     // Soft log in development, keeping production console perfectly clean
     if (process.env.NODE_ENV !== 'production') {
-      console.warn("Loran Studio - Safe boundary caught rendering error:", error);
+      console.warn("Sadeem - Safe boundary caught rendering error:", error);
     }
   }
 

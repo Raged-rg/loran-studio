@@ -40,7 +40,7 @@ function Counter({ value, suffix = '', duration = 1.5 }) {
   );
 }
 
-export default function WhyLoran() {
+export default function WhySadeem() {
   const aboutRef = useRef(null);
   const isAboutInView = useInView(aboutRef, { once: true, margin: '-100px' });
 
@@ -78,7 +78,7 @@ export default function WhyLoran() {
   ];
 
   return (
-    <section id="why-loran" className="py-24 max-w-7xl mx-auto px-6 relative overflow-hidden">
+    <section id="why-sadeem" className="py-24 max-w-7xl mx-auto px-6 relative overflow-hidden">
       
       {/* Background glow sparks */}
       <div className="absolute top-[30%] left-[-5%] w-[220px] h-[220px] rounded-full bg-[#2563EB]/5 blur-[90px] pointer-events-none" />
@@ -126,7 +126,7 @@ export default function WhyLoran() {
                 {/* Central Premium Emblem */}
                 <div className="w-16 h-16 rounded-full border border-dashed border-blue-500/40 flex items-center justify-center overflow-hidden bg-blue-950/40 p-1">
                   <div className="w-full h-full rounded-full overflow-hidden border border-blue-500/25 flex items-center justify-center">
-                    <img src={logoIcon} className="w-full h-full object-cover animate-[pulse_2.5s_infinite]" alt="LORAN Logo Icon" />
+                    <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%] animate-[pulse_2.5s_infinite]" alt="SADEEM Logo Icon" />
                   </div>
                 </div>
  
@@ -149,7 +149,7 @@ export default function WhyLoran() {
           </div>
  
           <h2 className="font-marcellus text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
-            لوران ستوديو… حيث تتحول الأفكار إلى تجارب رقمية فاخرة
+            سديم… حيث تتحول الأفكار إلى تجارب رقمية فاخرة
           </h2>
  
           <p className="text-[#94A3B8] font-bold text-sm sm:text-base leading-relaxed">
@@ -194,7 +194,7 @@ export default function WhyLoran() {
         </div>
       </div>
 
-      {/* PART 3: WHY LORAN SECTION (لماذا تختار لوران) */}
+      {/* PART 3: WHY SADEEM SECTION (لماذا تختار سديم) */}
       <div className="relative z-10">
         
         {/* Headings */}
@@ -202,7 +202,7 @@ export default function WhyLoran() {
           <span className="px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/8 text-[#60A5FA] font-extrabold text-xs tracking-wider">
             بماذا ننفرد؟
           </span>
-          <h2 className="font-marcellus text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">لماذا تختار لوران؟</h2>
+          <h2 className="font-marcellus text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">لماذا تختار سديم؟</h2>
           <p className="max-w-xl text-[#94A3B8] font-bold text-sm leading-relaxed">
             نحن نهتم بأدق التفاصيل البرمجية والفنية لنصنع لعلامتك التجارية الأصول الرقمية الأغلى والأكثر ثباتاً.
           </p>
