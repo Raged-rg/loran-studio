@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 export default function Loader() {
   const [visible, setVisible] = useState(true);
@@ -44,44 +44,30 @@ export default function Loader() {
             backgroundImage: 'radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, transparent 60%)'
           }}
         >
-          <div className="relative flex flex-col items-center gap-6">
-            {/* Animated Golden Rings */}
-            <div className="relative w-28 h-28 flex items-center justify-center">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-2 border-dashed border-[#2563EB]"
+          <div className="relative flex flex-col items-center gap-4 select-none">
+            {/* Brand Logo centerpiece */}
+            <div className="relative h-12 md:h-16 flex items-center justify-center animate-float">
+              {/* Subtle blue backglow */}
+              <div className="absolute inset-0 bg-[#2563EB]/10 blur-[40px] rounded-full pointer-events-none" />
+              <img 
+                src={logo} 
+                className="h-full w-auto object-contain" 
+                alt="SADEEM | سديم" 
               />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-2 rounded-full border border-double border-[#3B82F6]/40"
-              />
-              {/* Central Premium Seal */}
-              <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center border border-blue-500/20 bg-[#030B1A]/40 backdrop-blur-md shadow-sm">
-                <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM Seal" />
-              </div>
             </div>
- 
+
             {/* Typography */}
-            <div className="text-center flex flex-col gap-2">
-              <motion.h1 
-                initial={{ letterSpacing: '4px', opacity: 0 }}
-                animate={{ letterSpacing: '2px', opacity: 1 }}
-                transition={{ duration: 1.0, delay: 0.2 }}
-                className="font-sans text-3xl font-extrabold text-white uppercase tracking-[2px]"
-              >
-                SADEEM
-              </motion.h1>
+            <div className="text-center flex flex-col gap-1 mt-4">
               <motion.p 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="text-[#60A5FA] font-bold text-sm tracking-wide"
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-[#60A5FA] font-bold text-xs tracking-widest uppercase"
               >
-                سديم • الفخامة الرقمية
+                الفخامة الرقمية • Digital Experiences
               </motion.p>
             </div>
+          </div>
  
             {/* Progress line */}
             <div className="w-40 h-[2px] bg-blue-950/20 rounded-full overflow-hidden mt-4">

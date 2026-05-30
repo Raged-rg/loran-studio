@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 // Lazy load the official @splinetool/react-spline to keep initial bundle size light
 const Spline = lazy(() => import('@splinetool/react-spline'));
@@ -36,16 +36,14 @@ function SplineLoader() {
 export function ThreeDLogoFallback() {
   return (
     <div className="w-full h-[320px] md:h-[450px] flex items-center justify-center select-none">
-      <div className="relative w-44 h-44 flex items-center justify-center animate-float">
-        <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/30 animate-[spin_40s_linear_infinite]" />
-        <div className="absolute inset-4 rounded-full border border-double border-blue-600/30 animate-[spin_20s_linear_infinite_reverse]" />
-        
-        <div className="w-20 h-20 rounded-full overflow-hidden border border-blue-500/20 shadow-premium flex items-center justify-center bg-[#030B1A]/30 backdrop-blur-sm">
-          <img src={logoIcon} className="w-full h-full object-cover animate-[pulse_4s_infinite]" alt="SADEEM Logo Icon" />
-        </div>
-        
-        <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] border border-blue-500/30" />
-        <div className="absolute bottom-6 left-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] border border-blue-500/30" />
+      <div className="relative w-64 h-32 flex items-center justify-center animate-float select-none pointer-events-none">
+        {/* Subtle blue backglow */}
+        <div className="absolute inset-0 bg-[#2563EB]/10 blur-[45px] rounded-full pointer-events-none" />
+        <img 
+          src={logo} 
+          className="w-full h-auto object-contain animate-[pulse_4s_infinite]" 
+          alt="SADEEM | سديم" 
+        />
       </div>
     </div>
   );

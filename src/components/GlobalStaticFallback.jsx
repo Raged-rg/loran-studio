@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageSquare, Sparkles } from 'lucide-react';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 export default function GlobalStaticFallback() {
   return (
@@ -12,11 +12,12 @@ export default function GlobalStaticFallback() {
 
       {/* Premium Header */}
       <header className="flex justify-between items-center py-4 border-b border-blue-500/10 max-w-4xl mx-auto w-full relative z-10">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl overflow-hidden border border-blue-500/15 flex items-center justify-center shadow-sm bg-[#030B1A]">
-            <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM" />
-          </div>
-          <span className="font-marcellus text-[16px] font-bold tracking-widest text-white">SADEEM | سديم</span>
+        <div className="flex items-center select-none">
+          <img 
+            src={logo} 
+            className="h-6 w-auto object-contain" 
+            alt="SADEEM | سديم" 
+          />
         </div>
         <span className="text-[9px] sm:text-[10px] px-3 py-1.5 rounded-full border border-blue-500/25 bg-blue-500/8 text-[#60A5FA] font-extrabold tracking-wide">
           النسخة السريعة والمحسنة

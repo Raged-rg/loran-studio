@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Mail, MessageSquare, ArrowUp, Send, MapPin, Phone } from 'lucide-react';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 export default function Footer() {
   const [btnX, setBtnX] = useState(0);
@@ -68,7 +68,7 @@ export default function Footer() {
       <div className="absolute top-0 left-[20%] w-[350px] h-[350px] rounded-full bg-[#2563EB]/4 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-[20%] w-[350px] h-[350px] rounded-full bg-[#1D4ED8]/3 blur-[120px] pointer-events-none" />
  
-      {/* Floating Golden Dust Particles */}
+      {/* Floating Blue Cyber Dust Particles */}
       {[...Array(8)].map((_, i) => (
         <motion.span
           key={i}
@@ -217,14 +217,12 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-blue-500/12 pt-8 text-[10px] font-medium text-[#E5E7EB]/50 text-center">
           
           {/* Logo & Brand descriptor */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl overflow-hidden border border-blue-500/20 bg-[#030B1A] flex items-center justify-center shadow-inner">
-              <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM" />
-            </div>
-            <div className="flex flex-col text-right">
-              <span className="font-sans text-xs font-semibold tracking-widest text-white leading-none">SADEEM</span>
-              <span className="text-[7px] text-[#60A5FA] font-semibold mt-0.5 leading-none">سديم</span>
-            </div>
+          <div className="flex items-center select-none">
+            <img 
+              src={logo} 
+              className="h-6 sm:h-7 w-auto object-contain" 
+              alt="SADEEM | سديم" 
+            />
           </div>
  
           <div className="flex items-center gap-5 justify-center">

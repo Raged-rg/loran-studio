@@ -73,7 +73,7 @@ export default function BottomNav({ activeSection, setActiveSection, onOpenWizar
               className="relative flex flex-col items-center justify-center w-14 h-14 rounded-xl active:scale-90 transition-transform duration-200 select-none cursor-pointer"
               aria-label={item.label}
             >
-              {/* Active Golden Background Indicator */}
+              {/* Active Blue Background Indicator */}
               {isActive && (
                 <motion.div
                   layoutId="bottomActive"

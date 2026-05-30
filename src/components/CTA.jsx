@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, ArrowLeft } from 'lucide-react';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 export default function CTA({ setActiveSection, onOpenWizard }) {
   const whatsappUrl = `https://wa.me/9647842272224?text=${encodeURIComponent('مرحباً، أرغب بالاستفسار عن خدمات SADEEM وتنفيذ مشروع احترافي.')}`;
@@ -64,29 +64,15 @@ export default function CTA({ setActiveSection, onOpenWizard }) {
           </div>
         </div>
 
-        {/* Left side visually: Glowing Monogram Logo Seal */}
-        <div className="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center select-none">
-          <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/20 animate-[spin_50s_linear_infinite]" />
-          <div className="absolute inset-4 rounded-full border border-blue-500/8 animate-[spin_40s_linear_infinite_reverse]" />
-          
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-          >
-            <svg viewBox="0 0 100 100" className="w-full h-full text-blue-400/30 font-medium tracking-widest text-[8px] fill-current">
-              <path id="circlePath" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
-              <text>
-                <textPath href="#circlePath" spacing="auto" startOffset="0%">
-                  ✦ SADEEM ✦ LUXURY DIGITAL EXPERIENCE ✦
-                </textPath>
-              </text>
-            </svg>
-          </motion.div>
-
-          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-blue-500/30 bg-[#071224] shadow-[0_0_30px_rgba(59,130,246,0.2)] p-2 flex items-center justify-center hover:scale-105 transition-transform duration-300">
-            <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%] rounded-full" alt="SADEEM SEAL" />
-          </div>
+        {/* Left side visually: Glowing Brand Logo centerpiece */}
+        <div className="relative w-44 h-24 md:w-56 md:h-32 flex items-center justify-center select-none">
+          {/* Subtle blue backglow */}
+          <div className="absolute inset-0 bg-[#2563EB]/10 blur-[40px] rounded-full pointer-events-none" />
+          <img 
+            src={logo} 
+            className="w-full h-auto object-contain animate-float" 
+            alt="SADEEM" 
+          />
         </div>
 
       </motion.div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 export default function Navbar({ activeSection, setActiveSection, onOpenWizard }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,14 +120,12 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
           </nav>
 
           {/* Left Side Visually: Logo brand (appears last in HTML flow) */}
-          <div className="flex items-center gap-2.5 select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
-            <div className="w-9 h-9 rounded-xl overflow-hidden border border-blue-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.15)] bg-[#030B1A] group-hover:scale-105 group-hover:border-[#3B82F6]/45 transition-all duration-500">
-              <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM" />
-            </div>
-            <div className="flex flex-col text-right">
-              <span className="font-sans text-[15px] font-bold tracking-widest text-white leading-none group-hover:text-[#60A5FA] transition-colors duration-500">SADEEM</span>
-              <span className="text-[8px] text-[#94A3B8] font-medium mt-1 leading-none">سديم</span>
-            </div>
+          <div className="flex items-center select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
+            <img 
+              src={logo} 
+              className="h-6.5 sm:h-7.5 md:h-8.5 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" 
+              alt="SADEEM | سديم" 
+            />
           </div>
 
         </div>
@@ -154,11 +152,12 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
               
               {/* Close & Header */}
               <div className="flex items-center justify-between pb-6 border-b border-blue-500/10">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl overflow-hidden border border-blue-500/20 flex items-center justify-center bg-[#030B1A] shadow-sm">
-                    <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%]" alt="SADEEM" />
-                  </div>
-                  <span className="font-sans font-bold text-xs tracking-widest text-white">SADEEM</span>
+                <div className="flex items-center select-none cursor-pointer" onClick={() => { setIsOpen(false); handleLinkClick('home'); }}>
+                  <img 
+                    src={logo} 
+                    className="h-6.5 w-auto object-contain" 
+                    alt="SADEEM | سديم" 
+                  />
                 </div>
                 <button 
                   onClick={() => setIsOpen(false)}

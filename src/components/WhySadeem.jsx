@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Award, Zap, HeartHandshake, ShieldCheck, Cpu, Layers, Trophy, Store, Sparkles, CheckCircle } from 'lucide-react';
-import logoIcon from '../assets/logo-icon.png';
+import logo from '../assets/logo.png';
 
 // Count-up helper component for stats
 function Counter({ value, suffix = '', duration = 1.5 }) {
@@ -124,10 +124,12 @@ export default function WhySadeem() {
                 </div>
  
                 {/* Central Premium Emblem */}
-                <div className="w-16 h-16 rounded-full border border-dashed border-blue-500/40 flex items-center justify-center overflow-hidden bg-blue-950/40 p-1">
-                  <div className="w-full h-full rounded-full overflow-hidden border border-blue-500/25 flex items-center justify-center">
-                    <img src={logoIcon} className="w-[200%] h-[200%] max-w-none object-cover object-[15%_15%] animate-[pulse_2.5s_infinite]" alt="SADEEM Logo Icon" />
-                  </div>
+                <div className="w-40 h-20 flex items-center justify-center p-2 bg-transparent select-none pointer-events-none">
+                  <img 
+                    src={logo} 
+                    className="w-full h-auto object-contain animate-[pulse_3s_infinite]" 
+                    alt="SADEEM | سديم" 
+                  />
                 </div>
  
               </div>
