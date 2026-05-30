@@ -103,48 +103,15 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
       />
 
       {/* Main Grid: Left Typography, Right Scene */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mt-6" dir="ltr">
         
-        {/* Right Area Visually (Floating Laptop Visual - placed first in HTML to float to the right in RTL) */}
-        <div 
-          className="lg:col-span-7 flex justify-center items-center select-none transition-transform duration-700 ease-out z-10 gpu-accelerated"
-          style={{
-            transform: 'translate3d(calc(var(--mouse-x, 0) * -12px), calc(var(--mouse-y, 0) * -12px), 0)'
-          }}
-        >
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
-            className="w-full flex justify-center items-center relative"
-          >
-            {/* Soft Ambient Cyber Blue Glows behind the visual - Layered Depth */}
-            <div className="absolute w-[95%] h-[80%] rounded-full bg-gradient-to-tr from-[#3B82F6]/18 to-[#2563EB]/15 blur-[100px] pointer-events-none" />
-            <div className="absolute w-[75%] h-[60%] rounded-full bg-[#1D4ED8]/10 blur-[80px] pointer-events-none" />
-
-            {/* Seamless Cinematic Laptop Presentation - Fully Frame-Free & Floating */}
-            <div 
-              className="relative w-full max-w-3xl lg:max-w-[130%] xl:max-w-[140%] h-auto overflow-hidden group flex items-center justify-center pointer-events-none"
-              style={{
-                maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 96%)',
-                WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 96%)'
-              }}
-            >
-              <img 
-                src={heroWorkspace} 
-                className="w-full h-auto object-contain transform scale-100 group-hover:scale-[1.01] transition-transform duration-1000 ease-out select-none pointer-events-none" 
-                alt="SADEEM Workspace Scene" 
-              />
-            </div>
-          </motion.div>
-        </div>
-
         {/* Left Area Visually (Arabic Typography) */}
         <div 
           className="lg:col-span-5 flex flex-col gap-6 text-center lg:text-right items-center lg:items-start transition-transform duration-700 ease-out gpu-accelerated"
           style={{
             transform: 'translate3d(calc(var(--mouse-x, 0) * 6px), calc(var(--mouse-y, 0) * 6px), 0)'
           }}
+          dir="rtl"
         >
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -225,10 +192,43 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
                 <span className="text-[9px] text-[#94A3B8] font-medium">شركات وأفراد حول العالم</span>
               </div>
             </div>
-
           </motion.div>
         </div>
 
+        {/* Right Area Visually (Floating Laptop Visual) */}
+        <div 
+          className="lg:col-span-7 flex justify-center items-center select-none transition-transform duration-700 ease-out z-10 gpu-accelerated"
+          style={{
+            transform: 'translate3d(calc(var(--mouse-x, 0) * -12px), calc(var(--mouse-y, 0) * -12px), 0)'
+          }}
+          dir="rtl"
+        >
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+            className="w-full flex justify-center items-center relative"
+          >
+            {/* Soft Ambient Cyber Blue Glows behind the visual - Layered Depth */}
+            <div className="absolute w-[95%] h-[80%] rounded-full bg-gradient-to-tr from-[#3B82F6]/18 to-[#2563EB]/15 blur-[100px] pointer-events-none" />
+            <div className="absolute w-[75%] h-[60%] rounded-full bg-[#1D4ED8]/10 blur-[80px] pointer-events-none" />
+ 
+            {/* Seamless Cinematic Laptop Presentation - Fully Frame-Free & Floating */}
+            <div 
+              className="relative w-full max-w-3xl lg:max-w-[130%] xl:max-w-[140%] h-auto overflow-hidden group flex items-center justify-center pointer-events-none"
+              style={{
+                maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 96%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 96%)'
+              }}
+            >
+              <img 
+                src={heroWorkspace} 
+                className="w-full h-auto object-contain transform scale-100 group-hover:scale-[1.01] transition-transform duration-1000 ease-out select-none pointer-events-none" 
+                alt="SADEEM Workspace Scene" 
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Elegant Bouncing Mouse Indicator */}
