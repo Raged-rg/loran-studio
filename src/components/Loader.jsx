@@ -67,7 +67,6 @@ export default function Loader() {
                 الفخامة الرقمية • Digital Experiences
               </motion.p>
             </div>
-          </div>
  
             {/* Progress line */}
             <div className="w-40 h-[2px] bg-blue-950/20 rounded-full overflow-hidden mt-4">
