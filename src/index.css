@@ -241,40 +241,45 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   height: 28px;
   width: auto;
   object-fit: contain;
-  transform: scale(1.5);
+  transform: scale(1.5) translateZ(0);
   transform-origin: left center;
   transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 @media (min-width: 640px) {
   .navbar-logo {
     height: 30px;
-    transform: scale(1.533);
+    transform: scale(1.533) translateZ(0);
   }
 }
 
 @media (min-width: 1024px) {
   .navbar-logo {
     height: 34px;
-    transform: scale(1.53);
+    transform: scale(1.53) translateZ(0);
   }
 }
 
 /* Premium Micro-Interactions on Hover */
 .group:hover .navbar-logo {
-  transform: scale(1.55);
+  transform: scale(1.55) translateZ(0);
 }
 
 @media (min-width: 640px) {
   .group:hover .navbar-logo {
-    transform: scale(1.583);
+    transform: scale(1.583) translateZ(0);
   }
 }
 
 @media (min-width: 1024px) {
   .group:hover .navbar-logo {
-    transform: scale(1.58);
+    transform: scale(1.58) translateZ(0);
   }
 }
 
