@@ -201,16 +201,16 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.1 }}
-            className="w-full flex justify-center items-center relative overflow-hidden"
-            style={{
-              maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 98%)',
-              WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 98%)'
-            }}
+            className="w-full flex justify-center items-center relative overflow-visible"
           >
             {/* Blends naturally without card/frame/border/glass containers */}
             <img 
               src={heroWorkspace} 
-              className="w-full h-auto object-contain select-none pointer-events-none max-w-4xl" 
+              className="w-full h-auto object-contain select-none pointer-events-none max-w-4xl scale-[1.1] lg:scale-[1.15] origin-center" 
+              style={{
+                maskImage: 'radial-gradient(ellipse at center, black 45%, rgba(0,0,0,0.75) 70%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 45%, rgba(0,0,0,0.75) 70%, transparent 100%)'
+              }}
               alt="SADEEM Premium Cyber Workspace" 
             />
           </motion.div>
