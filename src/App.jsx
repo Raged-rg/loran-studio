@@ -6,6 +6,9 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import WhySadeem from './components/WhySadeem';
+import Process from './components/Process';
+import Testimonials from './components/Testimonials';
+import Pricing from './components/Pricing';
 import BeforeAfter from './components/BeforeAfter';
 import Stats from './components/Stats';
 import CTA from './components/CTA';
@@ -21,7 +24,7 @@ export default function App() {
 
   // Handle Automatic Section Tracking on Scroll (IntersectionObserver)
   useEffect(() => {
-    const sections = ['home', 'services', 'portfolio', 'why-sadeem', 'before-after', 'stats', 'cta', 'contact'];
+    const sections = ['home', 'services', 'portfolio', 'why-sadeem', 'process', 'testimonials', 'pricing', 'before-after', 'stats', 'cta', 'contact'];
     
     const observerOptions = {
       root: null,
@@ -108,6 +111,36 @@ export default function App() {
           transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
         >
           <WhySadeem />
+        </motion.div>
+
+        {/* 3.6. Process / Way of Work Roadmap Timeline with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Process />
+        </motion.div>
+
+        {/* 3.7. Testimonials Review Carousel with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Testimonials />
+        </motion.div>
+
+        {/* 3.8. Premium Pricing Packages with Cinematic Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <Pricing />
         </motion.div>
 
         {/* 4. Before / After Interactive Draggable Comparison Slider */}

@@ -151,8 +151,8 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
               </button>
             </div>
 
-            {/* Client Stats */}
-            <div className="flex flex-row items-center gap-3.5 mt-8 border-t border-blue-500/10 pt-6 justify-center lg:justify-start w-full">
+            {/* Client Stats (Desktop Only) */}
+            <div className="hidden lg:flex flex-row items-center gap-3.5 mt-8 border-t border-blue-500/10 pt-6 justify-start w-full">
               <div className="flex -space-x-3 rtl:space-x-reverse select-none">
                 <img 
                   loading="lazy"
@@ -191,7 +191,7 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
 
         {/* RIGHT COLUMN: Approved Hero Workspace Image */}
         <div 
-          className="lg:col-span-7 flex justify-center items-center select-none transition-transform duration-700 ease-out z-10 gpu-accelerated w-full"
+          className="lg:col-span-7 flex flex-col justify-center items-center select-none transition-transform duration-700 ease-out z-10 gpu-accelerated w-full"
           style={{
             transform: 'translate3d(calc(var(--mouse-x, 0) * -10px), calc(var(--mouse-y, 0) * -10px), 0)'
           }}
@@ -216,13 +216,49 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
             <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-[#020817] to-transparent pointer-events-none z-10" />
             <div className="absolute inset-x-0 bottom-0 h-[12%] bg-gradient-to-t from-[#020817] to-transparent pointer-events-none z-10" />
           </motion.div>
+
+          {/* Client Stats (Mobile Only) */}
+          <div className="flex lg:hidden flex-row items-center gap-3.5 mt-8 border-t border-blue-500/10 pt-6 justify-center w-full">
+            <div className="flex -space-x-3 rtl:space-x-reverse select-none">
+              <img 
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" 
+                className="w-9 h-9 rounded-full border-2 border-[#020817] object-cover" 
+                alt="Client 1" 
+              />
+              <img 
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" 
+                className="w-9 h-9 rounded-full border-2 border-[#020817] object-cover" 
+                alt="Client 2" 
+              />
+              <img 
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" 
+                className="w-9 h-9 rounded-full border-2 border-[#020817] object-cover" 
+                alt="Client 3" 
+              />
+              <img 
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" 
+                className="w-9 h-9 rounded-full border-2 border-[#020817] object-cover" 
+                alt="Client 4" 
+              />
+            </div>
+            <div className="flex flex-col gap-0.5 text-right">
+              <span className="text-xs font-semibold text-white">
+                <AnimatedCounter value="120" suffix="+" /> عميل سعيد
+              </span>
+              <span className="text-[9px] text-[#94A3B8] font-medium">شركات وأفراد حول العالم</span>
+            </div>
+          </div>
         </div>
 
       </div>
 
       {/* Elegant Bouncing Scroll Indicator */}
       <motion.div 
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 select-none cursor-pointer z-10"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 select-none cursor-pointer z-10 hidden md:flex"
         onClick={() => handleNavClick('portfolio')}
         animate={{ y: [0, 6, 0] }}
         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}

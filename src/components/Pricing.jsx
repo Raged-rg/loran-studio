@@ -409,7 +409,7 @@ export default function Pricing() {
       </div>
 
       {/* PRICE TOGGLE TABS */}
-      <div className="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar pb-6 mb-16 select-none relative z-10">
+      <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar pb-6 mb-16 select-none relative z-10 w-full max-w-full px-2">
         <div className="flex gap-2 p-1.5 rounded-2xl bg-[#030B1A]/60 border border-blue-500/10 shadow-inner backdrop-blur-md">
           {pricingTabs.map((tab) => {
             const isActive = activeTab === tab.id;

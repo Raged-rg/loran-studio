@@ -35,7 +35,7 @@ export default function Process() {
     <section id="process" className="py-20 max-w-5xl mx-auto px-6 relative">
       
       {/* Background glowing line */}
-      <div className="absolute top-1/4 bottom-1/4 right-[38px] md:right-1/2 w-[2px] bg-gradient-to-b from-[#2563EB]/10 via-[#3B82F6]/40 to-[#2563EB]/10 pointer-events-none hidden md:block" />
+      <div className="absolute top-1/4 bottom-1/4 right-6 md:right-1/2 w-[2px] bg-gradient-to-b from-[#2563EB]/10 via-[#3B82F6]/40 to-[#2563EB]/10 pointer-events-none z-0" />
 
       {/* Headings */}
       <div className="text-center flex flex-col items-center gap-3 mb-16">
@@ -51,7 +51,6 @@ export default function Process() {
       {/* Vertical Timeline Steps */}
       <div className="flex flex-col gap-10 relative">
         {steps.map((step, idx) => {
-          const StepIcon = step.icon;
           const isEven = idx % 2 === 0;
           
           return (
@@ -67,8 +66,8 @@ export default function Process() {
             >
               
               {/* Step indicator node on central line */}
-              <div className="absolute right-[16px] md:right-1/2 md:translate-x-1/2 top-4 w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-950 to-slate-950 border-2 border-blue-500 flex items-center justify-center text-white shadow-lg z-10 select-none">
-                <StepIcon size={14} className="text-[#60A5FA]" />
+              <div className="absolute right-1.5 md:right-1/2 md:translate-x-1/2 top-4 w-9 h-9 rounded-full bg-gradient-to-tr from-blue-950 to-slate-950 border-2 border-blue-500 flex items-center justify-center text-white shadow-lg z-10 select-none font-sans text-xs font-bold text-[#60A5FA]">
+                <span>0{idx + 1}</span>
               </div>
 
               {/* Grid block placeholders */}

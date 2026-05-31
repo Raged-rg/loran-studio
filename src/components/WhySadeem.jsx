@@ -81,61 +81,70 @@ export default function WhySadeem() {
     <section id="why-sadeem" className="py-24 max-w-7xl mx-auto px-6 relative overflow-hidden">
       
       {/* Background glow sparks */}
-      <div className="absolute top-[30%] left-[-5%] w-[220px] h-[220px] rounded-full bg-[#2563EB]/5 blur-[90px] pointer-events-none" />
-      <div className="absolute bottom-[30%] right-[-5%] w-[200px] h-[200px] rounded-full bg-[#1D4ED8]/4 blur-[80px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[-5%] w-48 h-48 rounded-full bg-[#2563EB]/5 blur-[70px] pointer-events-none" />
 
-      {/* PART 1: ABOUT SECTION (من نحن) */}
-      <div ref={aboutRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
-        {/* Left Side: Luxury 3D Studio Mockup Backdrop (CSS-3D) */}
+        {/* Left Side: Luxury 3D Studio Mockup Backdrop (CSS-3D) for Desktop / Simplified Glowing Emblem for Mobile */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={isAboutInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="lg:col-span-5 flex justify-center items-center select-none order-2 lg:order-1"
         >
-          <div className="relative w-full max-w-[360px] aspect-square flex items-center justify-center animate-float">
-            
+          {/* Desktop Only 3D Scene */}
+          <div className="hidden lg:flex relative w-full max-w-[360px] aspect-square items-center justify-center animate-float">
             {/* Outer dotted blue ring */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/25 animate-[spin_50s_linear_infinite]" />
-              <div className="absolute inset-8 rounded-full border border-blue-600/10 animate-[spin_25s_linear_infinite_reverse]" />
- 
-              {/* Layered CSS 3D Studio Scene */}
-              <div className="relative w-52 h-52 bg-gradient-to-tr from-[#071224] to-[#020817] border-2 border-blue-500 rounded-2xl shadow-premium flex items-center justify-center transform rotate-6">
-                
-                {/* Floating inner premium board */}
-                <div className="absolute -top-6 -left-6 w-32 h-20 bg-[#030B1A]/95 backdrop-blur-md border border-blue-500/20 rounded-xl shadow-soft p-3 flex flex-col justify-between transform -rotate-12">
-                  <span className="w-8 h-2 rounded bg-blue-500/40" />
-                  <span className="w-16 h-2 rounded bg-white/10" />
-                  <div className="flex justify-between items-center mt-1">
-                    <span className="w-6 h-2 rounded bg-white/10" />
-                    <span className="text-[10px] text-[#60A5FA]">★</span>
-                  </div>
+            <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/25 animate-[spin_50s_linear_infinite]" />
+            <div className="absolute inset-8 rounded-full border border-blue-600/10 animate-[spin_25s_linear_infinite_reverse]" />
+
+            {/* Layered CSS 3D Studio Scene */}
+            <div className="relative w-52 h-52 bg-gradient-to-tr from-[#071224] to-[#020817] border-2 border-blue-500 rounded-2xl shadow-premium flex items-center justify-center transform rotate-6">
+              
+              {/* Floating inner premium board */}
+              <div className="absolute -top-6 -left-6 w-32 h-20 bg-[#030B1A]/95 backdrop-blur-md border border-blue-500/20 rounded-xl shadow-soft p-3 flex flex-col justify-between transform -rotate-12">
+                <span className="w-8 h-2 rounded bg-blue-500/40" />
+                <span className="w-16 h-2 rounded bg-white/10" />
+                <div className="flex justify-between items-center mt-1">
+                  <span className="w-6 h-2 rounded bg-white/10" />
+                  <span className="text-[10px] text-[#60A5FA]">★</span>
                 </div>
- 
-                {/* Floating blue bar chart */}
-                <div className="absolute -bottom-6 -right-6 w-28 h-24 bg-gradient-to-tr from-[#030B1A] to-[#020817] border border-blue-500/30 rounded-xl shadow-premium p-3 flex flex-col justify-between transform rotate-12">
-                  <div className="flex gap-1.5 justify-center items-end flex-grow">
-                    <div className="w-2.5 h-8 bg-[#2563EB] rounded-t-sm" />
-                    <div className="w-2.5 h-14 bg-[#3B82F6] rounded-t-sm" />
-                    <div className="w-2.5 h-10 bg-white/10 rounded-t-sm" />
-                  </div>
-                  <span className="w-10 h-1.5 rounded bg-white/10 mx-auto mt-2" />
-                </div>
- 
-                {/* Central Premium Emblem */}
-                <div className="w-40 h-20 flex items-center justify-center p-2 bg-transparent select-none pointer-events-none">
-                  <div className="navbar-logo-wrapper w-full h-full justify-center">
-                    <img 
-                      src={logo} 
-                      className="w-auto h-auto object-contain max-w-full max-h-full animate-[pulse_3s_infinite]" 
-                      alt="SADEEM | سديم" 
-                    />
-                  </div>
-                </div>
- 
               </div>
 
+              {/* Floating blue bar chart */}
+              <div className="absolute -bottom-6 -right-6 w-28 h-24 bg-gradient-to-tr from-[#030B1A] to-[#020817] border border-blue-500/30 rounded-xl shadow-premium p-3 flex flex-col justify-between transform rotate-12">
+                <div className="flex gap-1.5 justify-center items-end flex-grow">
+                  <div className="w-2.5 h-8 bg-[#2563EB] rounded-t-sm" />
+                  <div className="w-2.5 h-14 bg-[#3B82F6] rounded-t-sm" />
+                  <div className="w-2.5 h-10 bg-white/10 rounded-t-sm" />
+                </div>
+                <span className="w-10 h-1.5 rounded bg-white/10 mx-auto mt-2" />
+              </div>
+
+              {/* Central Premium Emblem */}
+              <div className="w-40 h-20 flex items-center justify-center p-2 bg-transparent select-none pointer-events-none">
+                <div className="navbar-logo-wrapper w-full h-full justify-center">
+                  <img 
+                    src={logo} 
+                    className="w-auto h-auto object-contain max-w-full max-h-full animate-[pulse_3s_infinite]" 
+                    alt="SADEEM | سديم" 
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Mobile Only Simplified Glowing Emblem */}
+          <div className="flex lg:hidden relative w-full max-w-[280px] aspect-[4/3] items-center justify-center">
+            <div className="absolute inset-0 bg-[#2563EB]/5 blur-[45px] rounded-full" />
+            <div className="w-44 h-24 flex items-center justify-center p-4 bg-[#030B1A]/80 border border-blue-500/15 rounded-2xl shadow-soft">
+              <img 
+                src={logo} 
+                className="w-auto h-auto object-contain max-w-full max-h-full animate-[pulse_4s_infinite]" 
+                alt="SADEEM | سديم" 
+              />
+            </div>
           </div>
         </motion.div>
 

@@ -14,7 +14,7 @@ function ServiceIcon2D({ type }) {
   return (
     <div className="w-14 h-14 rounded-2xl border border-blue-500/15 bg-[#030B1A]/80 flex items-center justify-center text-[#E5E7EB] shadow-soft group-hover:scale-[1.03] group-hover:border-[#3B82F6]/60 transition-all duration-300 relative overflow-hidden mx-auto">
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-      <Icon size={24} strokeWidth={1.2} className="text-[#E5E7EB] group-hover:text-[#60A5FA] transition-colors duration-300" />
+      <Icon size={24} strokeWidth={1.2} className="text-[#60A5FA] group-hover:scale-105 transition-all duration-300" />
     </div>
   );
 }
