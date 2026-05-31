@@ -123,7 +123,7 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
           <div className="flex items-center select-none cursor-pointer group overflow-visible" onClick={() => handleLinkClick('home')}>
             <img 
               src={logo} 
-              className="h-[28px] sm:h-[30px] md:h-[34px] w-auto object-contain scale-[1.25] sm:scale-[1.2] md:scale-[1.15] origin-left transition-all duration-500 group-hover:scale-[1.3] sm:group-hover:scale-[1.25] md:group-hover:scale-[1.2]" 
+              className="h-[28px] sm:h-[30px] md:h-[34px] w-auto object-contain scale-[1.6] sm:scale-[1.45] md:scale-[1.3] origin-left transition-all duration-500 group-hover:scale-[1.65] sm:group-hover:scale-[1.5] md:group-hover:scale-[1.35]" 
               alt="SADEEM | سديم" 
             />
           </div>
