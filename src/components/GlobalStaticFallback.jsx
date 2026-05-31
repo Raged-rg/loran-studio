@@ -12,10 +12,10 @@ export default function GlobalStaticFallback() {
 
       {/* Premium Header */}
       <header className="flex justify-between items-center py-4 border-b border-blue-500/10 max-w-4xl mx-auto w-full relative z-10">
-        <div className="flex items-center select-none">
+        <div className="navbar-logo-wrapper select-none">
           <img 
             src={logo} 
-            className="h-[32px] w-auto object-contain" 
+            className="h-[32px] w-auto h-auto object-contain" 
             alt="SADEEM | سديم" 
           />
         </div>

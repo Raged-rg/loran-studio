@@ -217,10 +217,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-blue-500/12 pt-8 text-[10px] font-medium text-[#E5E7EB]/50 text-center">
           
           {/* Logo & Brand descriptor */}
-          <div className="flex items-center select-none">
+          <div className="navbar-logo-wrapper select-none">
             <img 
               src={logo} 
-              className="h-[30px] sm:h-[34px] w-auto object-contain" 
+              className="h-[30px] sm:h-[34px] w-auto h-auto object-contain" 
               alt="SADEEM | سديم" 
             />
           </div>

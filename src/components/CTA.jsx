@@ -68,11 +68,13 @@ export default function CTA({ setActiveSection, onOpenWizard }) {
         <div className="relative w-44 h-24 md:w-56 md:h-32 flex items-center justify-center select-none">
           {/* Subtle blue backglow */}
           <div className="absolute inset-0 bg-[#2563EB]/10 blur-[40px] rounded-full pointer-events-none" />
-          <img 
-            src={logo} 
-            className="w-full h-auto object-contain animate-float" 
-            alt="SADEEM" 
-          />
+          <div className="navbar-logo-wrapper w-full h-full justify-center">
+            <img 
+              src={logo} 
+              className="w-auto h-auto object-contain max-w-full max-h-full animate-float" 
+              alt="SADEEM" 
+            />
+          </div>
         </div>
 
       </motion.div>

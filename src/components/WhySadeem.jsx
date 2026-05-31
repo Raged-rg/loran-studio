@@ -125,11 +125,13 @@ export default function WhySadeem() {
  
                 {/* Central Premium Emblem */}
                 <div className="w-40 h-20 flex items-center justify-center p-2 bg-transparent select-none pointer-events-none">
-                  <img 
-                    src={logo} 
-                    className="w-full h-auto object-contain animate-[pulse_3s_infinite]" 
-                    alt="SADEEM | سديم" 
-                  />
+                  <div className="navbar-logo-wrapper w-full h-full justify-center">
+                    <img 
+                      src={logo} 
+                      className="w-auto h-auto object-contain max-w-full max-h-full animate-[pulse_3s_infinite]" 
+                      alt="SADEEM | سديم" 
+                    />
+                  </div>
                 </div>
  
               </div>

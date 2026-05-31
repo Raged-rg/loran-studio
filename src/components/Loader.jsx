@@ -49,11 +49,13 @@ export default function Loader() {
             <div className="relative h-12 md:h-16 flex items-center justify-center animate-float">
               {/* Subtle blue backglow */}
               <div className="absolute inset-0 bg-[#2563EB]/10 blur-[40px] rounded-full pointer-events-none" />
-              <img 
-                src={logo} 
-                className="h-full w-auto object-contain" 
-                alt="SADEEM | سديم" 
-              />
+              <div className="navbar-logo-wrapper h-full">
+                <img 
+                  src={logo} 
+                  className="h-full w-auto h-auto object-contain" 
+                  alt="SADEEM | سديم" 
+                />
+              </div>
             </div>
 
             {/* Typography */}

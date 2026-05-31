@@ -39,11 +39,13 @@ export function ThreeDLogoFallback() {
       <div className="relative w-64 h-32 flex items-center justify-center animate-float select-none pointer-events-none">
         {/* Subtle blue backglow */}
         <div className="absolute inset-0 bg-[#2563EB]/10 blur-[45px] rounded-full pointer-events-none" />
-        <img 
-          src={logo} 
-          className="w-full h-auto object-contain animate-[pulse_4s_infinite]" 
-          alt="SADEEM | سديم" 
-        />
+        <div className="navbar-logo-wrapper w-full h-full justify-center">
+          <img 
+            src={logo} 
+            className="w-auto h-auto object-contain max-w-full max-h-full animate-[pulse_4s_infinite]" 
+            alt="SADEEM | سديم" 
+          />
+        </div>
       </div>
     </div>
   );
