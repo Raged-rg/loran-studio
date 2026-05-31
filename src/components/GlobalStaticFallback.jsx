@@ -15,7 +15,7 @@ export default function GlobalStaticFallback() {
         <div className="flex items-center select-none">
           <img 
             src={logo} 
-            className="h-6 w-auto object-contain" 
+            className="h-[32px] w-auto object-contain" 
             alt="SADEEM | سديم" 
           />
         </div>

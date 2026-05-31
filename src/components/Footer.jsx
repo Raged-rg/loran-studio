@@ -220,7 +220,7 @@ export default function Footer() {
           <div className="flex items-center select-none">
             <img 
               src={logo} 
-              className="h-6 sm:h-7 w-auto object-contain" 
+              className="h-[30px] sm:h-[34px] w-auto object-contain" 
               alt="SADEEM | سديم" 
             />
           </div>

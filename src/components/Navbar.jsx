@@ -120,10 +120,10 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
           </nav>
 
           {/* Left Side Visually: Logo brand (appears last in HTML flow) */}
-          <div className="flex items-center select-none cursor-pointer group overflow-visible" onClick={() => handleLinkClick('home')}>
+          <div className="flex items-center select-none cursor-pointer group" onClick={() => handleLinkClick('home')}>
             <img 
               src={logo} 
-              className="h-[28px] sm:h-[30px] md:h-[34px] w-auto object-contain scale-[1.6] sm:scale-[1.45] md:scale-[1.3] origin-left transition-all duration-500 group-hover:scale-[1.65] sm:group-hover:scale-[1.5] md:group-hover:scale-[1.35]" 
+              className="h-[40px] sm:h-[44px] md:h-[48px] w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" 
               alt="SADEEM | سديم" 
             />
           </div>
@@ -155,7 +155,7 @@ export default function Navbar({ activeSection, setActiveSection, onOpenWizard }
                 <div className="flex items-center select-none cursor-pointer" onClick={() => { setIsOpen(false); handleLinkClick('home'); }}>
                   <img 
                     src={logo} 
-                    className="h-6.5 w-auto object-contain" 
+                    className="h-[40px] w-auto object-contain" 
                     alt="SADEEM | سديم" 
                   />
                 </div>
