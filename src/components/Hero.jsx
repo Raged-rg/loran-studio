@@ -201,18 +201,20 @@ export default function Hero({ setActiveSection, onOpenWizard }) {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.1 }}
-            className="w-full flex justify-center items-center relative overflow-visible"
+            className="w-full flex justify-center items-center relative overflow-hidden"
           >
-            {/* Blends naturally without card/frame/border/glass containers */}
+            {/* The Image itself remains 100% sharp and unmasked */}
             <img 
               src={heroWorkspace} 
-              className="w-full h-auto object-contain select-none pointer-events-none max-w-4xl scale-[1.1] lg:scale-[1.15] origin-center" 
-              style={{
-                maskImage: 'radial-gradient(ellipse at center, black 45%, rgba(0,0,0,0.75) 70%, transparent 100%)',
-                WebkitMaskImage: 'radial-gradient(ellipse at center, black 45%, rgba(0,0,0,0.75) 70%, transparent 100%)'
-              }}
+              className="w-full h-auto object-contain select-none pointer-events-none max-w-4xl scale-100 lg:scale-[1.03] origin-center" 
               alt="SADEEM Premium Cyber Workspace" 
             />
+
+            {/* Premium, subtle edge overlays (smoothly fading hard margins into #020817) */}
+            <div className="absolute inset-y-0 left-0 w-[14%] bg-gradient-to-r from-[#020817] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-y-0 right-0 w-[14%] bg-gradient-to-l from-[#020817] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-[#020817] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-[12%] bg-gradient-to-t from-[#020817] to-transparent pointer-events-none z-10" />
           </motion.div>
         </div>
 
